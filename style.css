@@ -1,28 +1,65 @@
 /* style.css */
 
-/* Estilo para o Botão de Compra (Verde) */
+/* 1. Fundo Global do App (Preto Puro) */
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* 2. Fundo do Menu Lateral (Sidebar) */
+[data-testid="stSidebar"] {
+    background-color: #050505 !important; /* Um tom quase imperceptível acima do preto para separar */
+    border-right: 1px solid #1a1a1a;
+}
+
+/* 3. Títulos em Degradê (Identidade Comunicando Igrejas) */
+.gradient-title {
+    background: linear-gradient(90deg, #FF2D95, #7B2CBF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* 4. Estilo dos Cards de Artes (Preto sobre Preto com Borda Glow) */
+.premium-card {
+    background-color: #0c0c0c; /* Cinza extremamente escuro */
+    border: 1px solid #1f1f1f;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.premium-card:hover {
+    border-color: #FF2D95; /* Rosa Neon ao passar o mouse */
+    box-shadow: 0 0 15px rgba(255, 45, 149, 0.3);
+}
+
+/* 5. Botão de Compra VERDE (Destaque conforme solicitado) */
 div.stButton > button:first-child {
-    background-color: #28a745 !important; /* Verde Sucesso */
+    background-color: #28a745 !important;
     color: white !important;
     border: none !important;
-    padding: 15px 30px !important;
+    padding: 12px 30px !important;
     border-radius: 8px !important;
-    font-size: 1.2rem !important;
+    font-size: 1.1rem !important;
     font-weight: bold !important;
-    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4) !important;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3) !important;
     transition: all 0.3s ease !important;
-    display: block;
-    margin: 0 auto; /* Centraliza o botão */
 }
 
 div.stButton > button:first-child:hover {
-    background-color: #218838 !important; /* Verde mais escuro no hover */
-    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6) !important;
+    background-color: #218838 !important;
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5) !important;
     transform: translateY(-2px);
 }
 
-/* Destaque para o valor */
-.price-highlight {
-    color: #FF2D95;
-    font-weight: 800;
+/* 6. Ajuste de Inputs (E-mail e Senha) no Fundo Preto */
+input {
+    background-color: #1a1a1a !important;
+    color: white !important;
+    border: 1px solid #333 !important;
 }
