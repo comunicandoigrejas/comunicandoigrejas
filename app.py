@@ -27,7 +27,6 @@ def tela_login():
 
 # --- ROTEADOR DE PÁGINAS ---
 if not st.session_state.auth:
-   if not st.session_state.auth:
     # Se NÃO estiver logado, mostra a Página Inicial (Landing Page)
     inicio.exibir() 
     
