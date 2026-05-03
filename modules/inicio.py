@@ -1,18 +1,18 @@
 import streamlit as st
 
-def exibir_landing_page():
+def exibir(): # Nome alterado para alinhar com o app.py
     # --- SEÇÃO 1: HERO (Foto 1) ---
     st.markdown("<h1 class='gradient-title'>Mais de 2.000 Artes Profissionais para Igrejas.</h1>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center;'>Atualizações Semanais!</h3>", unsafe_allow_html=True)
     
-    # Placeholder para o vídeo/imagem central
-    st.image("assets/image_fcbdfe.png", use_container_width=True) # Referência à imagem enviada
+    # Referência à imagem enviada (Certifique-se que está na pasta assets)
+    st.image("assets/image_fcbdfe.png", use_container_width=True) 
     
     st.markdown("<div class='price-tag'>R$ 27</div>", unsafe_allow_html=True)
     if st.button("🚀 QUERO ACESSAR AGORA MESMO", use_container_width=True):
-        st.write("Redirecionando...")
+        st.write("Redirecionando para Hotmart...")
 
-    # --- SEÇÃO 2: O QUE VOCÊ TERÁ ACESSO (Foto 1 - Lista) ---
+    # --- SEÇÃO 2: O QUE VOCÊ TERÁ ACESSO ---
     with st.container():
         st.markdown("""
         <div class='premium-card'>
@@ -26,27 +26,28 @@ def exibir_landing_page():
         </div>
         """, unsafe_allow_html=True)
 
-    # --- SEÇÃO 3: GALERIA (Foto 2) ---
+    # --- SEÇÃO 3: GALERIA ---
     st.markdown("### Essas são apenas algumas das artes que te esperam!")
     col1, col2, col3 = st.columns(3)
-    # Aqui você usará as artes em 1:1 conforme o combinado
+    # Aqui usaremos placeholders, mas você pode trocar pelos caminhos das suas artes
     with col1: st.image("https://via.placeholder.com/400x600") 
     with col2: st.image("https://via.placeholder.com/400x600")
     with col3: st.image("https://via.placeholder.com/400x600")
 
-    # --- SEÇÃO 4: BÔNUS (Foto 3) ---
+    # --- SEÇÃO 4: BÔNUS ---
     st.markdown("<h2 style='text-align: center;'>Agindo agora você recebe BÔNUS incríveis!</h2>", unsafe_allow_html=True)
     
-    for i, bonus in enumerate(["Sites CANVA", "Curso ADS", "Kit Ministério Infantil"]):
+    bonuses = ["Sites CANVA", "Curso ADS", "Kit Ministério Infantil"]
+    for i, bonus in enumerate(bonuses):
         st.markdown(f"""
         <div class='premium-card'>
             <span style='color: #FF2D95; font-weight: bold;'>Bônus #{i+1}</span>
             <h4>{bonus} para Igrejas</h4>
-            <p>Descrição curta do bônus para gerar valor ao irmão.</p>
+            <p>Conteúdo exclusivo preparado para abençoar seu ministério.</p>
         </div>
         """, unsafe_allow_html=True)
 
-    # --- SEÇÃO 5: PLANOS E FAQ (Foto 4) ---
+    # --- SEÇÃO 5: PLANOS ---
     st.markdown("<h2 style='text-align: center;'>Escolha o Melhor Plano pra Você!</h2>", unsafe_allow_html=True)
     plan1, plan2, plan3 = st.columns(3)
     with plan1:
@@ -56,7 +57,7 @@ def exibir_landing_page():
     with plan3:
         st.markdown("<div class='premium-card' style='text-align: center;'><b>EXCLUSIVE</b><br>R$ 97</div>", unsafe_allow_html=True)
 
-    # FAQ com Expanders do Streamlit
+    # FAQ
     st.markdown("### PERGUNTAS FREQUENTES")
     with st.expander("Como recebo meu acesso?"):
         st.write("O acesso é enviado imediatamente após a confirmação do pagamento via Hotmart.")
