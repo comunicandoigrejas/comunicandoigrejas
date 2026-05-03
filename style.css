@@ -1,19 +1,28 @@
 /* style.css */
-body, .stApp {
-    background-color: #000000; /* Preto Puro */
-    color: #ffffff; /* Texto Branco para leitura */
+
+/* Estilo para o Botão de Compra (Verde) */
+div.stButton > button:first-child {
+    background-color: #28a745 !important; /* Verde Sucesso */
+    color: white !important;
+    border: none !important;
+    padding: 15px 30px !important;
+    border-radius: 8px !important;
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4) !important;
+    transition: all 0.3s ease !important;
+    display: block;
+    margin: 0 auto; /* Centraliza o botão */
 }
 
-/* Ajuste nos Cards para não "sumirem" no fundo */
-.premium-card {
-    background-color: #121212; /* Um cinza quase preto para dar profundidade */
-    border: 1px solid #222; /* Borda sutil */
-    border-radius: 15px;
-    padding: 20px;
+div.stButton > button:first-child:hover {
+    background-color: #218838 !important; /* Verde mais escuro no hover */
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6) !important;
+    transform: translateY(-2px);
 }
 
-/* Efeito Glow nas bordas ao passar o mouse */
-.premium-card:hover {
-    border-color: #7B2CBF; /* Roxo Vibrante */
-    box-shadow: 0 0 20px rgba(123, 44, 191, 0.3);
+/* Destaque para o valor */
+.price-highlight {
+    color: #FF2D95;
+    font-weight: 800;
 }
