@@ -1,63 +1,36 @@
+# modules/tema_jovens.py
 import streamlit as st
 
-def exibir(): # Nome alterado para alinhar com o app.py
-    # --- SEÇÃO 1: HERO (Foto 1) ---
-    st.markdown("<h1 class='gradient-title'>Mais de 2.000 Artes Profissionais para Igrejas.</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center;'>Atualizações Semanais!</h3>", unsafe_allow_html=True)
+def exibir():
+    # Título Alinhado com o Tema (Use o estilo Premium que definimos no CSS)
+    st.markdown("<h1 class='gradient-title'>Artes para Cultos Gerais</h1>", unsafe_allow_html=True)
+    st.markdown("<p class='sub-title'>Templates editáveis para Cultos de Domingo, Celebração, Adoração e Doutrina.</p>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Organização em Colunas para os Packs (Perfeito para visualizar no celular)
+    col1, col2 = st.columns(2)
     
-    # Referência à imagem enviada (Certifique-se que está na pasta assets)
-    st.image("assets/image_fcbdfe.png", use_container_width=True) 
+    # --- PACK #01 (Adicione sua imagem em assets) ---
+    with col1:
+        st.markdown("<div class='premium-card'>", unsafe_allow_html=True)
+        # Substitua "assets/artes_domingo.png" pelo caminho real da sua imagem
+        st.image("assets/artes_domingo.png", caption="Culto de Celebração", use_container_width=True) 
+        st.markdown("**Pack #01 - Culto de Adoração**")
+        st.write("20 Templates 1:1 (Instagram)")
+        # Substitua pelo seu link real do template do Canva
+        st.link_button("Editar Pack Adoração", "https://www.canva.com/brand/join?token=...", use_container_width=True)
+        st.markdown("</div>", unsafe_allow_html=True)
     
-    st.markdown("<div class='price-tag'>R$ 27</div>", unsafe_allow_html=True)
-    if st.button("🚀 QUERO ACESSAR AGORA MESMO", use_container_width=True):
-        st.write("Redirecionando para Hotmart...")
-
-    # --- SEÇÃO 2: O QUE VOCÊ TERÁ ACESSO ---
-    with st.container():
-        st.markdown("""
-        <div class='premium-card'>
-            <h4>E o que você terá acesso?</h4>
-            <ul>
-                <li>✅ <b>Artes Profissionais:</b> Mais de 2.000 artes prontas.</li>
-                <li>✅ <b>Atualizações Semanais:</b> Novos conteúdos toda semana.</li>
-                <li>✅ <b>Vídeo Aulas Exclusivas:</b> Aprenda a dominar o Canva.</li>
-                <li>✅ <b>Suporte Prioritário:</b> Contato direto via WhatsApp.</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
-
-    # --- SEÇÃO 3: GALERIA ---
-    st.markdown("### Essas são apenas algumas das artes que te esperam!")
-    col1, col2, col3 = st.columns(3)
-    # Aqui usaremos placeholders, mas você pode trocar pelos caminhos das suas artes
-    with col1: st.image("https://via.placeholder.com/400x600") 
-    with col2: st.image("https://via.placeholder.com/400x600")
-    with col3: st.image("https://via.placeholder.com/400x600")
-
-    # --- SEÇÃO 4: BÔNUS ---
-    st.markdown("<h2 style='text-align: center;'>Agindo agora você recebe BÔNUS incríveis!</h2>", unsafe_allow_html=True)
-    
-    bonuses = ["Sites CANVA", "Curso ADS", "Kit Ministério Infantil"]
-    for i, bonus in enumerate(bonuses):
-        st.markdown(f"""
-        <div class='premium-card'>
-            <span style='color: #FF2D95; font-weight: bold;'>Bônus #{i+1}</span>
-            <h4>{bonus} para Igrejas</h4>
-            <p>Conteúdo exclusivo preparado para abençoar seu ministério.</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-    # --- SEÇÃO 5: PLANOS ---
-    st.markdown("<h2 style='text-align: center;'>Escolha o Melhor Plano pra Você!</h2>", unsafe_allow_html=True)
-    plan1, plan2, plan3 = st.columns(3)
-    with plan1:
-        st.markdown("<div class='premium-card' style='text-align: center;'><b>START</b><br>R$ 27</div>", unsafe_allow_html=True)
-    with plan2:
-        st.markdown("<div class='premium-card' style='text-align: center; border-color: #FF2D95;'><b>PREMIUM</b><br>R$ 57</div>", unsafe_allow_html=True)
-    with plan3:
-        st.markdown("<div class='premium-card' style='text-align: center;'><b>EXCLUSIVE</b><br>R$ 97</div>", unsafe_allow_html=True)
-
-    # FAQ
-    st.markdown("### PERGUNTAS FREQUENTES")
-    with st.expander("Como recebo meu acesso?"):
-        st.write("O acesso é enviado imediatamente após a confirmação do pagamento via Hotmart.")
+    # --- PACK #02 (Placeholder para você preencher) ---
+    with col2:
+        st.markdown("<div class='premium-card'>", unsafe_allow_html=True)
+        # st.image("assets/artes_familia.png", use_container_width=True) # Descomente e use quando tiver imagem
+        st.markdown("**Pack #02 - Próximo Pack**")
+        st.write("15 Templates 1:1 (Instagram)")
+        # st.link_button("Editar Pack Família", "https://www.canva.com/...", use_container_width=True)
+        st.write("Disponível em breve!")
+        st.markdown("</div>", unsafe_allow_html=True)
+        
+    # Mensagem final de edificação (Opcional, usando ARA como preferido)
+    st.markdown("---")
+    st.write("Atenção: Novos packs são adicionados semanalmente!")
