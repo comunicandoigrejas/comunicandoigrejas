@@ -7,7 +7,7 @@ def exibir():
     st.markdown("<h3 style='text-align: center; color: #FF2D95;'>Atualizações Semanais!</h3>", unsafe_allow_html=True)
     
     # Referência à imagem principal de impacto (image_ef1edc.jpg)
-    st.image("assets/image_ef1edc.jpg", use_container_width=True)
+    st.image("assets/hero_mockup.png", use_container_width=True)
     
     # --- SEÇÃO DE PREÇO DESTACADA (Borda roxa e fundo escuro) ---
     st.markdown(f"""
