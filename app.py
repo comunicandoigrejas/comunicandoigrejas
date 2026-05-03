@@ -27,7 +27,25 @@ def tela_login():
 
 # --- ROTEADOR DE PÁGINAS ---
 if not st.session_state.auth:
-    tela_login()
+   if not st.session_state.auth:
+    # Se NÃO estiver logado, mostra a Página Inicial (Landing Page)
+    inicio.exibir() 
+    
+    # Opcional: Coloque o formulário de login no final ou em um botão flutuante
+    with st.expander("Já é membro? Faça login aqui"):
+        # Seus campos de email e senha...
+        if st.button("Entrar na Benção"):
+            # Lógica de login
+            st.session_state.auth = True
+            st.rerun()
+else:
+    # Se ESTIVER logado, mostra o Menu Lateral e as outras páginas
+    opcao = st.sidebar.radio("Navegação", ["Dashboard", "Artes Canva", "Cursos"])
+    
+    if opcao == "Dashboard":
+        dashboard.exibir()
+    elif opcao == "Artes Canva":
+        artes.exibir()
 else:
     # Menu Lateral Premium
     with st.sidebar:
