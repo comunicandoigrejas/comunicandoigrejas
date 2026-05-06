@@ -55,17 +55,19 @@ def exibir():
         """, unsafe_allow_html=True)
 
     # --- SEÇÃO 3: GALERIA DE AMOSTRAS (Imagem 02) ---
-    st.markdown("<h2 style='text-align: center;'>Essas são apenas algumas das artes que te esperam!</h2>", unsafe_allow_html=True)
-    carregar_imagem("2.png")
-
-    # --- SEÇÃO 4: BÔNUS (Imagem 03) ---
-    st.markdown("""
-        <div style='background: linear-gradient(90deg, #7B2CBF, #FF2D95); padding: 15px; border-radius: 10px; text-align: center; margin: 40px 0;'>
-            <h3 style='color: white; margin: 0;'>Agindo agora você também recebe BÔNUS incríveis!</h3>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<br><h2 style='text-align: center;'>Confira uma prévia do que você vai receber:</h2>", unsafe_allow_html=True)
     
-    carregar_imagem("03.png")
+    # Criando 4 colunas para que as imagens fiquem pequenas e lado a lado
+    col_a, col_b, col_c, col_d = st.columns(4)
+    
+    with col_a:
+        carregar_imagem("01.png")
+    with col_b:
+        carregar_imagem("02.png")
+    with col_c:
+        carregar_imagem("03.png")
+    with col_d:
+        carregar_imagem("04.png")
 
     # --- SEÇÃO 5: TABELA DE PLANOS (Imagem 04) ---
     st.markdown("<h2 style='text-align: center; margin-top: 50px;'>Escolha o Melhor Plano pra Você!</h2>", unsafe_allow_html=True)
