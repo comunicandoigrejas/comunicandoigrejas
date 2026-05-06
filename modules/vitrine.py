@@ -47,7 +47,7 @@ def exibir():
                 <div style='background-color: white; color: black; padding: 10px; border-radius: 5px; font-weight: bold;'>
                     PLANO: START<br>(3 Meses de Acesso)
                 </div>
-                <div style='font-size: 2.5rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 27</div>
+                <div style='font-size: 3.5rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 27</div>
                 <p style='color: #888;'>OU 5x R$ 6,17</p>
                 <hr style='border-color: #333;'>
                 <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 1.8rem;'>
