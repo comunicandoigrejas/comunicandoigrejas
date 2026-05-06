@@ -1,70 +1,55 @@
-# modules/vitrine.py
 import streamlit as st
 import os
 
 def exibir():
+    # Tudo o que está aqui dentro tem 4 espaços de recuo
     def carregar_imagem(nome_arquivo):
+        # Tudo o que está dentro desta subfunção tem 8 espaços de recuo
         caminho = f"assets/{nome_arquivo}"
         if os.path.exists(caminho):
             st.image(caminho, use_container_width=True)
         else:
             st.info(f"Aguardando imagem: {nome_arquivo}")
 
-    # --- 1. BANNER DE TOPO ---
-    carregar_imagem("hero_mockup.png")
+    # 1. BANNER PRINCIPAL
+    carregar_imagem("banner_principal.png")
 
- st.markdown("<br><h2 style='text-align: center;'>Planos Disponíveis</h2>", unsafe_allow_html=True)
-    
-    col_plan1, col_plan2 = st.columns(2)
-
-    # --- SEÇÃO DE PLANOS ---
-    st.markdown("<br><h2 style='text-align: center;'>Planos Disponíveis</h2>", unsafe_allow_html=True)
-    
-    col_plan1, col_plan2 = st.columns(2)
-
-    # Conteúdo do Plano START
-    html_start = """
-    <div class='premium-card' style='text-align: center; border-color: #7B2CBF; min-height: 800px; padding: 20px;'>
-        <div style='background-color: white; color: black; padding: 10px; border-radius: 5px; font-weight: bold; font-size: 2rem;'>
-            PLANO: START<br>
-            <span style='font-size: 1rem;'>(3 Meses de Acesso)</span>
-        </div>
-        <div style='font-size: 2.8rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 27</div>
-        <p style='color: #888; font-size: 0.95rem;'>OU 5x R$ 6,17</p>
-        <hr style='border-color: #333;'>
-        <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 2rem;'>
-            <li>✅ +2.000 Artes Editáveis no Canva</li>
-            <li>✅ 4 Formatos (Feed, Storie, Cartaz e Telão)</li>
-            <li>✅ Atualizações Semanais</li>
-            <li>✅ Curso Site pelo Canva</li>
-            <li>✅ Templates de Site Prontos</li>
-            <li>✅ Curso Anúncios (FB/IG)</li>
-            <li>✅ Kit Ministério Infantil & Secretaria</li>
-            <li>✅ Sermões de Pregação</li>
-            <li>✅ 12 Bônus Exclusivos</li>
-            <li>✅ Comunidade Vip & Suporte</li>
-        </ul>
-    </div>
-    """
-    # --- 3. TÍTULO DE CHAMADA ---
-    st.markdown("<h1 class='gradient-title'>Invista na sua Igreja</h1>", unsafe_allow_html=True)
-    
-    # --- 4. PREÇO DESTAQUE ---
-    st.markdown(f"""
-        <div style='text-align: center; margin: 20px 0; padding: 25px; border: 2px dashed #7B2CBF; border-radius: 15px; background-color: #0a0a0a;'>
-            <div style='font-size: 3.5rem; font-weight: 800; color: #FF2D95; text-shadow: 0 0 15px rgba(255, 45, 149, 0.5);'>
-                A partir de R$ 27,00
-            </div>
+    # 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO?
+    st.markdown("""
+        <div style='background-color: #000; border: 1px solid #333; border-radius: 15px; padding: 25px; margin: 20px 0;'>
+            <h2 style='text-align: center; color: white;'>E o que você terá acesso?</h2>
+            <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Artes Profissionais:</p>
+            <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Mais de 2.000 artes prontas para editar no Canva.</p>
+            <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Atualizações Semanais:</p>
+            <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Novas artes e materiais toda semana.</p>
+            <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Vídeo Aulas Exclusivas:</p>
+            <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Aprenda a dominar o Canva com aulas diretas.</p>
+            <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Bônus Exclusivos:</p>
+            <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Textos 3D, texturas e fundos profissionais.</p>
+            <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Suporte Prioritário:</p>
+            <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Suporte rápido e eficiente pelo WhatsApp.</p>
         </div>
     """, unsafe_allow_html=True)
-    # --- 6. MODELOS (AMOSTRAS) ---
+
+    # 3. CHAMADA DE PREÇO
+    st.markdown("<h1 style='text-align: center;'>A partir de R$ 27,00</h1>", unsafe_allow_html=True)
+
+    # 4. PLANOS
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("<div style='border:1px solid #7B2CBF; padding:20px; border-radius:10px; text-align:center;'><h3>START</h3><p>R$ 27</p></div>", unsafe_allow_html=True)
+        st.link_button("GARANTIR ACESSO START", "https://pay.hotmart.com/Y98906000N", use_container_width=True)
+    with col2:
+        st.markdown("<div style='border:1px solid #FF2D95; padding:20px; border-radius:10px; text-align:center;'><h3>PREMIUM 🔥</h3><p>R$ 57</p></div>", unsafe_allow_html=True)
+        st.link_button("GARANTIR ACESSO VITALÍCIO", "https://pay.hotmart.com/Y98906000N", use_container_width=True)
+
+    # 5. MODELOS
     st.markdown("<br><h2 style='text-align: center;'>Veja a qualidade das nossas artes:</h2>", unsafe_allow_html=True)
     c1, c2, c3, c4 = st.columns(4)
     with c1: carregar_imagem("1.png")
     with c2: carregar_imagem("2.png")
     with c3: carregar_imagem("3.png")
     with c4: carregar_imagem("4.png")
-
   # --- SEÇÃO DE PLANOS ---
     st.markdown("<br><h2 style='text-align: center;'>Planos Disponíveis</h2>", unsafe_allow_html=True)
     
