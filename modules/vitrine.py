@@ -70,7 +70,7 @@ def exibir():
     with col_plan2:
         st.markdown("""
             <div class='premium-card' style='text-align: center; border-color: #FF2D95; background-color: #0e0e0e; min-height: 800px; position: relative;'>
-                <div style='position: absolute; top: 10px; right: 10px; background-color: #28a745; color: white; padding: 5px 10px; border-radius: 5px; font-size: 1.8rem;'>+ VENDIDO</div>
+                <div style='position: absolute; top: 10px; right: 10px; background-color: #28a745; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.85rem;'>+ VENDIDO</div>
                 <div style='background: linear-gradient(90deg, #7B2CBF, #FF2D95); color: white; padding: 10px; border-radius: 5px; font-weight: bold;'>
                     PLANO: PREMIUM 🔥<br>(ACESSO VITALÍCIO)
                 </div>
