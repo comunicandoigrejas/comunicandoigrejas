@@ -13,32 +13,34 @@ def exibir():
     # --- 1. BANNER DE TOPO ---
     carregar_imagem("hero_mockup.png")
 
-# --- 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO? ---
-    st.markdown("---") # Linha divisória para separar do banner
-    st.header("E o que você terá acesso?")
+ st.markdown("<br><h2 style='text-align: center;'>Planos Disponíveis</h2>", unsafe_allow_html=True)
+    
+    col_plan1, col_plan2 = st.columns(2)
 
-    # Criando as linhas de benefícios com colunas para alinhar o ícone ✅
-    def item_acesso(titulo, descricao):
-        col_icon, col_txt = st.columns([0.1, 0.9])
-        with col_icon:
-            st.markdown("<h3 style='color: #FF2D95; margin-top: 0;'>✅</h3>", unsafe_allow_html=True)
-        with col_txt:
-            st.markdown(f"**{titulo}:**")
-            st.write(descricao)
-        st.markdown("<br>", unsafe_allow_html=True)
-
-    # Chamando cada item (conforme a imagem que você enviou)
-    item_acesso("Artes Profissionais", "Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva. Em poucos cliques, crie artes incríveis de forma rápida, simples e sem nenhuma complicação!")
-    
-    item_acesso("Atualizações Semanais", "Novas artes e materiais toda semana! A plataforma está sempre se renovando para que sua comunicação continue atual, relevante e poderosa.")
-    
-    item_acesso("Vídeo Aulas Exclusivas", "Aprenda a dominar o Canva e outras ferramentas com aulas simples e diretas, pensadas especialmente para igrejas e ministérios. Mesmo sem experiência, você vai conseguir criar artes de alto nível!")
-    
-    item_acesso("Bônus Exclusivos para Membros", "Receba um pacote completo de recursos extras! Inclui efeitos visuais, textos em 3D, texturas, vídeos, imagens de fundo e muito mais.")
-    
-    item_acesso("Suporte Prioritário", "Precisa de ajuda? Fale com a gente! Os membros da plataforma têm acesso ao nosso time com suporte rápido e eficiente pelo WhatsApp.")
-    
-    st.markdown("---")
+    # Conteúdo do Plano START
+    html_start = """
+    <div class='premium-card' style='text-align: center; border-color: #7B2CBF; min-height: 800px; padding: 20px;'>
+        <div style='background-color: white; color: black; padding: 10px; border-radius: 5px; font-weight: bold; font-size: 2rem;'>
+            PLANO: START<br>
+            <span style='font-size: 1rem;'>(3 Meses de Acesso)</span>
+        </div>
+        <div style='font-size: 2.8rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 27</div>
+        <p style='color: #888; font-size: 0.95rem;'>OU 5x R$ 6,17</p>
+        <hr style='border-color: #333;'>
+        <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 2rem;'>
+            <li>✅ +2.000 Artes Editáveis no Canva</li>
+            <li>✅ 4 Formatos (Feed, Storie, Cartaz e Telão)</li>
+            <li>✅ Atualizações Semanais</li>
+            <li>✅ Curso Site pelo Canva</li>
+            <li>✅ Templates de Site Prontos</li>
+            <li>✅ Curso Anúncios (FB/IG)</li>
+            <li>✅ Kit Ministério Infantil & Secretaria</li>
+            <li>✅ Sermões de Pregação</li>
+            <li>✅ 12 Bônus Exclusivos</li>
+            <li>✅ Comunidade Vip & Suporte</li>
+        </ul>
+    </div>
+    """
 
     # --- 3. TÍTULO DE CHAMADA ---
     st.markdown("<h1 class='gradient-title'>Invista na sua Igreja</h1>", unsafe_allow_html=True)
