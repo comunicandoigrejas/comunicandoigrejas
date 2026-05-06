@@ -77,7 +77,7 @@ def exibir():
                 <div style='font-size: 3.5rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 57</div>
                 <p style='color: #888;'>OU 11x R$ 6,25</p>
                 <hr style='border-color: #333;'>
-                <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 0.85rem;'>
+                <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 1.8rem;'>
                     <li>🚀 <b>DIFERENCIAL: NUNCA EXPIRA!</b></li>
                     <li>✅ <b>Tudo do Plano Start</b></li>
                     <li>✅ Atualizações Vitalícias</li>
