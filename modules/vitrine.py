@@ -22,13 +22,17 @@ def exibir():
             <p style='color: #ddd; font-size: 18px; margin-top: 5px;'>Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva. 
             Em poucos cliques, crie artes incríveis de forma rápida, simples e sem nenhuma complicação!</p>
             <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Atualizações Semanais:</p>
-            <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Novas artes e materiais toda semana.</p>
+            <p style='color: #ddd; font-size: 18px; margin-top: 5px;'>Novas artes e materiais toda semana! A plataforma está sempre se renovando para que sua 
+            comunicação continue atual, relevante e poderosa.</p>
             <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Vídeo Aulas Exclusivas:</p>
-            <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Aprenda a dominar o Canva com aulas diretas.</p>
+            <p style='color: #ddd; font-size: 18px; margin-top: 5px;'>Aprenda a dominar o Canva e outras ferramentas com aulas simples e diretas, pensadas 
+            especialmente para igrejas e ministérios. Mesmo sem experiência, você vai conseguir criar artes de alto nível!</p>
             <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Bônus Exclusivos:</p>
-            <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Textos 3D, texturas e fundos profissionais.</p>
+            <p style='color: #ddd; font-size: 18px; margin-top: 5px;'>Receba um pacote completo de recursos extras! Inclui efeitos visuais, textos em 3D, texturas, vídeos, 
+            imagens de fundo e muito mais para deixar suas artes ainda mais impactantes e profissionais.</p>
             <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Suporte Prioritário:</p>
-            <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Suporte rápido e eficiente pelo WhatsApp.</p>
+            <p style='color: #ddd; font-size: 18px; margin-top: 5px;'>Precisa de ajuda? Fale com a gente! Os membros da plataforma têm acesso ao nosso time 
+            com suporte rápido e eficiente pelo WhatsApp.</p>
         </div>
     """, unsafe_allow_html=True)
 
