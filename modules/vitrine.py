@@ -17,6 +17,11 @@ def exibir():
     
     col_plan1, col_plan2 = st.columns(2)
 
+    # --- SEÇÃO DE PLANOS ---
+    st.markdown("<br><h2 style='text-align: center;'>Planos Disponíveis</h2>", unsafe_allow_html=True)
+    
+    col_plan1, col_plan2 = st.columns(2)
+
     # Conteúdo do Plano START
     html_start = """
     <div class='premium-card' style='text-align: center; border-color: #7B2CBF; min-height: 800px; padding: 20px;'>
@@ -41,7 +46,6 @@ def exibir():
         </ul>
     </div>
     """
-
     # --- 3. TÍTULO DE CHAMADA ---
     st.markdown("<h1 class='gradient-title'>Invista na sua Igreja</h1>", unsafe_allow_html=True)
     
