@@ -60,7 +60,7 @@ def exibir():
         <div style='font-size: 2.8rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 27</div>
         <p style='color: #888; font-size: 0.95rem;'>OU 5x R$ 6,17</p>
         <hr style='border-color: #333;'>
-        <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 0.95rem;'>
+        <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 2rem;'>
             <li>✅ +2.000 Artes Editáveis no Canva</li>
             <li>✅ 4 Formatos (Feed, Storie, Cartaz e Telão)</li>
             <li>✅ Atualizações Semanais</li>
