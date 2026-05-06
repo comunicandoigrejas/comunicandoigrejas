@@ -3,7 +3,6 @@ import streamlit as st
 import os
 
 def exibir():
-    # Função para carregar imagens com segurança
     def carregar_imagem(nome_arquivo):
         caminho = f"assets/{nome_arquivo}"
         if os.path.exists(caminho):
@@ -11,57 +10,67 @@ def exibir():
         else:
             st.info(f"Aguardando imagem: {nome_arquivo}")
 
-    # --- BANNER PRINCIPAL ---
+    # --- 1. BANNER DE TOPO ---
     carregar_imagem("hero_mockup.png")
 
-    # --- 2. O QUE VOCÊ TERÁ ACESSO? (Nova Seção) ---
-    st.markdown("""
-        <div style='background-color: #000; border: 1px solid #333; border-radius: 15px; padding: 30px; margin: 20px 0;'>
-            <h2 style='text-align: center; color: white; margin-bottom: 30px;'>E o que você terá acesso?</h2>
-            
-            <div style='margin-bottom: 20px;'>
-                <p style='color: #FF2D95; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;'>✅ Artes Profissionais:</p>
-                <p style='color: #ddd; font-size: 1rem;'>Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva. Em poucos cliques, crie artes incríveis de forma rápida, simples e sem nenhuma complicação!</p>
-            </div>
+    # --- 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO? ---
+    # Usando container para forçar a renderização
+    with st.container():
+        st.markdown("""
+            <div style='background-color: #000000; border: 2px solid #333333; border-radius: 15px; padding: 30px; margin-top: 20px; margin-bottom: 20px; font-family: sans-serif;'>
+                <h2 style='text-align: center; color: #ffffff; margin-bottom: 30px;'>E o que você terá acesso?</h2>
+                
+                <div style='margin-bottom: 20px;'>
+                    <span style='color: #FF2D95; font-weight: bold; font-size: 1.2rem;'>✅ Artes Profissionais:</span><br>
+                    <span style='color: #dddddd; font-size: 1rem;'>Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva. Em poucos cliques, crie artes incríveis de forma rápida, simples e sem nenhuma complicação!</span>
+                </div>
 
-            <div style='margin-bottom: 20px;'>
-                <p style='color: #FF2D95; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;'>✅ Atualizações Semanais:</p>
-                <p style='color: #ddd; font-size: 1rem;'>Novas artes e materiais toda semana! A plataforma está sempre se renovando para que sua comunicação continue atual, relevante e poderosa.</p>
-            </div>
+                <div style='margin-bottom: 20px;'>
+                    <span style='color: #FF2D95; font-weight: bold; font-size: 1.2rem;'>✅ Atualizações Semanais:</span><br>
+                    <span style='color: #dddddd; font-size: 1rem;'>Novas artes e materiais toda semana! A plataforma está sempre se renovando para que sua comunicação continue atual, relevante e poderosa.</span>
+                </div>
 
-            <div style='margin-bottom: 20px;'>
-                <p style='color: #FF2D95; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;'>✅ Vídeo Aulas Exclusivas:</p>
-                <p style='color: #ddd; font-size: 1rem;'>Aprenda a dominar o Canva e outras ferramentas com aulas simples e diretas, pensadas especialmente para igrejas e ministérios. Mesmo sem experiência, você vai conseguir criar artes de alto nível!</p>
-            </div>
+                <div style='margin-bottom: 20px;'>
+                    <span style='color: #FF2D95; font-weight: bold; font-size: 1.2rem;'>✅ Vídeo Aulas Exclusivas:</span><br>
+                    <span style='color: #dddddd; font-size: 1rem;'>Aprenda a dominar o Canva e outras ferramentas com aulas simples e diretas, pensadas especialmente para igrejas e ministérios. Mesmo sem experiência, você vai conseguir criar artes de alto nível!</span>
+                </div>
 
-            <div style='margin-bottom: 20px;'>
-                <p style='color: #FF2D95; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;'>✅ Bônus Exclusivos para Membros:</p>
-                <p style='color: #ddd; font-size: 1rem;'>Receba um pacote completo de recursos extras! Inclui efeitos visuais, textos em 3D, texturas, vídeos, imagens de fundo e muito mais para deixar suas artes ainda mais impactantes e profissionais.</p>
-            </div>
+                <div style='margin-bottom: 20px;'>
+                    <span style='color: #FF2D95; font-weight: bold; font-size: 1.2rem;'>✅ Bônus Exclusivos para Membros:</span><br>
+                    <span style='color: #dddddd; font-size: 1rem;'>Receba um pacote completo de recursos extras! Inclui efeitos visuais, textos em 3D, texturas, vídeos, imagens de fundo e muito mais.</span>
+                </div>
 
-            <div style='margin-bottom: 10px;'>
-                <p style='color: #FF2D95; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;'>✅ Suporte Prioritário:</p>
-                <p style='color: #ddd; font-size: 1rem;'>Precisa de ajuda? Fale com a gente! Os membros da plataforma têm acesso ao nosso time com suporte rápido e eficiente pelo WhatsApp.</p>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
-
-    # --- 3. TÍTULO E PREÇO EM DESTAQUE ---
-    st.markdown("""
-        <div style='text-align: center; margin: 30px 0;'>
-            <h1 class='gradient-title'>Mais de 2.000 Artes <br> Profissionais para Igrejas.</h1>
-            <div style='margin: 20px 0; padding: 25px; border: 2px dashed #7B2CBF; border-radius: 15px; background-color: #0a0a0a;'>
-                <span style='text-decoration: line-through; color: #888; font-size: 1.1rem;'>Invista na sua comunicação</span>
-                <div style='font-size: 3.5rem; font-weight: 800; color: #FF2D95; text-shadow: 0 0 15px rgba(255, 45, 149, 0.5);'>
-                    A partir de R$ 27,00
+                <div style='margin-bottom: 10px;'>
+                    <span style='color: #FF2D95; font-weight: bold; font-size: 1.2rem;'>✅ Suporte Prioritário:</span><br>
+                    <span style='color: #dddddd; font-size: 1rem;'>Precisa de ajuda? Fale com a gente! Os membros da plataforma têm acesso ao nosso time com suporte rápido e eficiente pelo WhatsApp.</span>
                 </div>
             </div>
+        """, unsafe_allow_html=True)
+
+    # --- 3. TÍTULO DE CHAMADA ---
+    st.markdown("<h1 class='gradient-title'>Invista na sua Igreja</h1>", unsafe_allow_html=True)
+    
+    # --- 4. PREÇO DESTAQUE ---
+    st.markdown(f"""
+        <div style='text-align: center; margin: 20px 0; padding: 25px; border: 2px dashed #7B2CBF; border-radius: 15px; background-color: #0a0a0a;'>
+            <div style='font-size: 3.5rem; font-weight: 800; color: #FF2D95; text-shadow: 0 0 15px rgba(255, 45, 149, 0.5);'>
+                A partir de R$ 27,00
+            </div>
         </div>
     """, unsafe_allow_html=True)
 
-    # --- GALERIA DE AMOSTRAS (01 a 04) ---
-    st.markdown("<br><h2 style='text-align: center;'>Artes prontas para o seu Instagram:</h2>", unsafe_allow_html=True)
-    respiro_e, c1, c2, c3, c4, respiro_d = st.columns([0.5, 2, 2, 2, 2, 0.5])
+    # --- 5. PLANOS ---
+    col_plan1, col_plan2 = st.columns(2)
+    with col_plan1:
+        st.markdown("<div style='border:1px solid #7B2CBF; padding:20px; border-radius:10px; text-align:center;'><h3>START</h3><p>R$ 27</p></div>", unsafe_allow_html=True)
+        st.link_button("GARANTIR ACESSO START", "https://pay.hotmart.com/Y98906000N", use_container_width=True)
+    with col_plan2:
+        st.markdown("<div style='border:1px solid #FF2D95; padding:20px; border-radius:10px; text-align:center;'><h3>PREMIUM 🔥</h3><p>R$ 57</p></div>", unsafe_allow_html=True)
+        st.link_button("GARANTIR ACESSO VITALÍCIO", "https://pay.hotmart.com/Y98906000N", use_container_width=True)
+
+    # --- 6. MODELOS (AMOSTRAS) ---
+    st.markdown("<br><h2 style='text-align: center;'>Veja a qualidade das nossas artes:</h2>", unsafe_allow_html=True)
+    c1, c2, c3, c4 = st.columns(4)
     with c1: carregar_imagem("1.png")
     with c2: carregar_imagem("2.png")
     with c3: carregar_imagem("3.png")
