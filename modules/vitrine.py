@@ -34,10 +34,10 @@ def exibir():
     
     # Usando colunas de respiro para deixar as imagens menores e elegantes
     respiro_esq, c1, c2, c3, c4, respiro_dir = st.columns([0.5, 2, 2, 2, 2, 0.5])
-    with c1: carregar_imagem("01.png")
-    with c2: carregar_imagem("02.png")
-    with c3: carregar_imagem("03.png")
-    with c4: carregar_imagem("04.png")
+    with c1: carregar_imagem("1.png")
+    with c2: carregar_imagem("2.png")
+    with c3: carregar_imagem("3.png")
+    with c4: carregar_imagem("4.png")
 
     # --- SEÇÃO 3: OS DOIS PLANOS (START & PREMIUM) ---
     st.markdown("<br><h2 style='text-align: center;'>Escolha o Plano Ideal:</h2>", unsafe_allow_html=True)
