@@ -13,27 +13,32 @@ def exibir():
     # --- 1. BANNER DE TOPO ---
     carregar_imagem("hero_mockup.png")
 
-# 2. SEÇÃO ACESSO (O segredo é usar aspas triplas R""" para ignorar caracteres especiais)
-    acesso_html = r"""
-    <div style="background-color: #000; border: 1px solid #333; border-radius: 15px; padding: 25px; margin: 20px 0; font-family: sans-serif;">
-        <h2 style="text-align: center; color: white;">E o que você terá acesso?</h2>
-        <br>
-        <p style="color: #FF2D95; font-weight: bold; margin-bottom: 0;">✅ Artes Profissionais:</p>
-        <p style="color: #ddd; font-size: 14px; margin-top: 5px;">Mais de 2.000 artes prontas para editar no Canva.</p>
-        
-        <p style="color: #FF2D95; font-weight: bold; margin-bottom: 0;">✅ Atualizações Semanais:</p>
-        <p style="color: #ddd; font-size: 14px; margin-top: 5px;">Novas artes e materiais toda semana para sua igreja.</p>
-        
-        <p style="color: #FF2D95; font-weight: bold; margin-bottom: 0;">✅ Vídeo Aulas Exclusivas:</p>
-        <p style="color: #ddd; font-size: 14px; margin-top: 5px;">Domine o Canva com aulas simples e diretas.</p>
-        
-        <p style="color: #FF2D95; font-weight: bold; margin-bottom: 0;">✅ Bônus Exclusivos:</p>
-        <p style="color: #ddd; font-size: 14px; margin-top: 5px;">Textos 3D, texturas e fundos profissionais.</p>
-        
-        <p style="color: #FF2D95; font-weight: bold; margin-bottom: 0;">✅ Suporte Prioritário:</p>
-        <p style="color: #ddd; font-size: 14px; margin-top: 5px;">Dúvidas? Suporte rápido pelo WhatsApp.</p>
-    </div>
-    """
+# --- 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO? ---
+    st.markdown("---") # Linha divisória para separar do banner
+    st.header("E o que você terá acesso?")
+
+    # Criando as linhas de benefícios com colunas para alinhar o ícone ✅
+    def item_acesso(titulo, descricao):
+        col_icon, col_txt = st.columns([0.1, 0.9])
+        with col_icon:
+            st.markdown("<h3 style='color: #FF2D95; margin-top: 0;'>✅</h3>", unsafe_allow_html=True)
+        with col_txt:
+            st.markdown(f"**{titulo}:**")
+            st.write(descricao)
+        st.markdown("<br>", unsafe_allow_html=True)
+
+    # Chamando cada item (conforme a imagem que você enviou)
+    item_acesso("Artes Profissionais", "Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva. Em poucos cliques, crie artes incríveis de forma rápida, simples e sem nenhuma complicação!")
+    
+    item_acesso("Atualizações Semanais", "Novas artes e materiais toda semana! A plataforma está sempre se renovando para que sua comunicação continue atual, relevante e poderosa.")
+    
+    item_acesso("Vídeo Aulas Exclusivas", "Aprenda a dominar o Canva e outras ferramentas com aulas simples e diretas, pensadas especialmente para igrejas e ministérios. Mesmo sem experiência, você vai conseguir criar artes de alto nível!")
+    
+    item_acesso("Bônus Exclusivos para Membros", "Receba um pacote completo de recursos extras! Inclui efeitos visuais, textos em 3D, texturas, vídeos, imagens de fundo e muito mais.")
+    
+    item_acesso("Suporte Prioritário", "Precisa de ajuda? Fale com a gente! Os membros da plataforma têm acesso ao nosso time com suporte rápido e eficiente pelo WhatsApp.")
+    
+    st.markdown("---")
 
     # --- 3. TÍTULO DE CHAMADA ---
     st.markdown("<h1 class='gradient-title'>Invista na sua Igreja</h1>", unsafe_allow_html=True)
