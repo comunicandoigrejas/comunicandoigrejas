@@ -17,7 +17,7 @@ def exibir():
     # 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO?
     st.markdown("""
         <div style='background-color: #000; border: 1px solid #333; border-radius: 15px; padding: 25px; margin: 20px 0;'>
-            <h2 style='text-align: center; color: white;'>E o que você terá acesso?</h2>
+            <h1 style='text-align: center; color: white;'>E o que você terá acesso?</h2>
             <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Artes Profissionais:</p>
             <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Mais de 2.000 artes prontas para editar no Canva.</p>
             <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Atualizações Semanais:</p>
