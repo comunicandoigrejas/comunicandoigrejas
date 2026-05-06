@@ -92,4 +92,4 @@ def exibir():
     with col_f1:
         st.markdown("<b>FICOU COM DÚVIDA?</b><br>Entre em contato através do nosso WhatsApp.", unsafe_allow_html=True)
     with col_f2:
-        st.link_button("💬 ATENDIMENTO WHATSAPP", "https://wa.me/551937704730")
+        st.link_button("💬 ATENDIMENTO WHATSAPP", "https://wa.me/551937704733")
