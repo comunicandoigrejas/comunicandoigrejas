@@ -56,7 +56,7 @@ def exibir():
 
     # --- SEÇÃO 3: GALERIA DE AMOSTRAS (Imagem 02) ---
     st.markdown("<h2 style='text-align: center;'>Essas são apenas algumas das artes que te esperam!</h2>", unsafe_allow_html=True)
-    carregar_imagem("02.png")
+    carregar_imagem("2.png")
 
     # --- SEÇÃO 4: BÔNUS (Imagem 03) ---
     st.markdown("""
