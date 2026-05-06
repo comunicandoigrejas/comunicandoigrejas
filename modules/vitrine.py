@@ -1,13 +1,22 @@
 # modules/vitrine.py
 import streamlit as st
+import os
 
 def exibir():
+    # Função auxiliar para carregar imagens com segurança
+    def carregar_imagem(nome_arquivo):
+        caminho = f"assets/{nome_arquivo}"
+        if os.path.exists(caminho):
+            st.image(caminho, use_container_width=True)
+        else:
+            st.error(f"Arquivo não encontrado: {caminho}")
+
     # --- SEÇÃO 1: HERO (Banner Principal) ---
     st.markdown("<h1 class='gradient-title'>Mais de 2.000 Artes <br> Profissionais para Igrejas.</h1>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: #FF2D95;'>Atualizações Semanais!</h3>", unsafe_allow_html=True)
     
-    # Referência à imagem principal de impacto (image_ef1edc.jpg)
-    st.image("assets/hero_mockup.png", use_container_width=True)
+    # Imagem 01 (Hero/Banner)
+    carregar_imagem("01.png")
     
     # --- SEÇÃO DE PREÇO DESTACADA (Borda roxa e fundo escuro) ---
     st.markdown(f"""
@@ -23,7 +32,6 @@ def exibir():
     # --- BOTÃO DE COMPRA VERDE CENTRALIZADO ---
     col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
     with col_btn2:
-        # Link da Hotmart enviado por você
         st.link_button(
             "🚀 QUERO ACESSAR AGORA MESMO", 
             "https://pay.hotmart.com/Y98906000N",
@@ -46,23 +54,22 @@ def exibir():
             </div>
         """, unsafe_allow_html=True)
 
-    # --- SEÇÃO 3: GALERIA DE AMOSTRAS (image_ef1ec2.png) ---
+    # --- SEÇÃO 3: GALERIA DE AMOSTRAS (Imagem 02) ---
     st.markdown("<h2 style='text-align: center;'>Essas são apenas algumas das artes que te esperam!</h2>", unsafe_allow_html=True)
-    st.image("assets/image_ef1ec2.png", use_container_width=True)
+    carregar_imagem("02.png")
 
-    # --- SEÇÃO 4: BÔNUS (image_ef1ebe.png) ---
+    # --- SEÇÃO 4: BÔNUS (Imagem 03) ---
     st.markdown("""
         <div style='background: linear-gradient(90deg, #7B2CBF, #FF2D95); padding: 15px; border-radius: 10px; text-align: center; margin: 40px 0;'>
             <h3 style='color: white; margin: 0;'>Agindo agora você também recebe BÔNUS incríveis!</h3>
         </div>
     """, unsafe_allow_html=True)
     
-    # Exibindo a arte dos bônus consolidada
-    st.image("assets/image_ef1ebe.png", use_container_width=True)
+    carregar_imagem("03.png")
 
-    # --- SEÇÃO 5: TABELA DE PLANOS (image_ef1ea2.png) ---
+    # --- SEÇÃO 5: TABELA DE PLANOS (Imagem 04) ---
     st.markdown("<h2 style='text-align: center; margin-top: 50px;'>Escolha o Melhor Plano pra Você!</h2>", unsafe_allow_html=True)
-    st.image("assets/image_ef1ea2.png", use_container_width=True)
+    carregar_imagem("04.png")
     
     # Botões rápidos para os planos
     p1, p2, p3 = st.columns(3)
@@ -85,4 +92,4 @@ def exibir():
     with col_f1:
         st.markdown("<b>FICOU COM DÚVIDA?</b><br>Entre em contato através do nosso WhatsApp.", unsafe_allow_html=True)
     with col_f2:
-        st.link_button("💬 ATENDIMENTO WHATSAPP", "https://wa.me/SEU_NUMERO_AQUI")
+        st.link_button("💬 ATENDIMENTO WHATSAPP", "https://wa.me/551937704730")
