@@ -61,13 +61,13 @@ def exibir():
     col_a, col_b, col_c, col_d = st.columns(4)
     
     with col_a:
-        carregar_imagem("01.png")
+        carregar_imagem("1.png")
     with col_b:
-        carregar_imagem("02.png")
+        carregar_imagem("2.png")
     with col_c:
-        carregar_imagem("03.png")
+        carregar_imagem("3.png")
     with col_d:
-        carregar_imagem("04.png")
+        carregar_imagem("4.png")
 
     # --- SEÇÃO 5: TABELA DE PLANOS (Imagem 04) ---
     st.markdown("<h2 style='text-align: center; margin-top: 50px;'>Escolha o Melhor Plano pra Você!</h2>", unsafe_allow_html=True)
