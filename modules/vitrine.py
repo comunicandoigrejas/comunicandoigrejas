@@ -53,7 +53,7 @@ def exibir():
     # Conteúdo do Plano START
     html_start = """
     <div class='premium-card' style='text-align: center; border-color: #7B2CBF; min-height: 800px; padding: 20px;'>
-        <div style='background-color: white; color: black; padding: 10px; border-radius: 5px; font-weight: bold; font-size: 1.1rem;'>
+        <div style='background-color: white; color: black; padding: 10px; border-radius: 5px; font-weight: bold; font-size: 2rem;'>
             PLANO: START<br>
             <span style='font-size: 0.85rem;'>(3 Meses de Acesso)</span>
         </div>
