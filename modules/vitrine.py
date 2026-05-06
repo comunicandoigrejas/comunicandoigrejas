@@ -12,7 +12,7 @@ def exibir():
             st.info(f"Aguardando imagem: {nome_arquivo}")
 
     # --- BANNER PRINCIPAL ---
-    carregar_imagem("banner_principal.png")
+    carregar_imagem("hero_mockup.png")
 
     # --- TÍTULO E PREÇO EM DESTAQUE ---
     st.markdown("<h1 class='gradient-title'>Mais de 2.000 Artes <br> Profissionais para Igrejas.</h1>", unsafe_allow_html=True)
