@@ -17,34 +17,41 @@ def exibir():
     # Usando container para forçar a renderização
     with st.container():
         st.markdown("""
-            <div style='background-color: #000000; border: 2px solid #333333; border-radius: 15px; padding: 30px; margin-top: 20px; margin-bottom: 20px; font-family: sans-serif;'>
-                <h2 style='text-align: center; color: #ffffff; margin-bottom: 30px;'>E o que você terá acesso?</h2>
-                
-                <div style='margin-bottom: 20px;'>
-                    <span style='color: #FF2D95; font-weight: bold; font-size: 1.2rem;'>✅ Artes Profissionais:</span><br>
-                    <span style='color: #dddddd; font-size: 1rem;'>Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva. Em poucos cliques, crie artes incríveis de forma rápida, simples e sem nenhuma complicação!</span>
-                </div>
+            # --- 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO? ---
+    # Criamos a variável com o conteúdo
+    conteudo_acesso = """
+    <div style="background-color: #000000; border: 1px solid #333333; border-radius: 15px; padding: 25px; margin: 20px 0; font-family: sans-serif;">
+        <h2 style="text-align: center; color: #ffffff; margin-bottom: 25px;">E o que você terá acesso?</h2>
+        
+        <div style="margin-bottom: 15px;">
+            <strong style="color: #FF2D95; font-size: 1.1rem;">✅ Artes Profissionais:</strong><br>
+            <span style="color: #cccccc; font-size: 0.95rem;">Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva.</span>
+        </div>
 
-                <div style='margin-bottom: 20px;'>
-                    <span style='color: #FF2D95; font-weight: bold; font-size: 1.2rem;'>✅ Atualizações Semanais:</span><br>
-                    <span style='color: #dddddd; font-size: 1rem;'>Novas artes e materiais toda semana! A plataforma está sempre se renovando para que sua comunicação continue atual, relevante e poderosa.</span>
-                </div>
+        <div style="margin-bottom: 15px;">
+            <strong style="color: #FF2D95; font-size: 1.1rem;">✅ Atualizações Semanais:</strong><br>
+            <span style="color: #cccccc; font-size: 0.95rem;">Novas artes e materiais toda semana! A plataforma está sempre se renovando.</span>
+        </div>
 
-                <div style='margin-bottom: 20px;'>
-                    <span style='color: #FF2D95; font-weight: bold; font-size: 1.2rem;'>✅ Vídeo Aulas Exclusivas:</span><br>
-                    <span style='color: #dddddd; font-size: 1rem;'>Aprenda a dominar o Canva e outras ferramentas com aulas simples e diretas, pensadas especialmente para igrejas e ministérios. Mesmo sem experiência, você vai conseguir criar artes de alto nível!</span>
-                </div>
+        <div style="margin-bottom: 15px;">
+            <strong style="color: #FF2D95; font-size: 1.1rem;">✅ Vídeo Aulas Exclusivas:</strong><br>
+            <span style="color: #cccccc; font-size: 0.95rem;">Aprenda a dominar o Canva e outras ferramentas com aulas simples e diretas.</span>
+        </div>
 
-                <div style='margin-bottom: 20px;'>
-                    <span style='color: #FF2D95; font-weight: bold; font-size: 1.2rem;'>✅ Bônus Exclusivos para Membros:</span><br>
-                    <span style='color: #dddddd; font-size: 1rem;'>Receba um pacote completo de recursos extras! Inclui efeitos visuais, textos em 3D, texturas, vídeos, imagens de fundo e muito mais.</span>
-                </div>
+        <div style="margin-bottom: 15px;">
+            <strong style="color: #FF2D95; font-size: 1.1rem;">✅ Bônus Exclusivos para Membros:</strong><br>
+            <span style="color: #cccccc; font-size: 0.95rem;">Inclui efeitos visuais, textos em 3D, texturas, vídeos e imagens de fundo.</span>
+        </div>
 
-                <div style='margin-bottom: 10px;'>
-                    <span style='color: #FF2D95; font-weight: bold; font-size: 1.2rem;'>✅ Suporte Prioritário:</span><br>
-                    <span style='color: #dddddd; font-size: 1rem;'>Precisa de ajuda? Fale com a gente! Os membros da plataforma têm acesso ao nosso time com suporte rápido e eficiente pelo WhatsApp.</span>
-                </div>
-            </div>
+        <div style="margin-bottom: 5px;">
+            <strong style="color: #FF2D95; font-size: 1.1rem;">✅ Suporte Prioritário:</strong><br>
+            <span style="color: #cccccc; font-size: 0.95rem;">Precisa de ajuda? Fale com a gente! Suporte rápido e eficiente pelo WhatsApp.</span>
+        </div>
+    </div>
+    """
+    
+    # EXIBIÇÃO: Use exatamente essa linha para não virar código escrito
+    st.write(conteudo_acesso, unsafe_allow_html=True)
         """, unsafe_allow_html=True)
 
     # --- 3. TÍTULO DE CHAMADA ---
