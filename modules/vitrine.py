@@ -3,46 +3,86 @@ import streamlit as st
 import os
 
 def exibir():
-    # Função para carregar imagens com segurança
-    def carregar_imagem(nome_arquivo, legenda=None, width=None):
+    def carregar_imagem(nome_arquivo):
         caminho = f"assets/{nome_arquivo}"
         if os.path.exists(caminho):
-            st.image(caminho, caption=legenda, use_container_width=True)
+            st.image(caminho, use_container_width=True)
         else:
-            # Mensagem discreta caso a imagem ainda não tenha sido subida
-            st.info(f"Aguardando o banner principal: {nome_arquivo}")
+            st.info(f"Aguardando imagem: {nome_arquivo}")
 
-    # --- SEÇÃO 1: HERO (IMAGEM PRINCIPAL NO TOPO) ---
-    # Esta é a imagem que faltou, ocupando a largura total para impacto inicial
+    # --- SEÇÃO 1: HERO & PREÇO DESTAQUE ---
     carregar_imagem("hero_mockup.png")
-
     st.markdown("<h1 class='gradient-title'>Mais de 2.000 Artes <br> Profissionais para Igrejas.</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center; color: #FF2D95;'>Atualizações Semanais e Suporte VIP</h3>", unsafe_allow_html=True)
     
-    # --- SEÇÃO DE PREÇO ---
     st.markdown(f"""
         <div style='text-align: center; margin: 20px 0; padding: 25px; border: 2px dashed #7B2CBF; border-radius: 15px; background-color: #0a0a0a;'>
-            <span style='text-decoration: line-through; color: #888; font-size: 1.1rem;'>De R$ 197 por apenas</span>
+            <span style='text-decoration: line-through; color: #888; font-size: 1.1rem;'>Invista na sua comunicação</span>
             <div style='font-size: 4.5rem; font-weight: 800; color: #FF2D95; text-shadow: 0 0 15px rgba(255, 45, 149, 0.5);'>
-                R$ 39,90
+                A partir de R$ 27,00
             </div>
-            <p style='color: #fff; font-size: 1.1rem;'>OFERTA EXCLUSIVA - COMUNICANDO IGREJAS</p>
+            <p style='color: #fff; font-size: 1.1rem;'>ESCOLHA O MELHOR PLANO PARA VOCÊ!</p>
         </div>
     """, unsafe_allow_html=True)
 
-    # Botão de Compra
-    col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
-    with col_btn2:
-        st.link_button("🚀 COMPRAR AGORA", "https://pay.hotmart.com/Y98906000N", use_container_width=True)
-
-    # --- SEÇÃO 2: AMOSTRAS (01 a 04) ---
-    st.markdown("<br><h2 style='text-align: center;'>Artes prontas para o seu Instagram:</h2>", unsafe_allow_html=True)
-    
-    # Galeria menor e centralizada
+    # --- SEÇÃO 2: AMOSTRAS ---
     respiro_e, c1, c2, c3, c4, respiro_d = st.columns([0.5, 2, 2, 2, 2, 0.5])
     with c1: carregar_imagem("1.png")
     with c2: carregar_imagem("2.png")
     with c3: carregar_imagem("3.png")
     with c4: carregar_imagem("4.png")
 
-    # ... (Restante do código dos planos START e PREMIUM)
+    # --- SEÇÃO 3: COMPARATIVO DE PLANOS ---
+    st.markdown("<br><h2 style='text-align: center;'>Planos Disponíveis</h2>", unsafe_allow_html=True)
+    
+    col_plan1, col_plan2 = st.columns(2)
+
+    with col_plan1:
+        st.markdown(f"""
+            <div class='premium-card' style='text-align: center; border-color: #7B2CBF; min-height: 850px;'>
+                <div style='background-color: white; color: black; padding: 10px; border-radius: 5px; font-weight: bold;'>
+                    PLANO: START<br>(3 Meses de Acesso)
+                </div>
+                <div style='font-size: 3rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 27</div>
+                <p style='color: #888;'>OU 5x R$ 6,17</p>
+                <hr style='border-color: #333;'>
+                <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 0.85rem;'>
+                    <li>✅ +2.000 Artes Editáveis no Canva</li>
+                    <li>✅ 4 Formatos (Feed, Storie, Cartaz e Telão)</li>
+                    <li>✅ Atualizações Semanais</li>
+                    <li>✅ Curso Site pelo Canva</li>
+                    <li>✅ Templates de Site Prontos</li>
+                    <li>✅ Curso Anúncios (FB/IG)</li>
+                    <li>✅ Kit Ministério Infantil & Secretaria</li>
+                    <li>✅ Sermões de Pregação</li>
+                    <li>✅ 12 Bônus Exclusivos</li>
+                    <li>✅ Comunidade Vip & Suporte</li>
+                </ul>
+            </div>
+        """, unsafe_allow_html=True)
+        st.link_button("GARANTIR ACESSO START", "https://pay.hotmart.com/Y98906000N", use_container_width=True)
+
+    with col_plan2:
+        st.markdown(f"""
+            <div class='premium-card' style='text-align: center; border-color: #FF2D95; background-color: #0e0e0e; min-height: 850px; position: relative;'>
+                <div style='position: absolute; top: 10px; right: 10px; background-color: #28a745; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.7rem;'>+ VENDIDO</div>
+                <div style='background: linear-gradient(90deg, #7B2CBF, #FF2D95); color: white; padding: 10px; border-radius: 5px; font-weight: bold;'>
+                    PLANO: PREMIUM 🔥<br>(ACESSO VITALÍCIO)
+                </div>
+                <div style='font-size: 3rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 57</div>
+                <p style='color: #888;'>OU 11x R$ 6,25</p>
+                <hr style='border-color: #333;'>
+                <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 0.85rem;'>
+                    <li>🚀 <b>DIFERENCIAL: NUNCA EXPIRA!</b></li>
+                    <li>✅ <b>Tudo do Plano Start</b></li>
+                    <li>✅ Atualizações Vitalícias</li>
+                    <li>✅ Suporte Prioritário Vitalício</li>
+                    <li>✅ Acesso a todos os futuros lançamentos</li>
+                    <li>✅ Sem taxas de renovação</li>
+                </ul>
+            </div>
+        """, unsafe_allow_html=True)
+        # Substitua pelo link correto da Hotmart para o plano de 57 reais
+        st.link_button("GARANTIR ACESSO VITALÍCIO", "https://pay.hotmart.com/LINK_PREMIUM", use_container_width=True)
+
+    st.markdown("<br><hr>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Comunicando Igrejas - Excelência na sua Comunicação.</p>", unsafe_allow_html=True)
