@@ -40,30 +40,25 @@ def exibir():
     
     col_plan1, col_plan2 = st.columns(2)
 
-    # --- PLANO START ---
-    # --- PLANO START ---
+  # --- PLANO START ---
     with col_plan1:
         st.markdown("""
             <div class='premium-card' style='text-align: center; border-color: #7B2CBF; min-height: 800px;'>
                 
-                <!-- TAMANHO DO TÍTULO DO PLANO (Ex: 1.2rem) -->
                 <div style='background-color: white; color: black; padding: 10px; border-radius: 5px; font-weight: bold; font-size: 1.2rem;'>
                     PLANO: START<br>
                     <span style='font-size: 0.9rem;'>(3 Meses de Acesso)</span>
                 </div>
 
-                <!-- TAMANHO DO PREÇO (Ex: 3rem) -->
                 <div style='font-size: 3rem; font-weight: 800; color: #fff; margin-top: 15px;'>
                     R$ 27
                 </div>
 
-                <!-- TAMANHO DO PARCELAMENTO (Ex: 1rem) -->
                 <p style='color: #888; font-size: 1rem;'>OU 5x R$ 6,17</p>
                 
                 <hr style='border-color: #333;'>
                 
-                <!-- TAMANHO DA LISTA DE BENEFÍCIOS (Ex: 1.8rem) -->
-                <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 1.8rem;'>
+                <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 1.1rem;'>
                     <li>✅ +2.000 Artes Editáveis no Canva</li>
                     <li>✅ 4 Formatos (Feed, Storie, Cartaz e Telão)</li>
                     <li>✅ Atualizações Semanais</li>
@@ -77,6 +72,7 @@ def exibir():
                 </ul>
             </div>
         """, unsafe_allow_html=True)
+        st.link_button("GARANTIR ACESSO START", "https://pay.hotmart.com/Y98906000N", use_container_width=True)
 
     # --- PLANO PREMIUM ---
     with col_plan2:
