@@ -14,16 +14,48 @@ def exibir():
     # --- BANNER PRINCIPAL ---
     carregar_imagem("hero_mockup.png")
 
-    # --- TÍTULO E PREÇO EM DESTAQUE ---
-    st.markdown("<h1 class='gradient-title'>Mais de 2.000 Artes <br> Profissionais para Igrejas.</h1>", unsafe_allow_html=True)
-    
+    # --- 2. O QUE VOCÊ TERÁ ACESSO? (Nova Seção) ---
     st.markdown("""
-        <div style='text-align: center; margin: 20px 0; padding: 25px; border: 2px dashed #7B2CBF; border-radius: 15px; background-color: #0a0a0a;'>
-            <span style='text-decoration: line-through; color: #888; font-size: 1.1rem;'>Invista na sua comunicação</span>
-            <div style='font-size: 3.5rem; font-weight: 800; color: #FF2D95; text-shadow: 0 0 15px rgba(255, 45, 149, 0.5);'>
-                A partir de R$ 27,00
+        <div style='background-color: #000; border: 1px solid #333; border-radius: 15px; padding: 30px; margin: 20px 0;'>
+            <h2 style='text-align: center; color: white; margin-bottom: 30px;'>E o que você terá acesso?</h2>
+            
+            <div style='margin-bottom: 20px;'>
+                <p style='color: #FF2D95; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;'>✅ Artes Profissionais:</p>
+                <p style='color: #ddd; font-size: 1rem;'>Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva. Em poucos cliques, crie artes incríveis de forma rápida, simples e sem nenhuma complicação!</p>
             </div>
-            <p style='color: #fff; font-size: 1.1rem;'>ESCOLHA O MELHOR PLANO PARA VOCÊ!</p>
+
+            <div style='margin-bottom: 20px;'>
+                <p style='color: #FF2D95; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;'>✅ Atualizações Semanais:</p>
+                <p style='color: #ddd; font-size: 1rem;'>Novas artes e materiais toda semana! A plataforma está sempre se renovando para que sua comunicação continue atual, relevante e poderosa.</p>
+            </div>
+
+            <div style='margin-bottom: 20px;'>
+                <p style='color: #FF2D95; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;'>✅ Vídeo Aulas Exclusivas:</p>
+                <p style='color: #ddd; font-size: 1rem;'>Aprenda a dominar o Canva e outras ferramentas com aulas simples e diretas, pensadas especialmente para igrejas e ministérios. Mesmo sem experiência, você vai conseguir criar artes de alto nível!</p>
+            </div>
+
+            <div style='margin-bottom: 20px;'>
+                <p style='color: #FF2D95; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;'>✅ Bônus Exclusivos para Membros:</p>
+                <p style='color: #ddd; font-size: 1rem;'>Receba um pacote completo de recursos extras! Inclui efeitos visuais, textos em 3D, texturas, vídeos, imagens de fundo e muito mais para deixar suas artes ainda mais impactantes e profissionais.</p>
+            </div>
+
+            <div style='margin-bottom: 10px;'>
+                <p style='color: #FF2D95; font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;'>✅ Suporte Prioritário:</p>
+                <p style='color: #ddd; font-size: 1rem;'>Precisa de ajuda? Fale com a gente! Os membros da plataforma têm acesso ao nosso time com suporte rápido e eficiente pelo WhatsApp.</p>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # --- 3. TÍTULO E PREÇO EM DESTAQUE ---
+    st.markdown("""
+        <div style='text-align: center; margin: 30px 0;'>
+            <h1 class='gradient-title'>Mais de 2.000 Artes <br> Profissionais para Igrejas.</h1>
+            <div style='margin: 20px 0; padding: 25px; border: 2px dashed #7B2CBF; border-radius: 15px; background-color: #0a0a0a;'>
+                <span style='text-decoration: line-through; color: #888; font-size: 1.1rem;'>Invista na sua comunicação</span>
+                <div style='font-size: 3.5rem; font-weight: 800; color: #FF2D95; text-shadow: 0 0 15px rgba(255, 45, 149, 0.5);'>
+                    A partir de R$ 27,00
+                </div>
+            </div>
         </div>
     """, unsafe_allow_html=True)
 
