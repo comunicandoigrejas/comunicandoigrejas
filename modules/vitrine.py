@@ -16,7 +16,7 @@ def exibir():
     st.markdown("<h3 style='text-align: center; color: #FF2D95;'>Atualizações Semanais!</h3>", unsafe_allow_html=True)
     
     # Imagem 01 (Hero/Banner)
-    carregar_imagem("01.png")
+    carregar_imagem("hero_mockup.png")
     
     # --- SEÇÃO DE PREÇO DESTACADA (Borda roxa e fundo escuro) ---
     st.markdown(f"""
