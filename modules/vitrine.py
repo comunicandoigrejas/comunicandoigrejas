@@ -13,46 +13,27 @@ def exibir():
     # --- 1. BANNER DE TOPO ---
     carregar_imagem("hero_mockup.png")
 
-    # --- 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO? ---
-    # Usando container para forçar a renderização
-    with st.container():
-        st.markdown("""
-            # --- 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO? ---
-    # Criamos a variável com o conteúdo
-    conteudo_acesso = """
-    <div style="background-color: #000000; border: 1px solid #333333; border-radius: 15px; padding: 25px; margin: 20px 0; font-family: sans-serif;">
-        <h2 style="text-align: center; color: #ffffff; margin-bottom: 25px;">E o que você terá acesso?</h2>
+# 2. SEÇÃO ACESSO (O segredo é usar aspas triplas R""" para ignorar caracteres especiais)
+    acesso_html = r"""
+    <div style="background-color: #000; border: 1px solid #333; border-radius: 15px; padding: 25px; margin: 20px 0; font-family: sans-serif;">
+        <h2 style="text-align: center; color: white;">E o que você terá acesso?</h2>
+        <br>
+        <p style="color: #FF2D95; font-weight: bold; margin-bottom: 0;">✅ Artes Profissionais:</p>
+        <p style="color: #ddd; font-size: 14px; margin-top: 5px;">Mais de 2.000 artes prontas para editar no Canva.</p>
         
-        <div style="margin-bottom: 15px;">
-            <strong style="color: #FF2D95; font-size: 1.1rem;">✅ Artes Profissionais:</strong><br>
-            <span style="color: #cccccc; font-size: 0.95rem;">Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva.</span>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <strong style="color: #FF2D95; font-size: 1.1rem;">✅ Atualizações Semanais:</strong><br>
-            <span style="color: #cccccc; font-size: 0.95rem;">Novas artes e materiais toda semana! A plataforma está sempre se renovando.</span>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <strong style="color: #FF2D95; font-size: 1.1rem;">✅ Vídeo Aulas Exclusivas:</strong><br>
-            <span style="color: #cccccc; font-size: 0.95rem;">Aprenda a dominar o Canva e outras ferramentas com aulas simples e diretas.</span>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <strong style="color: #FF2D95; font-size: 1.1rem;">✅ Bônus Exclusivos para Membros:</strong><br>
-            <span style="color: #cccccc; font-size: 0.95rem;">Inclui efeitos visuais, textos em 3D, texturas, vídeos e imagens de fundo.</span>
-        </div>
-
-        <div style="margin-bottom: 5px;">
-            <strong style="color: #FF2D95; font-size: 1.1rem;">✅ Suporte Prioritário:</strong><br>
-            <span style="color: #cccccc; font-size: 0.95rem;">Precisa de ajuda? Fale com a gente! Suporte rápido e eficiente pelo WhatsApp.</span>
-        </div>
+        <p style="color: #FF2D95; font-weight: bold; margin-bottom: 0;">✅ Atualizações Semanais:</p>
+        <p style="color: #ddd; font-size: 14px; margin-top: 5px;">Novas artes e materiais toda semana para sua igreja.</p>
+        
+        <p style="color: #FF2D95; font-weight: bold; margin-bottom: 0;">✅ Vídeo Aulas Exclusivas:</p>
+        <p style="color: #ddd; font-size: 14px; margin-top: 5px;">Domine o Canva com aulas simples e diretas.</p>
+        
+        <p style="color: #FF2D95; font-weight: bold; margin-bottom: 0;">✅ Bônus Exclusivos:</p>
+        <p style="color: #ddd; font-size: 14px; margin-top: 5px;">Textos 3D, texturas e fundos profissionais.</p>
+        
+        <p style="color: #FF2D95; font-weight: bold; margin-bottom: 0;">✅ Suporte Prioritário:</p>
+        <p style="color: #ddd; font-size: 14px; margin-top: 5px;">Dúvidas? Suporte rápido pelo WhatsApp.</p>
     </div>
     """
-    
-    # EXIBIÇÃO: Use exatamente essa linha para não virar código escrito
-    st.write(conteudo_acesso, unsafe_allow_html=True)
-        """, unsafe_allow_html=True)
 
     # --- 3. TÍTULO DE CHAMADA ---
     st.markdown("<h1 class='gradient-title'>Invista na sua Igreja</h1>", unsafe_allow_html=True)
