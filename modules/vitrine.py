@@ -30,10 +30,10 @@ def exibir():
     # --- GALERIA DE AMOSTRAS (01 a 04) ---
     st.markdown("<br><h2 style='text-align: center;'>Artes prontas para o seu Instagram:</h2>", unsafe_allow_html=True)
     respiro_e, c1, c2, c3, c4, respiro_d = st.columns([0.5, 2, 2, 2, 2, 0.5])
-    with c1: carregar_imagem("01.png")
-    with c2: carregar_imagem("02.png")
-    with c3: carregar_imagem("03.png")
-    with c4: carregar_imagem("04.png")
+    with c1: carregar_imagem("1.png")
+    with c2: carregar_imagem("2.png")
+    with c3: carregar_imagem("3.png")
+    with c4: carregar_imagem("4.png")
 
     # --- SEÇÃO DE PLANOS (Onde estava o problema) ---
     st.markdown("<br><h2 style='text-align: center;'>Planos Disponíveis</h2>", unsafe_allow_html=True)
@@ -70,11 +70,11 @@ def exibir():
     with col_plan2:
         st.markdown("""
             <div class='premium-card' style='text-align: center; border-color: #FF2D95; background-color: #0e0e0e; min-height: 800px; position: relative;'>
-                <div style='position: absolute; top: 10px; right: 10px; background-color: #28a745; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.7rem;'>+ VENDIDO</div>
+                <div style='position: absolute; top: 10px; right: 10px; background-color: #28a745; color: white; padding: 5px 10px; border-radius: 5px; font-size: 1.8rem;'>+ VENDIDO</div>
                 <div style='background: linear-gradient(90deg, #7B2CBF, #FF2D95); color: white; padding: 10px; border-radius: 5px; font-weight: bold;'>
                     PLANO: PREMIUM 🔥<br>(ACESSO VITALÍCIO)
                 </div>
-                <div style='font-size: 2.5rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 57</div>
+                <div style='font-size: 3.5rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 57</div>
                 <p style='color: #888;'>OU 11x R$ 6,25</p>
                 <hr style='border-color: #333;'>
                 <ul style='list-style: none; padding: 0; text-align: left; color: #ddd; font-size: 0.85rem;'>
