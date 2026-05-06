@@ -19,7 +19,7 @@ def exibir():
         <div style='background-color: #000; border: 1px solid #333; border-radius: 15px; padding: 25px; margin: 20px 0;'>
             <h1 style='text-align: center; color: white;'>E o que você terá acesso?</h2>
             <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Artes Profissionais:</p>
-            <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva. Em poucos cliques, crie artes incríveis de forma rápida, simples e sem nenhuma complicação!</p>
+            <p style='color: #ddd; font-size: 18px; margin-top: 5px;'>Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva. Em poucos cliques, crie artes incríveis de forma rápida, simples e sem nenhuma complicação!</p>
             <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Atualizações Semanais:</p>
             <p style='color: #ddd; font-size: 14px; margin-top: 5px;'>Novas artes e materiais toda semana.</p>
             <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0;'>✅ Vídeo Aulas Exclusivas:</p>
