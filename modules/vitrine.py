@@ -58,16 +58,6 @@ def exibir():
             </div>
         </div>
     """, unsafe_allow_html=True)
-
-    # --- 5. PLANOS ---
-    col_plan1, col_plan2 = st.columns(2)
-    with col_plan1:
-        st.markdown("<div style='border:1px solid #7B2CBF; padding:20px; border-radius:10px; text-align:center;'><h3>START</h3><p>R$ 27</p></div>", unsafe_allow_html=True)
-        st.link_button("GARANTIR ACESSO START", "https://pay.hotmart.com/Y98906000N", use_container_width=True)
-    with col_plan2:
-        st.markdown("<div style='border:1px solid #FF2D95; padding:20px; border-radius:10px; text-align:center;'><h3>PREMIUM 🔥</h3><p>R$ 57</p></div>", unsafe_allow_html=True)
-        st.link_button("GARANTIR ACESSO VITALÍCIO", "https://pay.hotmart.com/Y98906000N", use_container_width=True)
-
     # --- 6. MODELOS (AMOSTRAS) ---
     st.markdown("<br><h2 style='text-align: center;'>Veja a qualidade das nossas artes:</h2>", unsafe_allow_html=True)
     c1, c2, c3, c4 = st.columns(4)
