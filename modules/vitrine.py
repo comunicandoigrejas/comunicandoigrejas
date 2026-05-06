@@ -55,7 +55,7 @@ def exibir():
     <div class='premium-card' style='text-align: center; border-color: #7B2CBF; min-height: 800px; padding: 20px;'>
         <div style='background-color: white; color: black; padding: 10px; border-radius: 5px; font-weight: bold; font-size: 2rem;'>
             PLANO: START<br>
-            <span style='font-size: 0.85rem;'>(3 Meses de Acesso)</span>
+            <span style='font-size: 1rem;'>(3 Meses de Acesso)</span>
         </div>
         <div style='font-size: 2.8rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 27</div>
         <p style='color: #888; font-size: 0.95rem;'>OU 5x R$ 6,17</p>
