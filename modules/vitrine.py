@@ -35,16 +35,6 @@ def exibir():
     with c3: carregar_imagem("3.png")
     with c4: carregar_imagem("4.png")
 
-    # --- SEÇÃO DE PLANOS (Onde estava o problema) ---
-    st.markdown("<br><h2 style='text-align: center;'>Planos Disponíveis</h2>", unsafe_allow_html=True)
-    
-    col_plan1, col_plan2 = st.columns(2)
-
- # --- SEÇÃO DE PLANOS ---
-    st.markdown("<br><h2 style='text-align: center;'>Planos Disponíveis</h2>", unsafe_allow_html=True)
-    
-    col_plan1, col_plan2 = st.columns(2)
-
   # --- SEÇÃO DE PLANOS ---
     st.markdown("<br><h2 style='text-align: center;'>Planos Disponíveis</h2>", unsafe_allow_html=True)
     
