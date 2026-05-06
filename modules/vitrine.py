@@ -79,9 +79,9 @@ def exibir():
     html_premium = """
     <div class='premium-card' style='text-align: center; border-color: #FF2D95; background-color: #0e0e0e; min-height: 800px; position: relative; padding: 20px;'>
         <div style='position: absolute; top: 10px; right: 10px; background-color: #28a745; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.7rem;'>+ VENDIDO</div>
-        <div style='background: linear-gradient(90deg, #7B2CBF, #FF2D95); color: white; padding: 10px; border-radius: 5px; font-weight: bold; font-size: 1.1rem;'>
+        <div style='background: linear-gradient(90deg, #7B2CBF, #FF2D95); color: white; padding: 10px; border-radius: 5px; font-weight: bold; font-size: 2rem;'>
             PLANO: PREMIUM 🔥<br>
-            <span style='font-size: 0.85rem;'>(ACESSO VITALÍCIO)</span>
+            <span style='font-size: 1rem;'>(ACESSO VITALÍCIO)</span>
         </div>
         <div style='font-size: 2.8rem; font-weight: 800; color: #fff; margin-top: 15px;'>R$ 57</div>
         <p style='color: #888; font-size: 0.95rem;'>OU 11x R$ 6,25</p>
