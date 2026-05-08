@@ -132,3 +132,26 @@ def exibir():
     with col_plan2:
         st.markdown(html_premium, unsafe_allow_html=True)
         st.link_button("GARANTIR ACESSO VITALÍCIO", "https://pay.hotmart.com/Y98906000N", use_container_width=True)
+
+# --- RODAPÉ COM CONTATOS ---
+    st.markdown("<br><hr>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center;'>Ficou com alguma dúvida? Fale conosco!</h3>", unsafe_allow_html=True)
+    
+    # Criando colunas para centralizar os botões
+    col_vazia1, col_whats, col_insta, col_vazia2 = st.columns([1, 2, 2, 1])
+
+    with col_whats:
+        # Substitua o número abaixo pelo seu WhatsApp (com DDD)
+        link_whatsapp = "https://wa.me/551937704733" 
+        st.link_button("🟢 WHATSAPP", link_whatsapp, use_container_width=True)
+
+    with col_insta:
+        # Substitua pelo link do seu perfil
+        link_instagram = "https://www.instagram.com/comunicandoigrejas"
+        st.link_button("📸 INSTAGRAM", link_instagram, use_container_width=True)
+
+    st.markdown("""
+        <div style='text-align: center; color: #888; margin-top: 20px; font-size: 0.9rem;'>
+            <p>Comunicando Igrejas © 2026 - Todos os direitos reservados</p>
+        </div>
+    """, unsafe_allow_html=True)
