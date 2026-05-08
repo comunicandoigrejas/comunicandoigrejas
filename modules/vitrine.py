@@ -12,7 +12,7 @@ def exibir():
             st.info(f"Aguardando imagem: {nome_arquivo}")
 
     # 1. BANNER PRINCIPAL
-    carregar_imagem("banner_principal.png")
+    carregar_imagem("hero_mockup.png")
 
     # 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO?
     st.markdown("""
