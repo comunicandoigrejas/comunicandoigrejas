@@ -36,8 +36,22 @@ def exibir():
         </div>
     """, unsafe_allow_html=True)
 
-    # 3. CHAMADA DE PREÇO
-    st.markdown("<h1 style='text-align: center;'>A partir de R$ 27,00</h1>", unsafe_allow_html=True)
+   # 3. CHAMADA DE PREÇO COM RETÂNGULO VERDE FLUORESCENTE
+    st.markdown("""
+        <div style='
+            border: 3px solid #00FF00; 
+            padding: 20px; 
+            border-radius: 15px; 
+            text-align: center; 
+            margin: 25px 0;
+            box-shadow: 0 0 15px #00FF00;
+            background-color: rgba(0, 255, 0, 0.05);
+        '>
+            <h1 style='margin: 0; color: white; font-size: 2.5rem;'>
+                A partir de <span style='color: #00FF00;'>R$ 27,00</span>
+            </h1>
+        </div>
+    """, unsafe_allow_html=True)
 
     # 5. MODELOS
     st.markdown("<br><h2 style='text-align: center;'>Veja a qualidade das nossas artes:</h2>", unsafe_allow_html=True)
