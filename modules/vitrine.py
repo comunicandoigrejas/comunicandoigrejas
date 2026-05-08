@@ -14,32 +14,40 @@ def exibir():
     # 1. BANNER PRINCIPAL
     carregar_imagem("hero_mockup.png")
 
-    # --- 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO? (Versão Estreita) ---
-    # Criamos 3 colunas: [lateral, centro, lateral]
-    # O número 1.5 define a largura do centro. Se quiser mais estreito, diminua para 1.2 ou 1.0.
-    respiro_esq, centro, respiro_dir = st.columns([0.5, 1.5, 0.5])
+   # --- 2. NOVA SEÇÃO: O QUE VOCÊ TERÁ ACESSO? (Versão Estreita e Corrigida) ---
+    respiro_esq, centro, respiro_dir = st.columns([0.6, 1.8, 0.6])
 
     with centro:
-        st.markdown("""
-            <div style='background-color: #000; border: 1px solid #333; border-radius: 15px; padding: 25px; margin: 20px 0;'>
-                <h2 style='text-align: center; color: white; font-size: 2rem; margin-bottom: 25px;'>E o que você terá acesso?</h2>
+        st.html("""
+            <div style='background-color: #000; border: 1px solid #333; border-radius: 15px; padding: 25px; margin: 20px 0; font-family: sans-serif;'>
+                <h2 style='text-align: center; color: white; margin-bottom: 25px;'>E o que você terá acesso?</h2>
                 
-                <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0; font-size: 1.1rem;'>✅ Artes Profissionais:</p>
-                <p style='color: #ddd; font-size: 16px; margin-top: 5px; line-height: 1.5;'>Você terá acesso a mais de 2.000 artes profissionais prontas para editar no Canva. Em poucos cliques, crie artes incríveis de forma rápida!</p>
-                
-                <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0; font-size: 1.1rem;'>✅ Atualizações Semanais:</p>
-                <p style='color: #ddd; font-size: 16px; margin-top: 5px; line-height: 1.5;'>Novas artes e materiais toda semana! A plataforma está sempre se renovando.</p>
-                
-                <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0; font-size: 1.1rem;'>✅ Vídeo Aulas Exclusivas:</p>
-                <p style='color: #ddd; font-size: 16px; margin-top: 5px; line-height: 1.5;'>Aprenda a dominar o Canva com aulas simples e diretas, pensadas para ministérios.</p>
-                
-                <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0; font-size: 1.1rem;'>✅ Bônus Exclusivos:</p>
-                <p style='color: #ddd; font-size: 16px; margin-top: 5px; line-height: 1.5;'>Pacote completo de recursos extras: efeitos visuais, textos 3D, texturas e vídeos.</p>
-                
-                <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0; font-size: 1.1rem;'>✅ Suporte Prioritário:</p>
-                <p style='color: #ddd; font-size: 16px; margin-top: 5px; line-height: 1.5;'>Precisa de ajuda? Suporte rápido e eficiente pelo WhatsApp.</p>
+                <div style='margin-bottom: 15px;'>
+                    <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0; font-size: 18px;'>✅ Artes Profissionais:</p>
+                    <p style='color: #ddd; font-size: 16px; margin-top: 5px; line-height: 1.4;'>Mais de 2.000 artes profissionais prontas para editar no Canva. De forma rápida e simples!</p>
+                </div>
+
+                <div style='margin-bottom: 15px;'>
+                    <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0; font-size: 18px;'>✅ Atualizações Semanais:</p>
+                    <p style='color: #ddd; font-size: 16px; margin-top: 5px; line-height: 1.4;'>Novas artes e materiais toda semana! Sua comunicação sempre atualizada.</p>
+                </div>
+
+                <div style='margin-bottom: 15px;'>
+                    <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0; font-size: 18px;'>✅ Vídeo Aulas Exclusivas:</p>
+                    <p style='color: #ddd; font-size: 16px; margin-top: 5px; line-height: 1.4;'>Aprenda a dominar o Canva com aulas pensadas para igrejas e ministérios.</p>
+                </div>
+
+                <div style='margin-bottom: 15px;'>
+                    <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0; font-size: 18px;'>✅ Bônus Exclusivos:</p>
+                    <p style='color: #ddd; font-size: 16px; margin-top: 5px; line-height: 1.4;'>Efeitos visuais, textos em 3D, texturas, vídeos e imagens de fundo.</p>
+                </div>
+
+                <div style='margin-bottom: 5px;'>
+                    <p style='color: #FF2D95; font-weight: bold; margin-bottom: 0; font-size: 18px;'>✅ Suporte Prioritário:</p>
+                    <p style='color: #ddd; font-size: 16px; margin-top: 5px; line-height: 1.4;'>Dúvidas? Fale com a gente! Suporte rápido e eficiente pelo WhatsApp.</p>
+                </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
 
    # 3. CHAMADA DE PREÇO COM RETÂNGULO VERDE FLUORESCENTE
     st.markdown("""
