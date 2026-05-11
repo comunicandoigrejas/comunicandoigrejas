@@ -3,23 +3,24 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
 def validar_login(email_digitado, senha_digitada):
-    # O ttl=0 força o app a buscar dados novos na planilha toda vez
-    conn = st.connection("gsheets", type=GSheetsConnection)
+    # Link direto da sua planilha (substitua pelo seu ID real se necessário)
+    # Esse formato abaixo é o mais estável para leitura direta
+    sheet_id = "COLOQUE_AQUI_O_ID_DA_SUA_PLANILHA"
+    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Sheet1"
     
     try:
-        # Lê a Sheet1 garantindo que não use cache antigo
-        df = conn.read(ttl=0)
-        st.write(df.columns.tolist())
+        # Lendo diretamente como CSV (muito mais rápido e sem erros de conexão gsheets)
+        df = pd.read_csv(url)
         
-        # Converte toda a planilha para string e remove espaços para evitar erros
+        # Limpeza total de dados para comparação
         df = df.astype(str).apply(lambda x: x.str.strip())
         
-        email_busca = str(email_digitado).strip()
+        email_busca = str(email_digitado).strip().lower()
         senha_busca = str(senha_digitada).strip()
 
-        # Busca ignorando maiúsculas/minúsculas no e-mail
+        # Busca o usuário
         usuario = df[
-            (df['Email'].str.lower() == email_busca.lower()) & 
+            (df['Email'].str.lower() == email_busca) & 
             (df['Senha'] == senha_busca)
         ]
         
@@ -31,12 +32,9 @@ def validar_login(email_digitado, senha_digitada):
                     "nome": dados['Nome'],
                     "plano": dados['Plano'].upper()
                 }
-            else:
-                st.error("Varão, seu acesso está inativo no sistema.")
-                return {"sucesso": False}
         return {"sucesso": False}
     except Exception as e:
-        st.error(f"Erro técnico na conexão: {e}")
+        st.error(f"Erro ao acessar dados: {e}")
         return {"sucesso": False}
 
 def tela_login():
