@@ -8,7 +8,7 @@ def validar_login(email_digitado, senha_digitada):
     ID_PLANILHA = "https://docs.google.com/spreadsheets/d/1dqf4LdW8U5fMAA2p0qPUgQnaAchvqM7Gt8o1--Rn1vg/edit" 
     
     # Este link força o Google a entregar os dados como um arquivo CSV puro
-    url = f"https://docs.google.com/spreadsheets/d/{https://docs.google.com/spreadsheets/d/1dqf4LdW8U5fMAA2p0qPUgQnaAchvqM7Gt8o1--Rn1vg/edit}/export?format=csv"
+    url = f"https://docs.google.com/spreadsheets/d/{ID DA PLANILHA}/export?format=csv"
 
     try:
         # Lê a planilha ignorando qualquer cache antigo
