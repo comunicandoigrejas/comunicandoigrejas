@@ -3,36 +3,39 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
 def validar_login(email_digitado, senha_digitada):
+    # O ttl=0 força o app a buscar dados novos na planilha toda vez
     conn = st.connection("gsheets", type=GSheetsConnection)
+    
     try:
-        # O ttl=0 garante que ele leia os dados novos da planilha na hora, sem usar cache antigo
-        df = conn.read(ttl=0) 
+        # Lê a Sheet1 garantindo que não use cache antigo
+        df = conn.read(ttl=0)
         
-        # Limpa espaços em branco e garante que tudo seja tratado como texto (String)
-        df['Email'] = df['Email'].astype(str).str.strip()
-        df['Senha'] = df['Senha'].astype(str).str.strip()
+        # Converte toda a planilha para string e remove espaços para evitar erros
+        df = df.astype(str).apply(lambda x: x.str.strip())
         
         email_busca = str(email_digitado).strip()
         senha_busca = str(senha_digitada).strip()
 
-        # Faz a busca exata
-        usuario = df[(df['Email'] == email_busca) & (df['Senha'] == senha_busca)]
+        # Busca ignorando maiúsculas/minúsculas no e-mail
+        usuario = df[
+            (df['Email'].str.lower() == email_busca.lower()) & 
+            (df['Senha'] == senha_busca)
+        ]
         
         if not usuario.empty:
-            if usuario.iloc[0]['Status'] == 'Ativo':
+            dados = usuario.iloc[0]
+            if dados['Status'] == 'Ativo':
                 return {
                     "sucesso": True, 
-                    "nome": usuario.iloc[0]['Nome'],
-                    "plano": usuario.iloc[0]['Plano']
+                    "nome": dados['Nome'],
+                    "plano": dados['Plano'].upper()
                 }
             else:
-                st.error("Varão, seu acesso está inativo.")
+                st.error("Varão, seu acesso está inativo no sistema.")
                 return {"sucesso": False}
-        else:
-            # Se cair aqui, é porque e-mail ou senha não bateram com a planilha
-            return {"sucesso": False}
+        return {"sucesso": False}
     except Exception as e:
-        st.error(f"Erro de conexão: {e}")
+        st.error(f"Erro técnico na conexão: {e}")
         return {"sucesso": False}
 
 def tela_login():
