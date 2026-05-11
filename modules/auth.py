@@ -2,24 +2,24 @@ import streamlit as st
 import pandas as pd
 
 def validar_login(email_digitado, senha_digitada):
-    # CORREÇÃO: Usar apenas o ID (o código entre /d/ e /edit)
+    # O ID correto extraído do seu link
     ID_PLANILHA = "1dqf4LdW8U5fMAA2p0qPUgQnaAchvqM7Gt8o1--Rn1vg" 
     
-    # O link de exportação deve ser montado exatamente assim
+    # Este formato de link é o mais estável para o Streamlit Cloud ler
     url = f"https://docs.google.com/spreadsheets/d/{ID_PLANILHA}/export?format=csv&gid=0"
 
     try:
-        # Lê a planilha forçando o Pandas a não usar cache do servidor
+        # Lê a planilha forçando a atualização dos dados (sem cache)
         df = pd.read_csv(url, storage_options={'Cache-Control': 'no-cache'})
         
-        # Padroniza nomes de colunas e remove espaços
+        # Limpa nomes de colunas e remove espaços em branco
         df.columns = [c.strip() for c in df.columns]
         df = df.astype(str).apply(lambda x: x.str.strip())
         
         email_busca = str(email_digitado).strip().lower()
         senha_busca = str(senha_digitada).strip()
 
-        # Busca ignorando maiúsculas no e-mail
+        # Procura o usuário ignorando maiúsculas/minúsculas no email
         usuario = df[
             (df['Email'].str.lower() == email_busca) & 
             (df['Senha'] == senha_busca)
@@ -27,8 +27,8 @@ def validar_login(email_digitado, senha_digitada):
         
         if not usuario.empty:
             dados = usuario.iloc[0]
-            # Verifica se o Status é 'Ativo' (em qualquer formato: ativo, Ativo, ATIVO)
-            if dados['Status'].strip().upper() == 'ATIVO':
+            # Verifica se o status é Ativo
+            if dados['Status'].upper() == 'ATIVO':
                 return {
                     "sucesso": True, 
                     "nome": dados['Nome'],
@@ -36,6 +36,9 @@ def validar_login(email_digitado, senha_digitada):
                 }
         return {"sucesso": False}
 
+    except Exception as e:
+        st.error(f"Erro de ligação à planilha: {e}")
+        return {"sucesso": False}
     except Exception as e:
         st.error(f"Erro técnico de conexão: {e}")
         return {"sucesso": False}
