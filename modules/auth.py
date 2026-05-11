@@ -3,25 +3,27 @@ import pandas as pd
 
 def validar_login(email_digitado, senha_digitada):
     # 1. COLOQUE O ID DA SUA PLANILHA AQUI
-    # O ID é aquela parte entre o /d/ e o /edit no link da sua planilha
-    # Exemplo: 1t_D_B9T2-mF2N6W5K_P9pE-Jp5I0n2-k-u1R0V-y-88
+    # O ID é aquele código entre o /d/ e o /edit no link da sua planilha
+    # Na sua imagem 37cab8.png, o ID aparece na barra de endereços.
     ID_PLANILHA = "https://docs.google.com/spreadsheets/d/1dqf4LdW8U5fMAA2p0qPUgQnaAchvqM7Gt8o1--Rn1vg/edit" 
     
-    # Este link força o Google a entregar os dados como um arquivo CSV puro
-    url = f"https://docs.google.com/spreadsheets/d/{ID DA PLANILHA}/export?format=csv"
+    # Este link transforma a sua planilha num ficheiro de texto simples (CSV)
+    url = f"https://docs.google.com/spreadsheets/d/{ID_PLANILHA}/export?format=csv&gid=0"
 
     try:
-        # Lê a planilha ignorando qualquer cache antigo
+        # Lê a planilha ignorando o cache para garantir que lê o que acabou de escrever
         df = pd.read_csv(url)
         
-        # Limpa nomes de colunas e dados (tira espaços e converte para texto)
+        # Limpa os nomes das colunas (tira espaços invisíveis)
         df.columns = [c.strip() for c in df.columns]
+        
+        # Converte tudo para texto e limpa espaços nos dados
         df = df.astype(str).apply(lambda x: x.str.strip())
         
         email_busca = str(email_digitado).strip().lower()
         senha_busca = str(senha_digitada).strip()
 
-        # Procura o irmão na lista
+        # Procura o usuário
         usuario = df[
             (df['Email'].str.lower() == email_busca) & 
             (df['Senha'] == senha_busca)
@@ -38,19 +40,18 @@ def validar_login(email_digitado, senha_digitada):
         return {"sucesso": False}
 
     except Exception as e:
-        st.error(f"Erro de conexão: {e}")
+        st.error(f"Erro na ligação: {e}")
         return {"sucesso": False}
 
 def tela_login():
     st.markdown("<h2 style='text-align: center; color: #00FF00;'>Portal do Aluno</h2>", unsafe_allow_html=True)
     
-    # Usamos o formulário para evitar que a página recarregue antes da hora
-    with st.form("form_acesso"):
-        email = st.text_input("E-mail cadastrado")
-        senha = st.text_input("Sua senha", type="password")
-        btn = st.form_submit_button("ENTRAR NA ÁREA DE MEMBROS", use_container_width=True)
+    with st.form("form_acesso_direto"):
+        email = st.text_input("E-mail")
+        senha = st.text_input("Senha", type="password")
+        submeter = st.form_submit_button("ENTRAR NA ÁREA DE MEMBROS", use_container_width=True)
         
-        if btn:
+        if submeter:
             res = validar_login(email, senha)
             if res["sucesso"]:
                 st.session_state.logado = True
@@ -59,4 +60,4 @@ def tela_login():
                 st.success(f"Bem-vindo, {res['nome']}!")
                 st.rerun()
             else:
-                st.error("Dados incorretos. Verifique o e-mail e senha na sua planilha.")
+                st.error("Dados incorretos. Verifique se o e-mail e a senha estão iguais à planilha.")
