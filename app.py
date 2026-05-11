@@ -14,10 +14,10 @@ with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # ==================== IMPORTAÇÕES ====================
-from vitrine import exibir as vitrine_exibir
-from auth import tela_login
+from modules.vitrine import exibir as vitrine_exibir
+from modules.auth import tela_login
 
-# Importação dos temas (vamos importar conforme necessário)
+# Temas
 import modules.tema_geral as tema_geral
 import modules.tema_familia as tema_familia
 import modules.tema_jovens as tema_jovens
@@ -26,7 +26,6 @@ import modules.tema_homens as tema_homens
 import modules.tema_infantil as tema_infantil
 import modules.tema_santa_ceia as tema_santa_ceia
 import modules.tema_comemorativo as tema_comemorativo
-# from modules.suporte import exibir as suporte_exibir  # descomente quando criar
 
 # ==================== INICIALIZAÇÃO DE SESSÃO ====================
 if 'logado' not in st.session_state:
