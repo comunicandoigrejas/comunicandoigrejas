@@ -2,27 +2,26 @@ import streamlit as st
 import pandas as pd
 
 def validar_login(email_digitado, senha_digitada):
-    # 1. O SEU LINK DE EXPORTAÇÃO (IMPORTANTE)
-    # Pegue o ID da sua planilha (aquela sequência de letras e números no link)
-    # Substitua o ID abaixo pelo ID da sua planilha Artes Canva
-    sheet_id = "1t_D_B9T2-mF2N6W5K_P9pE-Jp5I0n2-k-u1R0V-y-88" # EXEMPLO: Coloque o seu ID aqui
-    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv&gid=0"
+    # 1. COLOQUE O ID DA SUA PLANILHA AQUI
+    # O ID é aquela parte entre o /d/ e o /edit no link da sua planilha
+    # Exemplo: 1t_D_B9T2-mF2N6W5K_P9pE-Jp5I0n2-k-u1R0V-y-88
+    ID_PLANILHA = "https://docs.google.com/spreadsheets/d/1dqf4LdW8U5fMAA2p0qPUgQnaAchvqM7Gt8o1--Rn1vg/edit" 
+    
+    # Este link força o Google a entregar os dados como um arquivo CSV puro
+    url = f"https://docs.google.com/spreadsheets/d/{ID_PLANILHA}/export?format=csv"
 
     try:
-        # Tenta ler o arquivo CSV diretamente da web
+        # Lê a planilha ignorando qualquer cache antigo
         df = pd.read_csv(url)
         
-        # Garante que as colunas existem antes de procurar
-        colunas = [c.strip() for c in df.columns]
-        df.columns = colunas
-
-        # Limpa espaços e converte para texto
+        # Limpa nomes de colunas e dados (tira espaços e converte para texto)
+        df.columns = [c.strip() for c in df.columns]
         df = df.astype(str).apply(lambda x: x.str.strip())
         
         email_busca = str(email_digitado).strip().lower()
         senha_busca = str(senha_digitada).strip()
 
-        # Procura o usuário
+        # Procura o irmão na lista
         usuario = df[
             (df['Email'].str.lower() == email_busca) & 
             (df['Senha'] == senha_busca)
@@ -30,7 +29,7 @@ def validar_login(email_digitado, senha_digitada):
         
         if not usuario.empty:
             dados = usuario.iloc[0]
-            if dados['Status'].lower() == 'ativo':
+            if dados['Status'].upper() == 'ATIVO':
                 return {
                     "sucesso": True, 
                     "nome": dados['Nome'],
@@ -39,25 +38,25 @@ def validar_login(email_digitado, senha_digitada):
         return {"sucesso": False}
 
     except Exception as e:
-        # Se der erro aqui, o problema é o link ou a conexão
-        st.error(f"Erro ao acessar os dados da planilha: {e}")
+        st.error(f"Erro de conexão: {e}")
         return {"sucesso": False}
 
 def tela_login():
     st.markdown("<h2 style='text-align: center; color: #00FF00;'>Portal do Aluno</h2>", unsafe_allow_html=True)
     
-    with st.form("login_form"):
-        email = st.text_input("E-mail")
-        senha = st.text_input("Senha", type="password")
-        enviar = st.form_submit_button("ENTRAR NA ÁREA DE MEMBROS", use_container_width=True)
+    # Usamos o formulário para evitar que a página recarregue antes da hora
+    with st.form("form_acesso"):
+        email = st.text_input("E-mail cadastrado")
+        senha = st.text_input("Sua senha", type="password")
+        btn = st.form_submit_button("ENTRAR NA ÁREA DE MEMBROS", use_container_width=True)
         
-        if enviar:
-            resultado = validar_login(email, senha)
-            if resultado["sucesso"]:
+        if btn:
+            res = validar_login(email, senha)
+            if res["sucesso"]:
                 st.session_state.logado = True
-                st.session_state.nome_usuario = resultado["nome"]
-                st.session_state.plano = resultado["plano"]
-                st.success("Acesso liberado!")
+                st.session_state.nome_usuario = res["nome"]
+                st.session_state.plano = res["plano"]
+                st.success(f"Bem-vindo, {res['nome']}!")
                 st.rerun()
             else:
-                st.error("Dados incorretos. Verifique o e-mail e a senha na planilha.")
+                st.error("Dados incorretos. Verifique o e-mail e senha na sua planilha.")
