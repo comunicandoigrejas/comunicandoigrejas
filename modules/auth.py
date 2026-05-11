@@ -3,27 +3,36 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
 def validar_login(email_digitado, senha_digitada):
-    """Verifica os dados na planilha e retorna Nome e Plano."""
     conn = st.connection("gsheets", type=GSheetsConnection)
     try:
-        df = conn.read()
-        # Procura o usuário
-        usuario = df[(df['Email'] == email_digitado) & (df['Senha'] == str(senha_digitada))]
+        # O ttl=0 garante que ele leia os dados novos da planilha na hora, sem usar cache antigo
+        df = conn.read(ttl=0) 
+        
+        # Limpa espaços em branco e garante que tudo seja tratado como texto (String)
+        df['Email'] = df['Email'].astype(str).str.strip()
+        df['Senha'] = df['Senha'].astype(str).str.strip()
+        
+        email_busca = str(email_digitado).strip()
+        senha_busca = str(senha_digitada).strip()
+
+        # Faz a busca exata
+        usuario = df[(df['Email'] == email_busca) & (df['Senha'] == senha_busca)]
         
         if not usuario.empty:
             if usuario.iloc[0]['Status'] == 'Ativo':
                 return {
                     "sucesso": True, 
                     "nome": usuario.iloc[0]['Nome'],
-                    "plano": usuario.iloc[0]['Plano'].upper() # Guarda START ou PREMIUM
+                    "plano": usuario.iloc[0]['Plano']
                 }
             else:
-                st.error("Varão, seu acesso está inativo. Contacte o suporte.")
+                st.error("Varão, seu acesso está inativo.")
                 return {"sucesso": False}
         else:
+            # Se cair aqui, é porque e-mail ou senha não bateram com a planilha
             return {"sucesso": False}
-    except:
-        st.error("Erro ao ligar à base de dados.")
+    except Exception as e:
+        st.error(f"Erro de conexão: {e}")
         return {"sucesso": False}
 
 def tela_login():
