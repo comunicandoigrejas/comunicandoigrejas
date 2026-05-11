@@ -9,6 +9,7 @@ def validar_login(email_digitado, senha_digitada):
     try:
         # Lê a Sheet1 garantindo que não use cache antigo
         df = conn.read(ttl=0)
+        st.write(df.columns.tolist())
         
         # Converte toda a planilha para string e remove espaços para evitar erros
         df = df.astype(str).apply(lambda x: x.str.strip())
