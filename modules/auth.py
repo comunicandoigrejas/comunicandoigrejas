@@ -1,24 +1,28 @@
 import streamlit as st
-from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
 def validar_login(email_digitado, senha_digitada):
-    # Link direto da sua planilha (substitua pelo seu ID real se necessário)
-    # Esse formato abaixo é o mais estável para leitura direta
-    sheet_id = "COLOQUE_AQUI_O_ID_DA_SUA_PLANILHA"
-    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Sheet1"
-    
+    # 1. O SEU LINK DE EXPORTAÇÃO (IMPORTANTE)
+    # Pegue o ID da sua planilha (aquela sequência de letras e números no link)
+    # Substitua o ID abaixo pelo ID da sua planilha Artes Canva
+    sheet_id = "1t_D_B9T2-mF2N6W5K_P9pE-Jp5I0n2-k-u1R0V-y-88" # EXEMPLO: Coloque o seu ID aqui
+    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv&gid=0"
+
     try:
-        # Lendo diretamente como CSV (muito mais rápido e sem erros de conexão gsheets)
+        # Tenta ler o arquivo CSV diretamente da web
         df = pd.read_csv(url)
         
-        # Limpeza total de dados para comparação
+        # Garante que as colunas existem antes de procurar
+        colunas = [c.strip() for c in df.columns]
+        df.columns = colunas
+
+        # Limpa espaços e converte para texto
         df = df.astype(str).apply(lambda x: x.str.strip())
         
         email_busca = str(email_digitado).strip().lower()
         senha_busca = str(senha_digitada).strip()
 
-        # Busca o usuário
+        # Procura o usuário
         usuario = df[
             (df['Email'].str.lower() == email_busca) & 
             (df['Senha'] == senha_busca)
@@ -26,43 +30,34 @@ def validar_login(email_digitado, senha_digitada):
         
         if not usuario.empty:
             dados = usuario.iloc[0]
-            if dados['Status'] == 'Ativo':
+            if dados['Status'].lower() == 'ativo':
                 return {
                     "sucesso": True, 
                     "nome": dados['Nome'],
                     "plano": dados['Plano'].upper()
                 }
         return {"sucesso": False}
+
     except Exception as e:
-        st.error(f"Erro ao acessar dados: {e}")
+        # Se der erro aqui, o problema é o link ou a conexão
+        st.error(f"Erro ao acessar os dados da planilha: {e}")
         return {"sucesso": False}
 
 def tela_login():
-    """Interface visual do Portal do Aluno."""
+    st.markdown("<h2 style='text-align: center; color: #00FF00;'>Portal do Aluno</h2>", unsafe_allow_html=True)
     
-    # Centralizando para não ocupar a largura toda (como na sua imagem 41d67f)
-    col_esq, col_centro, col_dir = st.columns([1, 2, 1])
-
-    with col_centro:
-        st.markdown("<h2 style='text-align: center; color: #00FF00;'>Já possui acesso?</h2>", unsafe_allow_html=True)
-        st.write("Entre com os seus dados abaixo para aceder aos templates.")
-
-        # Criando o formulário de login
-        with st.form("form_login"):
-            email = st.text_input("E-mail")
-            senha = st.text_input("Senha", type="password")
-            botao = st.form_submit_button("🔓 ENTRAR NA ÁREA DE MEMBROS", use_container_width=True)
-            
-            if botao:
-                resultado = validar_login(email, senha)
-                
-                if resultado and resultado.get("sucesso"):
-                    # AQUI GUARDAMOS NA SESSÃO
-                    st.session_state.logado = True
-                    st.session_state.nome_usuario = resultado["nome"]
-                    st.session_state.plano = resultado["plano"] # Importante para o Dashboard
-                    
-                    st.success(f"Bem-vindo, {resultado['nome']}!")
-                    st.rerun()
-                else:
-                    st.error("Dados incorretos. Caso ainda não tenha o pack, clique no botão verde acima para comprar!")
+    with st.form("login_form"):
+        email = st.text_input("E-mail")
+        senha = st.text_input("Senha", type="password")
+        enviar = st.form_submit_button("ENTRAR NA ÁREA DE MEMBROS", use_container_width=True)
+        
+        if enviar:
+            resultado = validar_login(email, senha)
+            if resultado["sucesso"]:
+                st.session_state.logado = True
+                st.session_state.nome_usuario = resultado["nome"]
+                st.session_state.plano = resultado["plano"]
+                st.success("Acesso liberado!")
+                st.rerun()
+            else:
+                st.error("Dados incorretos. Verifique o e-mail e a senha na planilha.")
