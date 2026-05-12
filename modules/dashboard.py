@@ -5,7 +5,6 @@ def exibir():
     nome_usuario = st.session_state.get('nome_usuario', 'Membro')
     plano_usuario = st.session_state.get('plano', 'START').upper()
 
-    # CSS
     st.markdown("""
         <style>
             .welcome-box {
@@ -39,9 +38,11 @@ def exibir():
     """, unsafe_allow_html=True)
 
     # Botão Voltar
-    if st.button("← Voltar para a Página Inicial", use_container_width=False):
-        st.session_state.logado = False
-        st.rerun()
+    col1, col2 = st.columns([1, 6])
+    with col1:
+        if st.button("← Voltar para Início", use_container_width=True):
+            st.session_state.logado = False
+            st.rerun()
 
     # Cabeçalho
     st.markdown(f"""
@@ -59,40 +60,58 @@ def exibir():
     c1, c2, c3 = st.columns(3)
     with c1:
         st.markdown('<div class="category-card"><div class="icon-box">⛪</div><div class="card-title">Cultos Gerais</div><div class="card-subtitle">Domingo e Adoração</div></div>', unsafe_allow_html=True)
-        st.button("Acessar", key="btn_geral", use_container_width=True)
+        if st.button("Acessar", key="btn_geral", use_container_width=True):
+            st.session_state.pagina = "Cultos Gerais"
+            st.rerun()
 
     with c2:
         st.markdown('<div class="category-card"><div class="icon-box">🔥</div><div class="card-title">Jovens</div><div class="card-subtitle">Congressos e Vigílias</div></div>', unsafe_allow_html=True)
-        st.button("Acessar", key="btn_jovens", use_container_width=True)
+        if st.button("Acessar", key="btn_jovens", use_container_width=True):
+            st.session_state.pagina = "Jovens"
+            st.rerun()
 
     with c3:
         st.markdown('<div class="category-card"><div class="icon-box">👨‍👩‍👧‍👦</div><div class="card-title">Família</div><div class="card-subtitle">Cultos Familiares</div></div>', unsafe_allow_html=True)
-        st.button("Acessar", key="btn_familia", use_container_width=True)
+        if st.button("Acessar", key="btn_familia", use_container_width=True):
+            st.session_state.pagina = "Família"
+            st.rerun()
 
     # Linha 2
     c4, c5, c6 = st.columns(3)
     with c4:
         st.markdown('<div class="category-card"><div class="icon-box">🌸</div><div class="card-title">Mulheres</div><div class="card-subtitle">Conferências Femininas</div></div>', unsafe_allow_html=True)
-        st.button("Acessar", key="btn_mulheres", use_container_width=True)
+        if st.button("Acessar", key="btn_mulheres", use_container_width=True):
+            st.session_state.pagina = "Mulheres"
+            st.rerun()
 
     with c5:
         st.markdown('<div class="category-card"><div class="icon-box">🧔</div><div class="card-title">Homens</div><div class="card-subtitle">Varões de Valor</div></div>', unsafe_allow_html=True)
-        st.button("Acessar", key="btn_homens", use_container_width=True)
+        if st.button("Acessar", key="btn_homens", use_container_width=True):
+            st.session_state.pagina = "Homens"
+            st.rerun()
 
     with c6:
         st.markdown('<div class="category-card"><div class="icon-box">🧸</div><div class="card-title">Infantil</div><div class="card-subtitle">Ministério Kids</div></div>', unsafe_allow_html=True)
-        st.button("Acessar", key="btn_infantil", use_container_width=True)
+        if st.button("Acessar", key="btn_infantil", use_container_width=True):
+            st.session_state.pagina = "Infantil"
+            st.rerun()
 
     # Linha 3
     c7, c8, c9 = st.columns(3)
     with c7:
         st.markdown('<div class="category-card"><div class="icon-box">🍷</div><div class="card-title">Santa Ceia</div><div class="card-subtitle">Anúncios e Telão</div></div>', unsafe_allow_html=True)
-        st.button("Acessar", key="btn_ceia", use_container_width=True)
+        if st.button("Acessar", key="btn_ceia", use_container_width=True):
+            st.session_state.pagina = "Santa Ceia"
+            st.rerun()
 
     with c8:
         st.markdown('<div class="category-card"><div class="icon-box">🎉</div><div class="card-title">Datas Comemorativas</div><div class="card-subtitle">Natal, Páscoa, etc</div></div>', unsafe_allow_html=True)
-        st.button("Acessar", key="btn_comemorativo", use_container_width=True)
+        if st.button("Acessar", key="btn_comemorativo", use_container_width=True):
+            st.session_state.pagina = "Datas Comemorativas"
+            st.rerun()
 
     with c9:
         st.markdown('<div class="category-card"><div class="icon-box">💬</div><div class="card-title">Suporte</div><div class="card-subtitle">Fale conosco</div></div>', unsafe_allow_html=True)
-        st.button("Acessar", key="btn_suporte", use_container_width=True)
+        if st.button("Acessar", key="btn_suporte", use_container_width=True):
+            st.session_state.pagina = "Suporte"
+            st.rerun()
