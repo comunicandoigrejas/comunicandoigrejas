@@ -1,9 +1,22 @@
 import streamlit as st
 
+if not st.session_state.get("logado", False):
+    st.warning("🔒 Acesso restrito. Faça login para continuar.")
+    st.stop()
+
 st.set_page_config(page_title="Datas Comemorativas", layout="wide", page_icon="🎉")
 
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+st.sidebar.markdown(f"### 👋 Olá, **{st.session_state.get('nome_usuario', 'Membro')}**")
+st.sidebar.markdown(f"**Plano:** {st.session_state.get('plano', 'START')}")
+if st.sidebar.button("🏠 Voltar ao Dashboard"):
+    st.switch_page("app.py")
+if st.sidebar.button("🚪 Sair"):
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
+    st.switch_page("app.py")
 
 def exibir():
     st.markdown("<h1 class='gradient-title'>🎉 Datas Comemorativas</h1>", unsafe_allow_html=True)
