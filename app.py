@@ -26,7 +26,6 @@ if not st.session_state.logado:
         tela_login()
 
 else:
-    # === ÁREA LOGADA ===
     st.sidebar.markdown(f"### 👋 Olá, **{st.session_state.get('nome_usuario', 'Membro')}**")
     st.sidebar.markdown(f"**Plano:** {st.session_state.get('plano', 'START')}")
     
@@ -35,6 +34,18 @@ else:
             del st.session_state[key]
         st.rerun()
 
-    # Carrega o Dashboard (nome sem número)
-    from pages.Dashboard import exibir as dashboard_exibir
-    dashboard_exibir()
+    # Tenta importar o Dashboard de forma mais segura
+    try:
+        from pages.Dashboard import exibir as dashboard_exibir
+        dashboard_exibir()
+    except Exception as e:
+        try:
+            from pages.00_Dashboard import exibir as dashboard_exibir
+            dashboard_exibir()
+        except:
+            try:
+                from pages.0_dashboard import exibir as dashboard_exibir
+                dashboard_exibir()
+            except:
+                st.error("Não foi possível carregar o Dashboard.")
+                st.info("Verifique se o arquivo existe em pages/ com nome Dashboard.py ou 0_dashboard.py")
