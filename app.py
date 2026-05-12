@@ -69,11 +69,11 @@ else:
             del st.session_state[key]
         st.rerun()
 
-        # ==================== ROTEAMENTO ====================
+          # ==================== ROTEAMENTO ====================
     if opcao == "🏠 Dashboard":
         from modules.dashboard import exibir as dashboard_exibir
         dashboard_exibir()
-    
+
     elif opcao == "⛪ Cultos Gerais":
         tema_geral.exibir()
     elif opcao == "👨‍👩‍👧‍👦 Família":
@@ -91,4 +91,4 @@ else:
     elif opcao == "🎉 Datas Comemorativas":
         tema_comemorativo.exibir()
     elif opcao == "💬 Suporte":
-        st.info("📌 Módulo de Suporte em desenvolvimento. Em breve!")
+        st.info("📌 Módulo de Suporte em breve!")
