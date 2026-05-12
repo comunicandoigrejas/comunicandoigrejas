@@ -1,5 +1,9 @@
-# modules/tema_jovens.py
 import streamlit as st
+
+st.set_page_config(page_title="Jovens", layout="wide", page_icon="🔥")
+
+with open("style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def exibir():
     st.markdown("<h1 class='gradient-title'>🔥 Jovens</h1>", unsafe_allow_html=True)
@@ -18,9 +22,11 @@ def exibir():
 
     with col2:
         st.markdown("<div class='premium-card'>", unsafe_allow_html=True)
-        st.markdown("**Pack #02 - Teens**")
+        st.markdown("**Pack Teens**")
         st.write("Disponível em breve!")
         st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("---")
     st.info("🔄 Novos packs são adicionados semanalmente!")
+
+exibir()
