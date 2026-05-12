@@ -5,7 +5,6 @@ def exibir():
     nome_usuario = st.session_state.get('nome_usuario', 'Membro')
     plano_usuario = st.session_state.get('plano', 'START').upper()
 
-    # CSS Personalizado do Dashboard
     st.markdown("""
         <style>
             .welcome-box {
@@ -35,17 +34,15 @@ def exibir():
             .icon-box { font-size: 48px; margin-bottom: 12px; }
             .card-title { color: #ffffff; font-size: 1.35rem; font-weight: 700; }
             .card-subtitle { color: #aaaaaa; font-size: 0.95rem; }
-            .badge {
-                background: linear-gradient(90deg, #FF2D95, #7B2CBF);
-                color: white;
-                padding: 4px 12px;
-                border-radius: 20px;
-                font-size: 0.8rem;
-                margin-top: 8px;
-                display: inline-block;
-            }
         </style>
     """, unsafe_allow_html=True)
+
+    # Botão de Voltar para Início
+    col_voltar, _ = st.columns([1, 5])
+    with col_voltar:
+        if st.button("← Voltar para Início", use_container_width=True):
+            st.session_state.logado = False
+            st.rerun()
 
     # Boas-vindas
     st.markdown(f"""
@@ -57,9 +54,9 @@ def exibir():
         </div>
     """, unsafe_allow_html=True)
 
-    st.subheader("📌 Categorias Disponíveis")
+    st.subheader("📌 Escolha uma Categoria")
 
-    # Grid de Cards
+    # Primeira linha
     col1, col2, col3 = st.columns(3)
 
     with col1:
@@ -70,8 +67,8 @@ def exibir():
                 <div class="card-subtitle">Domingo, Adoração e Ensino</div>
             </div>
         """, unsafe_allow_html=True)
-        if st.button("Acessar Cultos Gerais", key="btn_geral", use_container_width=True):
-            st.switch_page("app.py")  # ou vamos usar outra estratégia
+        if st.button("Acessar", key="geral", use_container_width=True):
+            st.switch_page("app.py")  # Temporário
 
     with col2:
         st.markdown("""
@@ -81,22 +78,9 @@ def exibir():
                 <div class="card-subtitle">Congressos e Vigílias</div>
             </div>
         """, unsafe_allow_html=True)
-        st.button("Acessar Jovens", key="btn_jovens", use_container_width=True)
+        st.button("Acessar", key="jovens", use_container_width=True)
 
     with col3:
-        st.markdown("""
-            <div class="category-card">
-                <div class="icon-box">🍷</div>
-                <div class="card-title">Santa Ceia</div>
-                <div class="card-subtitle">Anúncios e Telão</div>
-            </div>
-        """, unsafe_allow_html=True)
-        st.button("Acessar Santa Ceia", key="btn_ceia", use_container_width=True)
-
-    st.markdown("<br>", unsafe_allow_html=True)
-    col4, col5, col6 = st.columns(3)
-
-    with col4:
         st.markdown("""
             <div class="category-card">
                 <div class="icon-box">👨‍👩‍👧‍👦</div>
@@ -104,9 +88,12 @@ def exibir():
                 <div class="card-subtitle">Cultos Familiares</div>
             </div>
         """, unsafe_allow_html=True)
-        st.button("Acessar Família", key="btn_familia", use_container_width=True)
+        st.button("Acessar", key="familia", use_container_width=True)
 
-    with col5:
+    # Segunda linha
+    col4, col5, col6 = st.columns(3)
+
+    with col4:
         st.markdown("""
             <div class="category-card">
                 <div class="icon-box">🌸</div>
@@ -114,7 +101,17 @@ def exibir():
                 <div class="card-subtitle">Conferências Femininas</div>
             </div>
         """, unsafe_allow_html=True)
-        st.button("Acessar Mulheres", key="btn_mulheres", use_container_width=True)
+        st.button("Acessar", key="mulheres", use_container_width=True)
+
+    with col5:
+        st.markdown("""
+            <div class="category-card">
+                <div class="icon-box">🧔</div>
+                <div class="card-title">Homens</div>
+                <div class="card-subtitle">Varões de Valor</div>
+            </div>
+        """, unsafe_allow_html=True)
+        st.button("Acessar", key="homens", use_container_width=True)
 
     with col6:
         st.markdown("""
@@ -124,4 +121,37 @@ def exibir():
                 <div class="card-subtitle">Ministério Kids</div>
             </div>
         """, unsafe_allow_html=True)
-        st.button("Acessar Infantil", key="btn_infantil", use_container_width=True)
+        st.button("Acessar", key="infantil", use_container_width=True)
+
+    # Terceira linha
+    col7, col8, col9 = st.columns(3)
+
+    with col7:
+        st.markdown("""
+            <div class="category-card">
+                <div class="icon-box">🍷</div>
+                <div class="card-title">Santa Ceia</div>
+                <div class="card-subtitle">Anúncios e Telão</div>
+            </div>
+        """, unsafe_allow_html=True)
+        st.button("Acessar", key="ceia", use_container_width=True)
+
+    with col8:
+        st.markdown("""
+            <div class="category-card">
+                <div class="icon-box">🎉</div>
+                <div class="card-title">Datas Comemorativas</div>
+                <div class="card-subtitle">Natal, Páscoa, Ano Novo</div>
+            </div>
+        """, unsafe_allow_html=True)
+        st.button("Acessar", key="comemorativo", use_container_width=True)
+
+    with col9:
+        st.markdown("""
+            <div class="category-card">
+                <div class="icon-box">💬</div>
+                <div class="card-title">Suporte</div>
+                <div class="card-subtitle">Fale conosco</div>
+            </div>
+        """, unsafe_allow_html=True)
+        st.button("Acessar", key="suporte", use_container_width=True)
