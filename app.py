@@ -48,6 +48,10 @@ else:
     st.sidebar.markdown(f"### 👋 Olá, **{st.session_state.nome_usuario}**")
     st.sidebar.markdown(f"**Plano:** {st.session_state.plano}")
     
+    # Opção padrão caso não tenha página definida
+    if 'pagina' not in st.session_state:
+        st.session_state.pagina = "Dashboard"
+
     opcao = st.sidebar.radio(
         "Navegue pelos Temas:",
         [
@@ -61,7 +65,8 @@ else:
             "🍷 Santa Ceia",
             "🎉 Datas Comemorativas",
             "💬 Suporte"
-        ]
+        ],
+        index=0 if st.session_state.pagina == "Dashboard" else None
     )
 
     if st.sidebar.button("🚪 Sair da Área de Membros"):
@@ -69,26 +74,28 @@ else:
             del st.session_state[key]
         st.rerun()
 
-          # ==================== ROTEAMENTO ====================
-    if opcao == "🏠 Dashboard":
+    # ==================== ROTEAMENTO INTELIGENTE ====================
+    pagina_atual = st.session_state.pagina
+
+    if opcao == "🏠 Dashboard" or pagina_atual == "Dashboard":
         from modules.dashboard import exibir as dashboard_exibir
         dashboard_exibir()
 
-    elif opcao == "⛪ Cultos Gerais":
+    elif opcao == "⛪ Cultos Gerais" or pagina_atual == "Cultos Gerais":
         tema_geral.exibir()
-    elif opcao == "👨‍👩‍👧‍👦 Família":
+    elif opcao == "👨‍👩‍👧‍👦 Família" or pagina_atual == "Família":
         tema_familia.exibir()
-    elif opcao == "🔥 Jovens":
+    elif opcao == "🔥 Jovens" or pagina_atual == "Jovens":
         tema_jovens.exibir()
-    elif opcao == "🌸 Mulheres":
+    elif opcao == "🌸 Mulheres" or pagina_atual == "Mulheres":
         tema_mulheres.exibir()
-    elif opcao == "🧔 Homens":
+    elif opcao == "🧔 Homens" or pagina_atual == "Homens":
         tema_homens.exibir()
-    elif opcao == "🧸 Infantil":
+    elif opcao == "🧸 Infantil" or pagina_atual == "Infantil":
         tema_infantil.exibir()
-    elif opcao == "🍷 Santa Ceia":
+    elif opcao == "🍷 Santa Ceia" or pagina_atual == "Santa Ceia":
         tema_santa_ceia.exibir()
-    elif opcao == "🎉 Datas Comemorativas":
+    elif opcao == "🎉 Datas Comemorativas" or pagina_atual == "Datas Comemorativas":
         tema_comemorativo.exibir()
-    elif opcao == "💬 Suporte":
-        st.info("📌 Módulo de Suporte em breve!")
+    elif opcao == "💬 Suporte" or pagina_atual == "Suporte":
+        st.info("📌 Módulo de Suporte em desenvolvimento. Em breve!")
