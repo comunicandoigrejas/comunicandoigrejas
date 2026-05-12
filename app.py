@@ -26,6 +26,7 @@ if not st.session_state.logado:
         tela_login()
 
 else:
+    # === ÁREA LOGADA ===
     st.sidebar.markdown(f"### 👋 Olá, **{st.session_state.get('nome_usuario', 'Membro')}**")
     st.sidebar.markdown(f"**Plano:** {st.session_state.get('plano', 'START')}")
     
@@ -34,6 +35,6 @@ else:
             del st.session_state[key]
         st.rerun()
 
-    # Carrega o Dashboard
-    from pages.00_Dashboard import exibir as dashboard_exibir
+    # Carrega o Dashboard (nome sem número)
+    from pages.Dashboard import exibir as dashboard_exibir
     dashboard_exibir()
