@@ -56,11 +56,12 @@ def exibir():
     # Grid de botões: 4 colunas
     cols = st.columns(4)
     for i, pagina in enumerate(PAGINAS):
-        with cols[i % 4]:
-            label = f"{pagina['icone']}  {pagina['titulo']}"
-            if st.button(label, key=f"btn_{pagina['modulo']}", use_container_width=True):
-                st.session_state.pagina_atual = pagina['modulo']
-                st.rerun()
+    with cols[i % 4]:
+        label = f"{pagina['icone']}  {pagina['titulo']}"
+        # Adicionamos a key baseada no nome do módulo para ser única
+        if st.button(label, key=f"btn_dash_{pagina['modulo']}", use_container_width=True):
+            st.session_state.pagina_atual = pagina['modulo']
+            st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("---")
