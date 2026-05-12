@@ -26,7 +26,7 @@ if not st.session_state.logado:
         tela_login()
 
 else:
-    # === USUÁRIO LOGADO ===
+    # === ÁREA LOGADA ===
     st.sidebar.markdown(f"### 👋 Olá, **{st.session_state.get('nome_usuario', 'Membro')}**")
     st.sidebar.markdown(f"**Plano:** {st.session_state.get('plano', 'START')}")
     
@@ -35,5 +35,13 @@ else:
             del st.session_state[key]
         st.rerun()
 
-    # Redireciona automaticamente para o Dashboard após login
-    st.switch_page("pages/0_dashboard.py")
+    # Redirecionamento seguro para o Dashboard
+    if 'current_page' not in st.session_state:
+        st.session_state.current_page = "dashboard"
+    
+    # Mostra o Dashboard por padrão após login
+    if st.session_state.current_page == "dashboard":
+        from pages.0_dashboard import exibir as dashboard_exibir
+        dashboard_exibir()
+    else:
+        st.info("Use o menu lateral para navegar")
