@@ -3,10 +3,12 @@ import streamlit as st
 import pandas as pd
 
 def validar_login(email_digitado, senha_digitada):
+    # ID correto extraído do seu link
     ID_PLANILHA = "1dqf4LdW8U5fMAA2p0qPUgQnaAchvqM7Gt8o1--Rn1vg"
     url = f"https://docs.google.com/spreadsheets/d/{ID_PLANILHA}/export?format=csv&gid=0"
 
     try:
+        # storage_options ajuda a evitar cache antigo do Streamlit
         df = pd.read_csv(url, storage_options={'Cache-Control': 'no-cache'})
         df.columns = [c.strip() for c in df.columns]
         df = df.astype(str).apply(lambda x: x.str.strip())
@@ -28,11 +30,9 @@ def validar_login(email_digitado, senha_digitada):
                     "plano": dados.get('Plano', 'START').upper()
                 }
         return {"sucesso": False}
-
     except Exception as e:
         st.error(f"Erro ao conectar com a planilha: {e}")
         return {"sucesso": False}
-
 
 def tela_login():
     st.markdown("<h2 style='text-align: center; color: #FF2D95;'>🔑 Acesso à Área de Membros</h2>", unsafe_allow_html=True)
@@ -43,16 +43,12 @@ def tela_login():
         submit = st.form_submit_button("🔓 ENTRAR NA ÁREA DE MEMBROS", use_container_width=True)
 
         if submit:
-            if not email or not senha:
-                st.warning("Por favor, preencha e-mail e senha.")
-                return
-
             res = validar_login(email, senha)
             if res["sucesso"]:
                 st.session_state.logado = True
                 st.session_state.nome_usuario = res["nome"]
                 st.session_state.plano = res["plano"]
-                st.success(f"Bem-vindo(a), {res['nome']}! 🎉")
+                st.success(f"Bem-vindo, {res['nome']}!")
                 st.rerun()
             else:
-                st.error("❌ E-mail ou senha incorretos.")
+                st.error("Dados incorretos ou conta inativa. Verifique a sua planilha.")
