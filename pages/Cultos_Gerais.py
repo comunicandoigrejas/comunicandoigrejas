@@ -8,26 +8,24 @@ def exibir():
 
     # Lista estruturada com os nomes base das imagens e os links correspondentes
     artes = [
-        {"titulo": "Cultos Gerais 01", "img_base": "Cultos Gerais 01", "feed": "https://canva.link/q1iy99fiuhdij9v", "story": "https://canva.link/39a7aig9rylbfx3"},
-        {"titulo": "Cultos Gerais 02", "img_base": "Cultos Gerais 02", "feed": "https://canva.link/13bboathtx0kcbw", "story": "https://canva.link/shzp2bd8087nxhc"},
-        {"titulo": "Cultos Gerais 03", "img_base": "Cultos Gerais 03", "feed": "https://canva.link/8dp6aqomdei1p93", "story": "https://canva.link/43cyvpd0io65bmd"},
-        {"titulo": "Cultos Gerais 04", "img_base": "Cultos Gerais 04", "feed": "https://canva.link/iilqcqz88khx5ct", "story": "https://canva.link/m26hso5xwnzb2ot"},
-        {"titulo": "Cultos Gerais 05", "img_base": "Cultos Gerais 05", "feed": "https://canva.link/40seh7gwmul8fq5", "story": "https://canva.link/ordyq2ibhkk7mnw"},
-        {"titulo": "Cultos Gerais 06", "img_base": "Cultos Gerais 06", "feed": "https://canva.link/m81a1vp0ax97as1", "story": "https://canva.link/82yli7fl2qghus9"},
-        {"titulo": "Cultos Gerais 07", "img_base": "Cultos Gerais 07", "feed": "https://canva.link/8fya2w3xw2pc7s7", "story": "https://canva.link/412ueqr89q5w16u"},
-        {"titulo": "Cultos Gerais 08", "img_base": "Cultos Gerais 08", "feed": "https://canva.link/m2prw20152k1z3w", "story": "https://canva.link/tepbqpuxlvog6fw"}
+        {"img_base": "Cultos Gerais 01", "feed": "https://canva.link/q1iy99fiuhdij9v", "story": "https://canva.link/39a7aig9rylbfx3"},
+        {"img_base": "Cultos Gerais 02", "feed": "https://canva.link/13bboathtx0kcbw", "story": "https://canva.link/shzp2bd8087nxhc"},
+        {"img_base": "Cultos Gerais 03", "feed": "https://canva.link/8dp6aqomdei1p93", "story": "https://canva.link/43cyvpd0io65bmd"},
+        {"img_base": "Cultos Gerais 04", "feed": "https://canva.link/iilqcqz88khx5ct", "story": "https://canva.link/m26hso5xwnzb2ot"},
+        {"img_base": "Cultos Gerais 05", "feed": "https://canva.link/40seh7gwmul8fq5", "story": "https://canva.link/ordyq2ibhkk7mnw"},
+        {"img_base": "Cultos Gerais 06", "feed": "https://canva.link/m81a1vp0ax97as1", "story": "https://canva.link/82yli7fl2qghus9"},
+        {"img_base": "Cultos Gerais 07", "feed": "https://canva.link/8fya2w3xw2pc7s7", "story": "https://canva.link/412ueqr89q5w16u"},
+        {"img_base": "Cultos Gerais 08", "feed": "https://canva.link/m2prw20152k1z3w", "story": "https://canva.link/tepbqpuxlvog6fw"}
     ]
 
-    # Alterado para 3 colunas para deixar os cards menores e lado a lado
+    # Organizado em 3 colunas para manter os cards menores
     cols = st.columns(3)
 
     for i, arte in enumerate(artes):
-        # Distribui as artes entre as três colunas (0, 1 e 2)
         with cols[i % 3]:
             st.markdown("<div class='premium-card'>", unsafe_allow_html=True)
             
-            # --- SISTEMA DE VERIFICAÇÃO DE EXTENSÕES ---
-            # Testa caminhos na pasta 'assets' e na raiz com múltiplas extensões comuns
+            # --- SISTEMA SILENCIOSO DE VERIFICAÇÃO ---
             extensoes = ['.jpg', '.jpeg', '.png', '.PNG', '.JPG']
             imagem_encontrada = None
             
@@ -42,15 +40,15 @@ def exibir():
                     imagem_encontrada = caminho_raiz
                     break
             
-            # Exibe a imagem se encontrada, caso contrário mostra o aviso amigável
+            # Exibe a imagem se encontrada. Se não encontrar, mostra um espaço reservado discreto
             if imagem_encontrada:
                 st.image(imagem_encontrada, use_container_width=True)
             else:
-                st.warning(f"⚠️ Imagem '{arte['img_base']}' não localizada.")
+                st.markdown("<div style='text-align: center; padding: 40px; color: #555;'>🖼️ Carregando arte...</div>", unsafe_allow_html=True)
 
-            st.markdown(f"### {arte['titulo']}")
+            st.markdown("<br>", unsafe_allow_html=True)
             
-            # Sub-colunas para os botões de Feed e Story ficarem perfeitamente alinhados
+            # Sub-colunas para os botões de Feed e Story ficarem alinhados logo abaixo da imagem
             btn_col1, btn_col2 = st.columns(2)
             
             with btn_col1:
