@@ -8,7 +8,7 @@ def exibir():
 
     # Lista estruturada com os nomes base das imagens e os links correspondentes
     artes = [
-        {"titulo":, "img_base": "Cultos Gerais 01", "feed": "https://canva.link/q1iy99fiuhdij9v", "story": "https://canva.link/39a7aig9rylbfx3"},
+        {"titulo": "Cultos Gerais 01", "img_base": "Cultos Gerais 01", "feed": "https://canva.link/q1iy99fiuhdij9v", "story": "https://canva.link/39a7aig9rylbfx3"},
         {"titulo": "Cultos Gerais 02", "img_base": "Cultos Gerais 02", "feed": "https://canva.link/13bboathtx0kcbw", "story": "https://canva.link/shzp2bd8087nxhc"},
         {"titulo": "Cultos Gerais 03", "img_base": "Cultos Gerais 03", "feed": "https://canva.link/8dp6aqomdei1p93", "story": "https://canva.link/43cyvpd0io65bmd"},
         {"titulo": "Cultos Gerais 04", "img_base": "Cultos Gerais 04", "feed": "https://canva.link/iilqcqz88khx5ct", "story": "https://canva.link/m26hso5xwnzb2ot"},
