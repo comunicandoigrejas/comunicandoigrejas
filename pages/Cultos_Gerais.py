@@ -23,8 +23,7 @@ def exibir():
 
     for i, arte in enumerate(artes):
         with cols[i % 3]:
-            # Abre a caixinha rosa do card
-            st.markdown("<div class='premium-card'>", unsafe_allow_html=True)
+            # REMOVIDO: A div class='premium-card' foi retirada para eliminar a caixa rosa neon
             
             # Busca silenciosa da imagem nas pastas e extensões
             extensoes = ['.jpg', '.jpeg', '.png', '.PNG', '.JPG']
@@ -41,13 +40,13 @@ def exibir():
                     imagem_encontrada = caminho_raiz
                     break
             
-            # Se achar a imagem, coloca direto no card. Se não, deixa um aviso discreto
+            # Se achar a imagem, coloca direto na coluna
             if imagem_encontrada:
                 st.image(imagem_encontrada, use_container_width=True)
             else:
                 st.markdown("<div style='text-align: center; padding: 20px; color: #555;'>🖼️ Carregando imagem...</div>", unsafe_allow_html=True)
 
-            # Sub-colunas para os botões ficarem lado a lado logo abaixo da foto, sem pular linha
+            # Sub-colunas para os botões ficarem lado a lado logo abaixo da foto
             btn_col1, btn_col2 = st.columns(2)
             
             with btn_col1:
@@ -56,11 +55,11 @@ def exibir():
             with btn_col2:
                 st.link_button("📐 STORY", arte['story'], use_container_width=True, key=f"story_{i}")
             
-            # Fecha a caixinha rosa do card
-            st.markdown("</div>", unsafe_allow_html=True)
+            # Adiciona um pequeno espaço de separação para a linha de baixo não ficar colada
+            st.markdown("<br>", unsafe_allow_html=True)
 
     # Botão de voltar para os temas
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("---")
     if st.button("⬅️ Voltar aos Temas", use_container_width=True, key="voltar_cultos"):
         st.session_state.pagina_atual = None
         st.rerun()
