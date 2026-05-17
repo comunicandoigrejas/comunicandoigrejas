@@ -6,7 +6,7 @@ def exibir():
     st.markdown("<p style='text-align: center;'>Escolha o formato ideal (Feed ou Story) para baixar e editar o seu template no Canva.</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Lista estruturada com os nomes base das imagens e os links correspondentes
+    # Lista estruturada das artes
     artes = [
         {"img_base": "Cultos Gerais 01", "feed": "https://canva.link/q1iy99fiuhdij9v", "story": "https://canva.link/39a7aig9rylbfx3"},
         {"img_base": "Cultos Gerais 02", "feed": "https://canva.link/13bboathtx0kcbw", "story": "https://canva.link/shzp2bd8087nxhc"},
@@ -18,14 +18,15 @@ def exibir():
         {"img_base": "Cultos Gerais 08", "feed": "https://canva.link/m2prw20152k1z3w", "story": "https://canva.link/tepbqpuxlvog6fw"}
     ]
 
-    # Organizado em 3 colunas para manter os cards menores
+    # Exibição em 3 colunas (imagens menores e lado a lado)
     cols = st.columns(3)
 
     for i, arte in enumerate(artes):
         with cols[i % 3]:
+            # Abre a caixinha rosa do card
             st.markdown("<div class='premium-card'>", unsafe_allow_html=True)
             
-            # --- SISTEMA SILENCIOSO DE VERIFICAÇÃO ---
+            # Busca silenciosa da imagem nas pastas e extensões
             extensoes = ['.jpg', '.jpeg', '.png', '.PNG', '.JPG']
             imagem_encontrada = None
             
@@ -40,15 +41,13 @@ def exibir():
                     imagem_encontrada = caminho_raiz
                     break
             
-            # Exibe a imagem se encontrada. Se não encontrar, mostra um espaço reservado discreto
+            # Se achar a imagem, coloca direto no card. Se não, deixa um aviso discreto
             if imagem_encontrada:
                 st.image(imagem_encontrada, use_container_width=True)
             else:
-                st.markdown("<div style='text-align: center; padding: 40px; color: #555;'>🖼️ Carregando arte...</div>", unsafe_allow_html=True)
+                st.markdown("<div style='text-align: center; padding: 20px; color: #555;'>🖼️ Carregando imagem...</div>", unsafe_allow_html=True)
 
-            st.markdown("<br>", unsafe_allow_html=True)
-            
-            # Sub-colunas para os botões de Feed e Story ficarem alinhados logo abaixo da imagem
+            # Sub-colunas para os botões ficarem lado a lado logo abaixo da foto, sem pular linha
             btn_col1, btn_col2 = st.columns(2)
             
             with btn_col1:
@@ -57,9 +56,10 @@ def exibir():
             with btn_col2:
                 st.link_button("📐 STORY", arte['story'], use_container_width=True, key=f"story_{i}")
             
+            # Fecha a caixinha rosa do card
             st.markdown("</div>", unsafe_allow_html=True)
 
-    # Botão para voltar à seleção de temas do Dashboard
+    # Botão de voltar para os temas
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("⬅️ Voltar aos Temas", use_container_width=True, key="voltar_cultos"):
         st.session_state.pagina_atual = None
