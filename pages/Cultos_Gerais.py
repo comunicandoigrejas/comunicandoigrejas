@@ -6,7 +6,7 @@ def exibir():
     st.markdown("<p style='text-align: center;'>Escolha o formato ideal (Feed ou Story) para baixar e editar o seu template no Canva.</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Dicionário atualizado com os nomes exatos das suas imagens (Cultos Gerais 01.jpg, etc.)
+    # Lista estruturada com os nomes das artes e os links correspondentes
     artes = [
         {"titulo": "Cultos Gerais 01", "img": "Cultos Gerais 01.jpg", "feed": "https://canva.link/q1iy99fiuhdij9v", "story": "https://canva.link/39a7aig9rylbfx3"},
         {"titulo": "Cultos Gerais 02", "img": "Cultos Gerais 02.jpg", "feed": "https://canva.link/13bboathtx0kcbw", "story": "https://canva.link/shzp2bd8087nxhc"},
@@ -18,24 +18,30 @@ def exibir():
         {"titulo": "Cultos Gerais 08", "img": "Cultos Gerais 08.jpg", "feed": "https://canva.link/m2prw20152k1z3w", "story": "https://canva.link/tepbqpuxlvog6fw"}
     ]
 
-    # Criando o layout de 2 colunas na página para exibição lado a lado
+    # Criando o layout de 2 colunas para exibição lado a lado
     cols = st.columns(2)
 
     for i, arte in enumerate(artes):
-        # Distribui as artes entre as duas colunas criadas
         with cols[i % 2]:
             st.markdown("<div class='premium-card'>", unsafe_allow_html=True)
             
-            # Validação para garantir que o app encontre a imagem correspondente na pasta principal
-            if os.path.exists(arte['img']):
-                st.image(arte['img'], use_container_width=True)
+            # --- SISTEMA INTELIGENTE DE BUSCA DE IMAGEM ---
+            caminho_raiz = arte['img']
+            caminho_assets = f"assets/{arte['img']}"
+            
+            # Verifica primeiro se está na pasta 'assets'
+            if os.path.exists(caminho_assets):
+                st.image(caminho_assets, use_container_width=True)
+            # Se não estiver, verifica na raiz do projeto
+            elif os.path.exists(caminho_raiz):
+                st.image(caminho_raiz, use_container_width=True)
             else:
-                st.warning(f"⚠️ Arquivo de imagem '{arte['img']}' não foi localizado na raiz do projeto.")
+                st.warning(f"⚠️ Não encontramos a imagem '{arte['img']}' nem na raiz nem na pasta 'assets'. Verifique se o nome no GitHub está correto.")
 
             st.markdown(f"### {arte['titulo']}")
             st.markdown("<p style='color: #888888; font-size: 0.9rem;'>Selecione o formato desejado:</p>", unsafe_allow_html=True)
             
-            # Sub-colunas internas para colocar os botões de Feed e Story lado a lado abaixo da arte
+            # Sub-colunas para os botões de Feed e Story ficarem lado a lado
             btn_col1, btn_col2 = st.columns(2)
             
             with btn_col1:
@@ -46,7 +52,7 @@ def exibir():
             
             st.markdown("</div>", unsafe_allow_html=True)
 
-    # Botão para fechar a categoria e voltar ao menu de temas do Dashboard
+    # Botão para voltar à seleção de temas
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("⬅️ Voltar aos Temas", use_container_width=True, key="voltar_cultos"):
         st.session_state.pagina_atual = None
