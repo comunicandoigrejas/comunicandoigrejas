@@ -93,6 +93,7 @@ def exibir_painel_inicial():
                     <li>✅ 🔥 Culto de Jovens</li>
                     <li>✅ 🍷 Culto de Santa Ceia</li>
                     <li>✅ 🧱 Campanhas</li>
+                    <li>❌ <b>Sem</b> atualização semanal</li>
                 </ul>
                 <hr style='border-color: #1f1f1f;'>
                 <p style='color: #888888; margin-bottom: 0; font-size: 1rem;'>Acesso por 1 ano por apenas</p>
