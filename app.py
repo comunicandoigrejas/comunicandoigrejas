@@ -1,27 +1,26 @@
 import streamlit as st
 import os
 
+# --- CONFIGURAÇÃO DA PÁGINA (OCULTA O BOTÃO PADRÃO DA SIDEBAR SE HOUVER) ---
+st.set_page_config(initial_sidebar_state="collapsed")
+
 # --- GARANTE QUE A VARIÁVEL EXISTE NO INÍCIO DO SISTEMA ---
 if 'pagina_atual' not in st.session_state:
     st.session_state.pagina_atual = None
 
 def exibir_painel_inicial():
-    # --- 1. IMAGEM DE CAPA (HERO MOCKUP) ---
-    img_topo = "hero_mockup.png"
-    caminho_assets = f"assets/{img_topo}"
-    
-    if os.path.exists(caminho_assets):
-        st.image(caminho_assets, use_container_width=True)
-    elif os.path.exists(img_topo):
-        st.image(img_topo, use_container_width=True)
-    else:
-        st.markdown("<div style='text-align: center; padding: 30px; color: #555;'>🖼️ Capa: hero_mockup.png</div>", unsafe_allow_html=True)
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    # --- CSS PERSONALIZADO (FONTES GRANDES E BOTÃO PULSANTE) ---
+    # --- CSS PERSONALIZADO (REMOVE A SIDEBAR, AJUSTA FONTES E BOTÃO PULSANTE) ---
     st.markdown("""
         <style>
+        /* REMOVE COMPLETAMENTE A BARRA LATERAL DE NAVEGAÇÃO */
+        [data-testid="stSidebar"] {
+            display: none !important;
+        }
+        [data-testid="stSidebarCollapseButton"] {
+            display: none !important;
+        }
+        
+        /* Estilos para aumentar e destacar as informações dos pacotes */
         .texto-grande-pacote {
             font-size: 1.2rem !important;
             line-height: 1.8 !important;
@@ -58,6 +57,19 @@ def exibir_painel_inicial():
         </style>
     """, unsafe_allow_html=True)
 
+    # --- 1. IMAGEM DE CAPA (HERO MOCKUP) ---
+    img_topo = "hero_mockup.png"
+    caminho_assets = f"assets/{img_topo}"
+    
+    if os.path.exists(caminho_assets):
+        st.image(caminho_assets, use_container_width=True)
+    elif os.path.exists(img_topo):
+        st.image(img_topo, use_container_width=True)
+    else:
+        st.markdown("<div style='text-align: center; padding: 30px; color: #555;'>🖼️ Capa: hero_mockup.png</div>", unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
     # --- 2. TEXTO INFORMATIVO ANTES DA VENDA ---
     st.markdown("<h2 style='text-align: center; color: #00D2FF; font-weight: bold;'>Por que o Comunicando Igrejas é para você?</h2>", unsafe_allow_html=True)
     st.markdown("""
@@ -93,7 +105,7 @@ def exibir_painel_inicial():
                     <li>✅ 🔥 Culto de Jovens</li>
                     <li>✅ 🍷 Culto de Santa Ceia</li>
                     <li>✅ 🧱 Campanhas</li>
-                    <li>❌ <b>Sem</b> atualização semanal</li>
+                    <li>❌ <b>Sem</b> Materiais para Secretaria da Igreja</li>
                 </ul>
                 <hr style='border-color: #1f1f1f;'>
                 <p style='color: #888888; margin-bottom: 0; font-size: 1rem;'>Acesso por 1 ano por apenas</p>
@@ -147,7 +159,6 @@ def exibir_painel_inicial():
             
     st.markdown("</div>", unsafe_allow_html=True)
 
-# --- SISTEMA DE CHECAGEM CORRIGIDO E SEGURO ---
-# Força a exibição se o estado for explicitamente nulo ou vazio
+# --- SISTEMA DE EXIBIÇÃO ---
 if st.session_state.pagina_atual is None or st.session_state.pagina_atual == "":
     exibir_painel_inicial()
