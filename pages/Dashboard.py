@@ -1,7 +1,8 @@
 import streamlit as st
 import importlib
+import os
 
-# PAGINAS disponíveis no sistema (Ajustado o título para bater com a imagem das categorias)
+# PAGINAS disponíveis no sistema (Organizado com a nomenclatura exata)
 PAGINAS = [
     {"icone": "⛪", "titulo": "Culto em Geral",         "modulo": "pages.Cultos_Gerais"},
     {"icone": "🎉", "titulo": "Datas Comemorativas",  "modulo": "pages.Datas_Comemorativas"},
@@ -14,7 +15,7 @@ PAGINAS = [
 ]
 
 def exibir():
-    # Injeta estilos locais para remover a barra lateral e formatar o grid
+    # Injeta estilos locais para remover a barra lateral e formatar o grid de mídias
     st.markdown("""
         <style>
         [data-testid="stSidebar"], [data-testid="stSidebarCollapseButton"] {
@@ -28,7 +29,7 @@ def exibir():
         </style>
     """, unsafe_allow_html=True)
 
-    # Tenta ler o style.css se ele existir na raiz
+    # Tenta ler o style.css se ele existir na raiz do repositório
     try:
         with open("style.css") as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -36,7 +37,7 @@ def exibir():
         pass
 
     nome = st.session_state.get('nome_usuario', 'Irmão')
-    plano = st.session_state.get('plano', 'PREMIUM') # Forçado PREMIUM para teste, mude para START se quiser testar bloqueio
+    plano = st.session_state.get('plano', 'PREMIUM')
 
     # Se uma página interna de artes estiver selecionada, renderiza ela e adiciona o botão de voltar
     if st.session_state.get('pagina_atual'):
@@ -58,7 +59,7 @@ def exibir():
     st.markdown(f"<p style='text-align: center; color: #888;'>Olá, irmão {nome} | Abaixo estão as suas artes do plano {plano}</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Grid de botões: 4 colunas (Alinhado com a image_bf4460.jpg)
+    # Grid de botões: 4 colunas largas
     cols = st.columns(4)
     
     for i, pagina in enumerate(PAGINAS):
@@ -66,8 +67,18 @@ def exibir():
             temas_premium = ["Culto de Ceia", "Culto de Mulheres", "Culto de Jovens"]
             e_premium = pagina['titulo'] in temas_premium
             
+            # --- NOVA LÓGICA: ADICIONA A CAPA ACIMA DO BOTÃO DE CULTOS GERAIS ---
+            if pagina['titulo'] == "Culto em Geral":
+                caminho_capa = "assets/Cultos Gerais 01.jpg"
+                if os.path.exists(caminho_capa):
+                    st.image(caminho_capa, use_container_width=True)
+                else:
+                    # Caso o arquivo mude de lugar, renderiza um espaço reservado estiloso
+                    st.markdown("<div style='background-color: #1a1a1a; padding: 60px 10px; text-align: center; margin-bottom: 8px; border-radius: 4px; color: #444; font-size: 0.8rem;'>⛪ Capa Cultos Gerais</div>", unsafe_allow_html=True)
+            
             label = f"{pagina['icone']}  {pagina['titulo']}"
             
+            # Lógica de Bloqueio por Plano que você já utilizava
             if e_premium and plano == "START":
                 st.button(f"🔒 {pagina['titulo']}", key=f"btn_lock_{pagina['modulo']}", disabled=True, use_container_width=True)
                 st.caption("<center style='color:#666;'>Disponível no Premium</center>", unsafe_allow_html=True)
