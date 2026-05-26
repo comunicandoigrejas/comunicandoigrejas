@@ -75,26 +75,25 @@ def exibir_painel_inicial():
             line-height: 1.5;
         }
         
-        /* --- 1. BOTÃO DE ANCORA DO TOPO (DEGRADÊ ORIGINAL) --- */
-        div.stButton > button {
+        /* --- 1. BOTÃO DE ANCORA DO TOPO (DEGRADÊ LUMINOSO) --- */
+        div.element-container:has(#btn_topo_container) + div div.stButton > button {
             background: linear-gradient(90deg, #FF2D95 0%, #00D2FF 100%) !important;
             color: #ffffff !important;
             font-weight: bold !important;
             font-size: 1.4rem !important;
             border: none !important;
-            padding: 18px 40px !important;
+            padding: 18px 30px !important;
             border-radius: 50px !important;
             letter-spacing: 1px !important;
-            display: block !important;
-            margin: 0 auto !important;
             box-shadow: 0 0 15px #FF2D95, 0 0 30px #00D2FF !important;
             animation: glowPulsar 1.8s infinite alternate !important;
             transition: all 0.3s ease-in-out !important;
+            width: 100% !important;
         }
         
         @keyframes glowPulsar {
             0% { shadow: 0 0 10px #FF2D95, 0 0 20px #00D2FF; transform: scale(1); }
-            100% { box-shadow: 0 0 25px #FF2D95, 0 0 50px #00D2FF, 0 0 70px #FF2D95; transform: scale(1.04); }
+            100% { box-shadow: 0 0 25px #FF2D95, 0 0 50px #00D2FF, 0 0 70px #FF2D95; transform: scale(1.03); }
         }
 
         /* --- 2. BOTÕES DE COMPRA FINAIS (EFEITO NEON VERDE PULSANTE) --- */
@@ -114,14 +113,8 @@ def exibir_painel_inicial():
         }
         
         @keyframes glowVerde {
-            0% {
-                box-shadow: 0 0 8px rgba(0, 230, 118, 0.5);
-                transform: scale(1);
-            }
-            100% {
-                box-shadow: 0 0 22px rgba(0, 230, 118, 0.9), 0 0 35px rgba(36, 198, 125, 0.4);
-                transform: scale(1.02);
-            }
+            0% { box-shadow: 0 0 8px rgba(0, 230, 118, 0.5); transform: scale(1); }
+            100% { box-shadow: 0 0 22px rgba(0, 230, 118, 0.9), 0 0 35px rgba(36, 198, 125, 0.4); transform: scale(1.02); }
         }
         </style>
     """, unsafe_allow_html=True)
@@ -137,10 +130,13 @@ def exibir_painel_inicial():
         </div>
     """, unsafe_allow_html=True)
     
-    # Botão luminoso centralizado que joga para os planos no final da página
-    if st.button("🚀 QUERO MEU ACESSO AGORA MESMO", key="btn_luminoso_topo"):
-        st.markdown("<script>window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});</script>", unsafe_allow_html=True)
-        st.components.v1.html("""<script>window.parent.document.getElementById("tabela-precos").scrollIntoView({behavior: "smooth"});</script>""", height=0)
+    # Grid auxiliar para forçar a centralização perfeita do botão no meio da tela
+    col_esq, col_centro, col_dir = st.columns([1, 2, 1])
+    with col_centro:
+        st.markdown('<div id="btn_topo_container"></div>', unsafe_allow_html=True)
+        if st.button("🚀 QUERO MEU ACESSO AGORA MESMO", key="btn_luminoso_topo", use_container_width=True):
+            st.markdown("<script>window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});</script>", unsafe_allow_html=True)
+            st.components.v1.html("""<script>window.parent.document.getElementById("tabela-precos").scrollIntoView({behavior: "smooth"});</script>""", height=0)
     
     st.markdown("<br><br><br>", unsafe_allow_html=True)
 
