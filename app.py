@@ -3,13 +3,16 @@ import os
 
 # --- CONFIGURAÇÃO DA PÁGINA (ALARGA A TELA E COLAPSA A SIDEBAR) ---
 st.set_page_config(
-    layout="wide",  # Faz a página ocupar toda a largura da tela
+    layout="wide",  
     initial_sidebar_state="collapsed"
 )
 
-# --- GARANTE QUE A VARIÁVEL EXISTE NO INÍCIO DO SISTEMA ---
+# --- GARANTE QUE AS VARIÁVEIS DE ESTADO EXISTEM NO INÍCIO ---
 if 'pagina_atual' not in st.session_state:
     st.session_state.pagina_atual = None
+
+if 'logado' not in st.session_state:
+    st.session_state.logado = False  # Começa como falso para mostrar a página de vendas
 
 def exibir_painel_inicial():
     # --- CSS PERSONALIZADO (REMOVE A SIDEBAR, AJUSTA FONTES E BOTÃO PULSANTE) ---
@@ -91,7 +94,7 @@ def exibir_painel_inicial():
     """, unsafe_allow_html=True)
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # --- 3. TABELA DOS PACOTES ALARGADA COM LINKS DO HOTMART ---
+    # --- 3. TABELA DOS PACOTES ALARGADA ---
     st.markdown("<h2 style='text-align: center; color: #FF2D95; font-weight: bold;'>💎 Escolha o Plano Ideal para sua Igreja</h2>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -122,7 +125,6 @@ def exibir_painel_inicial():
                 <h2 style='color: #ffffff; margin-top: 5px; margin-bottom: 15px; font-size: 2.8rem;'>R$ 29,90</h2>
             </div>
         """, unsafe_allow_html=True)
-        # Link do Plano Básico configurado
         st.link_button("🛍️ QUERO O PLANO BÁSICO", "https://pay.hotmart.com/Y106003109C", use_container_width=True, key="buy_start")
 
     with vendas_col2:
@@ -150,7 +152,6 @@ def exibir_painel_inicial():
                 <h2 style='color: #FF2D95; margin-top: 5px; margin-bottom: 15px; font-size: 2.8rem;'>R$ 59,90</h2>
             </div>
         """, unsafe_allow_html=True)
-        # Link do Plano Premium configurado
         st.link_button("👑 QUERO O PACOTE COMPLETO", "https://pay.hotmart.com/Y98906000N?off=7dey0pfj", use_container_width=True, key="buy_premium")
         
     st.markdown("<br><br><br>", unsafe_allow_html=True)
@@ -166,11 +167,33 @@ def exibir_painel_inicial():
         senha_login = st.text_input("Senha", type="password", placeholder="Sua senha", label_visibility="collapsed", key="init_senha")
     with log_col3:
         if st.button("🔓 ENTRAR", use_container_width=True, key="init_btn_entrar"):
-            st.success("Acesso autorizado!") 
-            st.rerun()
+            # LÓGICA DE VALIDAÇÃO CORRIGIDA:
+            if email_login != "" and senha_login != "":
+                st.session_state.logado = True  # Define que o usuário está logado
+                st.success("Acesso autorizado!") 
+                st.rerun()  # Reinicia o app aplicando a mudança
+            else:
+                st.error("Por favor, preencha o e-mail e a senha.")
             
     st.markdown("</div>", unsafe_allow_html=True)
 
-# --- SISTEMA DE EXIBIÇÃO ---
-if st.session_state.pagina_atual is None or st.session_state.pagina_atual == "":
-    exibir_painel_inicial()
+
+# --- FUNÇÃO PARA EXIBIR O CONTEÚDO PRIVADO DOS MEMBROS ---
+def exibir_dashboard_membros():
+    st.title("⛪ Bem-vindo à Área de Membros - Comunicando Igrejas")
+    st.write("Aqui ficam as suas categorias de artes exclusivas (Cultos Gerais, Santa Ceia, etc.)")
+    
+    # Botão para deslogar (Sair) caso precise voltar à tela inicial
+    if st.button("🚪 Sair da Área de Membros"):
+        st.session_state.logado = False
+        st.rerun()
+
+
+# --- CONTROLADOR CENTRAL DE EXIBIÇÃO ---
+if st.session_state.logado:
+    # Se estiver logado, entra na Área de Membros
+    exibir_dashboard_membros()
+else:
+    # Se não estiver logado e nenhuma página aberta, exibe a Vitrine de Vendas
+    if st.session_state.pagina_atual is None or st.session_state.pagina_atual == "":
+        exibir_painel_inicial()
