@@ -79,7 +79,7 @@ def exibir_painel_inicial():
         st.markdown("""
             <div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 30px; text-align: center; min-height: 580px;'>
                 <h3 class='titulo-plano' style='color: #00D2FF;'>🚀 Plano BÁSICO</h3>
-                <p style='font-size: 1rem; color: #bbbbbb;'>Acesso direto às artes essenciais para as redes sociais da igreja.</p>
+                <p style='font-size: 1rem; color: #bbbbbb;'>Acesso direto às artes essenciais para as redes sociais da igreja, para você que quer começar a economizar tempo.</p>
                 <hr style='border-color: #1f1f1f;'>
                 <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px; line-height: 1.8;'>
                     <li>⏳ Validade de <b>1 ano (Acesso Anual)</b></li>
