@@ -27,7 +27,7 @@ def exibir_painel_inicial():
     else:
         st.markdown("<div style='text-align: center; padding: 10px; color: #555;'></div>", unsafe_allow_html=True)
 
-    # --- CSS PERSONALIZADO (CENTRALIZAÇÃO, FONTES MAIORES E BOTÃO LUMINOSO) ---
+    # --- CSS PERSONALIZADO (CENTRALIZAÇÃO, FONTES MAIORES E BOTÕES LUMINOSOS) ---
     st.markdown("""
         <style>
         /* Remove barras laterais e espaçamentos indesejados */
@@ -75,31 +75,52 @@ def exibir_painel_inicial():
             line-height: 1.5;
         }
         
-        /* --- BOTÃO LUMINOSO (EFREITO NEON PULSANTE) --- */
+        /* --- 1. BOTÃO DE ANCORA DO TOPO (DEGRADÊ ORIGINAL) --- */
         div.stButton > button {
             background: linear-gradient(90deg, #FF2D95 0%, #00D2FF 100%) !important;
             color: #ffffff !important;
             font-weight: bold !important;
-            font-size: 1.4rem !important; /* Aumentado o texto do botão */
+            font-size: 1.4rem !important;
             border: none !important;
             padding: 18px 40px !important;
-            border-radius: 50px !important; /* Deixa o botão arredondado e elegante */
+            border-radius: 50px !important;
             letter-spacing: 1px !important;
             display: block !important;
-            margin: 0 auto !important; /* Força a centralização absoluta */
+            margin: 0 auto !important;
             box-shadow: 0 0 15px #FF2D95, 0 0 30px #00D2FF !important;
             animation: glowPulsar 1.8s infinite alternate !important;
             transition: all 0.3s ease-in-out !important;
         }
         
         @keyframes glowPulsar {
+            0% { shadow: 0 0 10px #FF2D95, 0 0 20px #00D2FF; transform: scale(1); }
+            100% { box-shadow: 0 0 25px #FF2D95, 0 0 50px #00D2FF, 0 0 70px #FF2D95; transform: scale(1.04); }
+        }
+
+        /* --- 2. BOTÕES DE COMPRA FINAIS (EFEITO NEON VERDE PULSANTE) --- */
+        div.stLinkButton > a {
+            background: linear-gradient(90deg, #24C67D 0%, #00E676 100%) !important;
+            color: #ffffff !important;
+            font-weight: bold !important;
+            font-size: 1.25rem !important;
+            border: none !important;
+            padding: 14px 28px !important;
+            border-radius: 8px !important;
+            letter-spacing: 1px !important;
+            text-align: center !important;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.6) !important;
+            animation: glowVerde 1.6s infinite alternate !important;
+            transition: all 0.3s ease-in-out !important;
+        }
+        
+        @keyframes glowVerde {
             0% {
-                box-shadow: 0 0 10px #FF2D95, 0 0 20px #00D2FF;
+                box-shadow: 0 0 8px rgba(0, 230, 118, 0.5);
                 transform: scale(1);
             }
             100% {
-                box-shadow: 0 0 25px #FF2D95, 0 0 50px #00D2FF, 0 0 70px #FF2D95;
-                transform: scale(1.04);
+                box-shadow: 0 0 22px rgba(0, 230, 118, 0.9), 0 0 35px rgba(36, 198, 125, 0.4);
+                transform: scale(1.02);
             }
         }
         </style>
@@ -211,7 +232,7 @@ def exibir_painel_inicial():
         st.markdown("""
             <div style='background-color: #0c0c0c; border: 1px solid #FF2D95; border-radius: 15px; padding: 30px; text-align: center; min-height: 580px; box-shadow: 0 0 15px rgba(255, 45, 149, 0.15);'>
                 <h3 class='titulo-plano' style='color: #FF2D95;'>👑 Plano PREMIUM</h3>
-                <p style='font-size: 1rem; color: #bbbbbb;'>O combo completo com updates constantes e materiais de ministérios.</p>
+                <p style='font-size: 1rem; color: #bbbbbb;'>O combo completo com updates constantes e materiais de ministérios, para você que quer começar a economizar tempo.</p>
                 <hr style='border-color: #1f1f1f;'>
                 <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px; line-height: 1.8;'>
                     <li>🔥 <b>Acesso VITALÍCIO</b> (Paga uma única vez)</li>
