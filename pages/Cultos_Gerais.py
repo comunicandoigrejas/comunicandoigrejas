@@ -2,64 +2,65 @@ import streamlit as st
 import os
 
 def exibir():
-    st.markdown("<h1 class='gradient-title'>⛪ Cultos Gerais</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center;'>Escolha o formato ideal (Feed ou Story) para baixar e editar o seu template no Canva.</p>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: white; font-weight: bold;'>⛪ MODELOS DISPONÍVEIS: CULTOS GERAIS</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #888; font-size: 0.95rem;'>Escolha o formato desejado para abrir o modelo editável diretamente no seu Canva.</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Lista estruturada das artes
-    artes = [
-        {"img_base": "Cultos Gerais 01", "feed": "https://canva.link/q1iy99fiuhdij9v", "story": "https://canva.link/39a7aig9rylbfx3"},
-        {"img_base": "Cultos Gerais 02", "feed": "https://canva.link/13bboathtx0kcbw", "story": "https://canva.link/shzp2bd8087nxhc"},
-        {"img_base": "Cultos Gerais 03", "feed": "https://canva.link/8dp6aqomdei1p93", "story": "https://canva.link/43cyvpd0io65bmd"},
-        {"img_base": "Cultos Gerais 04", "feed": "https://canva.link/iilqcqz88khx5ct", "story": "https://canva.link/m26hso5xwnzb2ot"},
-        {"img_base": "Cultos Gerais 05", "feed": "https://canva.link/40seh7gwmul8fq5", "story": "https://canva.link/ordyq2ibhkk7mnw"},
-        {"img_base": "Cultos Gerais 06", "feed": "https://canva.link/m81a1vp0ax97as1", "story": "https://canva.link/82yli7fl2qghus9"},
-        {"img_base": "Cultos Gerais 07", "feed": "https://canva.link/8fya2w3xw2pc7s7", "story": "https://canva.link/412ueqr89q5w16u"},
-        {"img_base": "Cultos Gerais 08", "feed": "https://canva.link/m2prw20152k1z3w", "story": "https://canva.link/tepbqpuxlvog6fw"}
+    # CSS específico para deixar os botões brancos, modernos e alinhados
+    st.markdown("""
+        <style>
+        div.stButton > button {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            font-weight: bold !important;
+            font-size: 0.85rem !important;
+            border-radius: 4px !important;
+            border: none !important;
+            padding: 6px 12px !important;
+            transition: background-color 0.2s !important;
+        }
+        div.stButton > button:hover {
+            background-color: #e5e5e5 !important;
+            color: #000000 !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # Mapeamento exato dos arquivos .jpg da sua pasta assets
+    # Substitua os '#' pelos seus links oficiais de edição do Canva
+    artes_cultos = [
+        {"nome": "Cultos Gerais 01.jpg", "feed": "#", "story": "#"},
+        {"nome": "Cultos Gerais 02.jpg", "feed": "#", "story": "#"},
+        {"nome": "Cultos Gerais 03.jpg", "feed": "#", "story": "#"},
+        {"nome": "Cultos Gerais 04.jpg", "feed": "#", "story": "#"},
+        {"nome": "Cultos Gerais 05.jpg", "feed": "#", "story": "#"},
+        {"nome": "Cultos Gerais 06.jpg", "feed": "#", "story": "#"},
+        {"nome": "Cultos Gerais 07.jpg", "feed": "#", "story": "#"},
+        {"nome": "Cultos Gerais 08.jpg", "feed": "#", "story": "#"},
     ]
 
-    # Exibição em 3 colunas (imagens menores e lado a lado)
-    cols = st.columns(3)
+    # Grid amplo de 3 colunas para exibição das mídias
+    col1, col2, col3 = st.columns(3)
 
-    for i, arte in enumerate(artes):
-        with cols[i % 3]:
-            # REMOVIDO: A div class='premium-card' foi retirada para eliminar a caixa rosa neon
+    for idx, arte in enumerate(artes_cultos):
+        # Distribui os cards entre as colunas 1, 2 e 3 de forma limpa
+        coluna_alvo = col1 if idx % 3 == 0 else (col2 if idx % 3 == 1 else col3)
+        
+        with coluna_alvo:
+            caminho_imagem = f"assets/{arte['nome']}"
             
-            # Busca silenciosa da imagem nas pastas e extensões
-            extensoes = ['.jpg', '.jpeg', '.png', '.PNG', '.JPG']
-            imagem_encontrada = None
-            
-            for ext in extensoes:
-                caminho_assets = f"assets/{arte['img_base']}{ext}"
-                caminho_raiz = f"{arte['img_base']}{ext}"
-                
-                if os.path.exists(caminho_assets):
-                    imagem_encontrada = caminho_assets
-                    break
-                elif os.path.exists(caminho_raiz):
-                    imagem_encontrada = caminho_raiz
-                    break
-            
-            # Se achar a imagem, coloca direto na coluna
-            if imagem_encontrada:
-                st.image(imagem_encontrada, use_container_width=True)
+            # Verificação da existência do arquivo .jpg
+            if os.path.exists(caminho_imagem):
+                st.image(caminho_imagem, use_container_width=True)
             else:
-                st.markdown("<div style='text-align: center; padding: 20px; color: #555;'>🖼️ Carregando imagem...</div>", unsafe_allow_html=True)
-
-            # Sub-colunas para os botões ficarem lado a lado logo abaixo da foto
-            btn_col1, btn_col2 = st.columns(2)
+                # Caixa alternativa caso falte alguma imagem na pasta assets
+                st.markdown(f"<div style='background-color: #1a1a1a; padding: 120px 10px; text-align: center; border-radius: 8px; color: #555; font-size:0.85rem;'> 🖼️ {arte['nome']}<br>(Não encontrada em assets/)</div>", unsafe_allow_html=True)
             
-            with btn_col1:
-                st.link_button("📱 FEED", arte['feed'], use_container_width=True, key=f"feed_{i}")
+            # Sub-grid inferior contendo apenas as duas opções (FEED e STORY) lado a lado
+            b_feed, b_story = st.columns(2)
+            with b_feed:
+                st.link_button("📱 FEED", arte["feed"], use_container_width=True, key=f"feed_{idx}")
+            with b_story:
+                st.link_button("📐 STORY", arte["story"], use_container_width=True, key=f"story_{idx}")
                 
-            with btn_col2:
-                st.link_button("📐 STORY", arte['story'], use_container_width=True, key=f"story_{i}")
-            
-            # Adiciona um pequeno espaço de separação para a linha de baixo não ficar colada
-            st.markdown("<br>", unsafe_allow_html=True)
-
-    # Botão de voltar para os temas
-    st.markdown("---")
-    if st.button("⬅️ Voltar aos Temas", use_container_width=True, key="voltar_cultos"):
-        st.session_state.pagina_atual = None
-        st.rerun()
+            st.markdown("<br><br>", unsafe_allow_html=True)
