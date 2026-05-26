@@ -1,6 +1,10 @@
 import streamlit as st
 import os
 
+# --- GARANTE QUE A VARIÁVEL EXISTE NO INÍCIO DO SISTEMA ---
+if 'pagina_atual' not in st.session_state:
+    st.session_state.pagina_atual = None
+
 def exibir_painel_inicial():
     # --- 1. IMAGEM DE CAPA (HERO MOCKUP) ---
     img_topo = "hero_mockup.png"
@@ -15,10 +19,9 @@ def exibir_painel_inicial():
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # --- CSS PERSONALIZADO PARA AUMENTAR A FONTE E FAZER O BOTÃO PISCAR/PULSAR ---
+    # --- CSS PERSONALIZADO (FONTES GRANDES E BOTÃO PULSANTE) ---
     st.markdown("""
         <style>
-        /* Estilo para aumentar e destacar as informações dos pacotes */
         .texto-grande-pacote {
             font-size: 1.2rem !important;
             line-height: 1.8 !important;
@@ -30,7 +33,7 @@ def exibir_painel_inicial():
             margin-bottom: 10px !important;
         }
         
-        /* Efeito Pulsante/Piscante para os botões de compra */
+        /* Animação que faz o botão de compra piscar/pulsar de forma chamativa */
         div.stLinkButton > a {
             animation: pulsarBotao 2s infinite !important;
             font-weight: bold !important;
@@ -55,7 +58,7 @@ def exibir_painel_inicial():
         </style>
     """, unsafe_allow_html=True)
 
-    # --- 2. MAIS INFORMAÇÕES SOBRE OS PACOTES (ANTES DA COMPRA) ---
+    # --- 2. TEXTO INFORMATIVO ANTES DA VENDA ---
     st.markdown("<h2 style='text-align: center; color: #00D2FF; font-weight: bold;'>Por que o Comunicando Igrejas é para você?</h2>", unsafe_allow_html=True)
     st.markdown("""
         <p style='text-align: center; color: #bbbbbb; font-size: 1.1rem; max-width: 800px; margin: 0 auto;'>
@@ -66,7 +69,7 @@ def exibir_painel_inicial():
     """, unsafe_allow_html=True)
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # --- 3. EXIBIÇÃO DOS PLANOS COM AS NOVAS REGRAS E FONTES MAIORES ---
+    # --- 3. TABELA DOS PACOTES ---
     st.markdown("<h2 style='text-align: center; color: #FF2D95; font-weight: bold;'>💎 Escolha o Plano Ideal para sua Igreja</h2>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -74,13 +77,13 @@ def exibir_painel_inicial():
 
     with vendas_col1:
         st.markdown("""
-            <div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 30px; text-align: center; min-height: 520px;'>
+            <div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 30px; text-align: center; min-height: 580px;'>
                 <h3 class='titulo-plano' style='color: #00D2FF;'>🚀 Plano BÁSICO</h3>
                 <p style='font-size: 1rem; color: #bbbbbb;'>Acesso direto às artes essenciais para as redes sociais da igreja.</p>
                 <hr style='border-color: #1f1f1f;'>
-                <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px;'>
+                <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px; line-height: 1.8;'>
                     <li>⏳ Validade de <b>1 ano (Acesso Anual)</b></li>
-                    <li>❌ <b>Sem</b> atualizações semanais</li>
+                    <li>❌ <b>Sem</b> atualização semanal</li>
                     <li>✅ ⛪ Cultos Gerais</li>
                     <li>✅ 📅 Datas Comemorativas</li>
                     <li>✅ 👨 Culto de Homens</li>
@@ -96,23 +99,23 @@ def exibir_painel_inicial():
 
     with vendas_col2:
         st.markdown("""
-            <div style='background-color: #0c0c0c; border: 1px solid #FF2D95; border-radius: 15px; padding: 30px; text-align: center; min-height: 520px; box-shadow: 0 0 15px rgba(255, 45, 149, 0.15);'>
+            <div style='background-color: #0c0c0c; border: 1px solid #FF2D95; border-radius: 15px; padding: 30px; text-align: center; min-height: 580px; box-shadow: 0 0 15px rgba(255, 45, 149, 0.15);'>
                 <h3 class='titulo-plano' style='color: #FF2D95;'>👑 Plano PREMIUM</h3>
                 <p style='font-size: 1rem; color: #bbbbbb;'>O combo completo com atualizações constantes e materiais de ministérios.</p>
                 <hr style='border-color: #1f1f1f;'>
-                <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px;'>
+                <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px; line-height: 1.8;'>
                     <li>🔥 <b>Acesso VITALÍCIO</b> (Paga uma única vez)</li>
                     <li>🔄 <b>Atualizações Mensais</b> inclusas</li>
-                    <li>✨ ⛪ Cultos Gerais</li>
-                    <li>✨ 📅 Datas Comemorativas</li>
-                    <li>✨ 👥 Culto da Família</li>
-                    <li>✨ 👨 Culto de Homens</li>
-                    <li>✨ 👩 Culto de Mulheres</li>
-                    <li>✨ 👦 Culto Infantil e Mídia 🧸</li>
-                    <li>✨ 🔥 Culto de Jovens</li>
-                    <li>✨ 🍷 Culto de Santa Ceia</li>
-                    <li>✨ 🧱 Campanhas</li>
-                    <li>💼 📁 Materiais para Secretaria da Igreja</li>
+                    <li>✅ ⛪ Cultos Gerais</li>
+                    <li>✅ 📅 Datas Comemorativas</li>
+                    <li>✅ 👥 Culto da Família</li>
+                    <li>✅ 👨 Culto de Homens</li>
+                    <li>✅ 👩 Culto de Mulheres</li>
+                    <li>✅ 👦 Culto Infantil 🧸</li>
+                    <li>✅ 🔥 Culto de Jovens</li>
+                    <li>✅ 🍷 Culto de Santa Ceia</li>
+                    <li>✅ 🧱 Campanhas</li>
+                    <li>✅ 💼 Materiais para Secretaria da Igreja</li>
                 </ul>
                 <hr style='border-color: #1f1f1f;'>
                 <p style='color: #888888; margin-bottom: 0; font-size: 1rem;'>Acesso Vitalício por apenas</p>
@@ -123,7 +126,7 @@ def exibir_painel_inicial():
         
     st.markdown("<br><br><br>", unsafe_allow_html=True)
 
-    # --- 4. ÁREA DE LOGIN (AGORA NO FINAL DA PÁGINA) ---
+    # --- 4. ÁREA DE LOGIN NO FINAL ---
     st.markdown("<div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 25px; margin-top: 20px;'>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: #ffffff; margin-top:0;'>🔑 Já comprou? Faça login para acessar seus templates</h3>", unsafe_allow_html=True)
     
@@ -138,3 +141,8 @@ def exibir_painel_inicial():
             st.rerun()
             
     st.markdown("</div>", unsafe_allow_html=True)
+
+# --- SISTEMA DE CHECAGEM CORRIGIDO E SEGURO ---
+# Força a exibição se o estado for explicitamente nulo ou vazio
+if st.session_state.pagina_atual is None or st.session_state.pagina_atual == "":
+    exibir_painel_inicial()
