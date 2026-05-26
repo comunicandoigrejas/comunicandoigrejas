@@ -1,89 +1,171 @@
 import streamlit as st
 import os
-from pages import Dashboard  
 
 # --- CONFIGURAÇÃO DA PÁGINA (TELA AMPLA E SEM SIDEBAR) ---
 st.set_page_config(
     page_title="Comunicando Igrejas",
-    layout="wide",  # Faz a página ocupar toda a largura da tela
+    layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# --- INICIALIZAÇÃO DE VARIÁVEIS DE ESTADO GLOBAL ---
+# --- GARANTE QUE A VARIÁVEL EXISTE NO INÍCIO DO SISTEMA ---
+if 'pagina_atual' not in st.session_state:
+    st.session_state.pagina_atual = None
+
 if 'logado' not in st.session_state:
     st.session_state.logado = False
 
-if 'nome_usuario' not in st.session_state:
-    st.session_state.nome_usuario = "Irmão"
-
-if 'plano' not in st.session_state:
-    st.session_state.plano = "PREMIUM"  # Define o plano padrão de teste
-
-# --- CSS GLOBAL PARA OCULTAR A BARRA LATERAL ---
-st.markdown("""
-    <style>
-    [data-testid="stSidebar"], [data-testid="stSidebarCollapseButton"] {
-        display: none !important;
-    }
-    .block-container {
-        padding-left: 4rem !important;
-        padding-right: 4rem !important;
-        max-width: 100% !important;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
 def exibir_painel_inicial():
-    # --- CSS DA VITRINE (BOTÃO PULSANTE) ---
+    # --- 1. IMAGEM DE CAPA (HERO MOCKUP) ---
+    img_topo = "hero_mockup.png"
+    caminho_assets = f"assets/{img_topo}"
+    
+    if os.path.exists(caminho_assets):
+        st.image(caminho_assets, use_container_width=True)
+    elif os.path.exists(img_topo):
+        st.image(img_topo, use_container_width=True)
+    else:
+        st.markdown("<div style='text-align: center; padding: 10px; color: #555;'></div>", unsafe_allow_html=True)
+
+    # --- CSS PERSONALIZADO (ESTILOS DA VITRINE) ---
     st.markdown("""
         <style>
+        /* Remove barras laterais e espaçamentos indesejados */
+        [data-testid="stSidebar"], [data-testid="stSidebarCollapseButton"] {
+            display: none !important;
+        }
+        .block-container {
+            padding-left: 4rem !important;
+            padding-right: 4rem !important;
+            max-width: 100% !important;
+        }
+        
         .texto-grande-pacote {
-            font-size: 1.25rem !important;
+            font-size: 1.15rem !important;
             line-height: 1.8 !important;
             color: #dddddd;
         }
         .titulo-plano {
-            font-size: 2rem !important;
+            font-size: 1.8rem !important;
             font-weight: bold !important;
             margin-bottom: 10px !important;
         }
-        div.stLinkButton > a {
-            animation: pulsarBotao 2s infinite !important;
-            font-weight: bold !important;
-            letter-spacing: 1px !important;
-            transition: all 0.3s ease-in-out !important;
+        
+        /* Quadro Informativo de Acesso */
+        .caixa-beneficios {
+            background-color: #0c0c0c;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 35px;
+            margin: 20px auto;
+            max-width: 900px;
         }
+        .item-beneficio {
+            margin-bottom: 20px;
+        }
+        .titulo-beneficio {
+            color: #FF2D95;
+            font-weight: bold;
+            font-size: 1.15rem;
+            margin-bottom: 2px;
+        }
+        .desc-beneficio {
+            color: #cccccc;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+        
+        /* Botão Pulsante Superior de Âncora */
+        div.stButton > button.btn-ancora {
+            background: linear-gradient(90deg, #FF2D95 0%, #00D2FF 100%) !important;
+            color: white !important;
+            font-weight: bold !important;
+            font-size: 1.25rem !important;
+            border: none !important;
+            padding: 15px 30px !important;
+            border-radius: 8px !important;
+            animation: pulsarBotao 2s infinite !important;
+            transition: all 0.3s ease-in-out !important;
+            display: block;
+            margin: 0 auto;
+        }
+        
         @keyframes pulsarBotao {
             0% { box-shadow: 0 0 0 0 rgba(255, 45, 149, 0.7); transform: scale(1); }
-            50% { box-shadow: 0 0 15px 5px rgba(255, 45, 149, 0.4); transform: scale(1.02); }
+            50% { box-shadow: 0 0 20px 8px rgba(255, 45, 149, 0.4); transform: scale(1.03); }
             100% { box-shadow: 0 0 0 0 rgba(255, 45, 149, 0); transform: scale(1); }
         }
         </style>
     """, unsafe_allow_html=True)
 
-    # --- 1. IMAGEM DE CAPA (HERO MOCKUP) ---
-    img_topo = "hero_mockup.png"
-    if os.path.exists(f"assets/{img_topo}"):
-        st.image(f"assets/{img_topo}", use_container_width=True)
-    elif os.path.exists(img_topo):
-        st.image(img_topo, use_container_width=True)
-    else:
-        st.markdown("<div style='text-align: center; padding: 30px; color: #555;'></div>", unsafe_allow_html=True)
-
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # --- 2. TEXTO INFORMATIVO ---
-    st.markdown("<h2 style='text-align: center; color: #00D2FF; font-weight: bold;'>Por que o Comunicando Igrejas é para você?</h2>", unsafe_allow_html=True)
+    # --- 2. CHAMADA PRINCIPAL COM VALOR E BOTÃO DE ROLAGEM ---
+    st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #888888; font-size: 1.1rem; margin-bottom: 0; text-decoration: line-through;'>De R$ 197 por Apenas</p>", unsafe_allow_html=True)
+    st.markdown("<h1 style='color: #ffffff; font-size: 3.5rem; font-weight: 900; margin-top: 0; margin-bottom: 5px;'>R$ 29,90</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #00D2FF; font-size: 1.1rem; margin-bottom: 20px;'>Comece hoje e nunca mais dependa de designers!</p>", unsafe_allow_html=True)
+    
+    # Botão nativo configurado com a classe CSS personalizada para rolar até o rodapé
+    if st.button("🚀 QUERO MEU ACESSO AGORA MESMO", key="btn_ancora_topo", use_container_width=False):
+        st.markdown("<script>window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});</script>", unsafe_allow_html=True)
+        # Fallback de rolagem usando ancoragem nativa estável do Streamlit
+        st.components.v1.html("""<script>window.parent.document.getElementById("tabela-precos").scrollIntoView({behavior: "smooth"});</script>""", height=0)
+    
+    st.markdown("</div><br><br>", unsafe_allow_html=True)
+
+    # --- 3. QUADRO INFORMATIVO: E O QUE VOCÊ TERÁ ACESSO? ---
     st.markdown("""
-        <p style='text-align: center; color: #bbbbbb; font-size: 1.2rem; max-width: 1000px; margin: 0 auto;'>
-        Sabemos que a rotina da igreja é intensa. Nosso objetivo é poupar o seu tempo e elevar a qualidade visual 
-        da sua comunidade com artes prontas, modernas e 100% editáveis no Canva. Veja abaixo tudo o que preparamos 
-        para abençoar o seu ministério midiático!
-        </p>
+        <div class='caixa-beneficios'>
+            <h2 style='text-align: center; color: #ffffff; font-weight: bold; margin-top: 0; margin-bottom: 30px;'>📋 E o que você terá acesso?</h2>
+            <div class='item-beneficio'>
+                <div class='titulo-beneficio'>⚡ Artes Profissionais:</div>
+                <div class='desc-beneficio'>Você terá acesso a centenas de artes profissionais prontas para editar no Canva. Em poucos cliques, crie artes incríveis de forma rápida, simples e sem nenhuma complicação!</div>
+            </div>
+            <div class='item-beneficio'>
+                <div class='titulo-beneficio'>🔄 Atualizações Semanais:</div>
+                <div class='desc-beneficio'>Novas artes e materiais toda semana! A plataforma está sempre se renovando para que sua comunicação continue atual, relevante e poderosa.</div>
+            </div>
+            <div class='item-beneficio'>
+                <div class='titulo-beneficio'>🎥 Vídeo Aulas Exclusivas:</div>
+                <div class='desc-beneficio'>Aprenda a dominar o Canva e outras ferramentas com aulas simples e diretas, pensadas especialmente para igrejas e ministérios. Mesmo sem experiência, você vai conseguir criar artes de alto nível!</div>
+            </div>
+            <div class='item-beneficio'>
+                <div class='titulo-beneficio'>🎁 Bônus Exclusivos para Membros:</div>
+                <div class='desc-beneficio'>Receba um pacote completo de recursos extras! Inclui efeitos visuais, textos em 3D, texturas, vídeos, imagens de fundo e muito mais para deixar suas artes ainda mais impactantes.</div>
+            </div>
+            <div class='item-beneficio'>
+                <div class='titulo-beneficio'>💬 Suporte Prioritário:</div>
+                <div class='desc-beneficio'>Precisa de ajuda? Fale com a gente! Os membros da plataforma têm acesso ao nosso time com suporte rápido e eficiente pelo WhatsApp.</div>
+            </div>
+        </div>
     """, unsafe_allow_html=True)
+
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # --- 3. QUADROS DOS PACOTES ALARGADOS ---
+    # --- 4. EXIBIÇÃO DOS MODELOS DISPONÍVEIS (1.png a 4.png) ---
+    st.markdown("<h2 style='text-align: center; color: #00D2FF; font-weight: bold;'>🎨 Algumas das artes que te esperam</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #888888; font-size: 1.1rem;'>Modelos modernos, atraentes e 100% editáveis para abençoar o design da sua comunidade</p>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Organiza as 4 artes de demonstração em colunas perfeitamente alinhadas
+    amostras_cols = st.columns(4)
+    imagens_amostra = ["1.png", "2.png", "3.png", "4.png"]
+
+    for idx, img_nome in enumerate(imagens_amostra):
+        with amostras_cols[idx]:
+            caminho_img = f"assets/{img_nome}"
+            if os.path.exists(caminho_img):
+                st.image(caminho_img, use_container_width=True)
+            elif os.path.exists(img_nome):
+                st.image(img_nome, use_container_width=True)
+            else:
+                st.markdown(f"<div style='background-color: #111; padding: 80px 10px; text-align: center; border-radius: 8px; color: #444; font-size: 0.85rem;'>🖼️ {img_nome}</div>", unsafe_allow_html=True)
+
+    st.markdown("<br><br><br><br>", unsafe_allow_html=True)
+
+    # --- 5. TABELA DOS PACOTES (PONTO DE ANCORAGEM) ---
+    st.markdown('<div id="tabela-precos"></div>', unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; color: #FF2D95; font-weight: bold;'>💎 Escolha o Plano Ideal para sua Igreja</h2>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -91,9 +173,9 @@ def exibir_painel_inicial():
 
     with vendas_col1:
         st.markdown("""
-            <div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 35px; text-align: center; min-height: 620px;'>
+            <div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 30px; text-align: center; min-height: 580px;'>
                 <h3 class='titulo-plano' style='color: #00D2FF;'>🚀 Plano BÁSICO</h3>
-                <p style='font-size: 1.05rem; color: #bbbbbb;'>Acesso direto às artes essenciais para as redes sociais da igreja, para você que quer começar a economizar tempo.</p>
+                <p style='font-size: 1rem; color: #bbbbbb;'>Acesso direto às artes essenciais para as redes sociais da igreja, para você que quer começar a economizar tempo.</p>
                 <hr style='border-color: #1f1f1f;'>
                 <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px; line-height: 1.8;'>
                     <li>⏳ Validade de <b>1 ano (Acesso Anual)</b></li>
@@ -107,20 +189,20 @@ def exibir_painel_inicial():
                     <li>✅ 🔥 Culto de Jovens</li>
                     <li>✅ 🍷 Culto de Santa Ceia</li>
                     <li>✅ 🧱 Campanhas</li>
-                    <li>❌ <b>Sem</b> Materiais para Secretaria da Igreja</li>
+                    <li>❌ <b>Sem</b> atualização semanal</li>
                 </ul>
                 <hr style='border-color: #1f1f1f;'>
                 <p style='color: #888888; margin-bottom: 0; font-size: 1rem;'>Acesso por 1 ano por apenas</p>
-                <h2 style='color: #ffffff; margin-top: 5px; margin-bottom: 15px; font-size: 2.8rem;'>R$ 29,90</h2>
+                <h2 style='color: #ffffff; margin-top: 5px; margin-bottom: 15px; font-size: 2.5rem;'>R$ 29,90</h2>
             </div>
         """, unsafe_allow_html=True)
         st.link_button("🛍️ QUERO O PLANO BÁSICO", "https://pay.hotmart.com/Y106003109C", use_container_width=True, key="buy_start")
 
     with vendas_col2:
         st.markdown("""
-            <div style='background-color: #0c0c0c; border: 1px solid #FF2D95; border-radius: 15px; padding: 35px; text-align: center; min-height: 620px; box-shadow: 0 0 15px rgba(255, 45, 149, 0.15);'>
+            <div style='background-color: #0c0c0c; border: 1px solid #FF2D95; border-radius: 15px; padding: 30px; text-align: center; min-height: 580px; box-shadow: 0 0 15px rgba(255, 45, 149, 0.15);'>
                 <h3 class='titulo-plano' style='color: #FF2D95;'>👑 Plano PREMIUM</h3>
-                <p style='font-size: 1.05rem; color: #bbbbbb;'>O combo completo com atualizações constantes e materiais de ministérios.</p>
+                <p style='font-size: 1rem; color: #bbbbbb;'>O combo completo com atualizações constantes e materiais de ministérios.</p>
                 <hr style='border-color: #1f1f1f;'>
                 <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px; line-height: 1.8;'>
                     <li>🔥 <b>Acesso VITALÍCIO</b> (Paga uma única vez)</li>
@@ -138,15 +220,15 @@ def exibir_painel_inicial():
                 </ul>
                 <hr style='border-color: #1f1f1f;'>
                 <p style='color: #888888; margin-bottom: 0; font-size: 1rem;'>Acesso Vitalício por apenas</p>
-                <h2 style='color: #FF2D95; margin-top: 5px; margin-bottom: 15px; font-size: 2.8rem;'>R$ 59,90</h2>
+                <h2 style='color: #FF2D95; margin-top: 5px; margin-bottom: 15px; font-size: 2.5rem;'>R$ 59,90</h2>
             </div>
         """, unsafe_allow_html=True)
         st.link_button("👑 QUERO O PACOTE COMPLETO", "https://pay.hotmart.com/Y98906000N?off=7dey0pfj", use_container_width=True, key="buy_premium")
         
     st.markdown("<br><br><br>", unsafe_allow_html=True)
 
-    # --- 4. ÁREA DE LOGIN NO RODAPÉ ---
-    st.markdown("<div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 25px;'>", unsafe_allow_html=True)
+    # --- 6. ÁREA DE LOGIN NO FINAL ---
+    st.markdown("<div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 25px; margin-top: 20px;'>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: #ffffff; margin-top:0;'>🔑 Já comprou? Faça login para acessar seus templates</h3>", unsafe_allow_html=True)
     
     log_col1, log_col2, log_col3 = st.columns([2, 2, 1])
@@ -162,11 +244,16 @@ def exibir_painel_inicial():
                 st.success("Acesso autorizado!") 
                 st.rerun()
             else:
-                st.error("Preencha o e-mail e a senha, varão!")
+                st.error("Preencha o e-mail e a senha, irmão!")
+            
     st.markdown("</div>", unsafe_allow_html=True)
 
-# --- CONTROLADOR CENTRAL ---
+# --- CONTROLADOR CENTRAL INTERNO / EXTERNO ---
 if st.session_state.logado:
-    Dashboard.exibir()  # Executa a função do seu arquivo separado
+    try:
+        from pages import Dashboard
+        Dashboard.exibir()
+    except Exception as e:
+        st.error(f"Erro ao carregar painel interno: {e}")
 else:
     exibir_painel_inicial()
