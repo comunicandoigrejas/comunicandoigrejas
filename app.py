@@ -1,39 +1,42 @@
 import streamlit as st
 import os
+import Dashboard  # Importa o seu arquivo Dashboard.py separado
 
-# --- CONFIGURAÇÃO DA PÁGINA (ALARGA A TELA E COLAPSA A SIDEBAR) ---
+# --- CONFIGURAÇÃO DA PÁGINA (TELA AMPLA E SEM SIDEBAR) ---
 st.set_page_config(
-    layout="wide",  
+    page_title="Comunicando Igrejas",
+    layout="wide",  # Faz a página ocupar toda a largura da tela
     initial_sidebar_state="collapsed"
 )
 
-# --- GARANTE QUE AS VARIÁVEIS DE ESTADO EXISTEM NO INÍCIO ---
-if 'pagina_atual' not in st.session_state:
-    st.session_state.pagina_atual = None
-
+# --- INICIALIZAÇÃO DE VARIÁVEIS DE ESTADO GLOBAL ---
 if 'logado' not in st.session_state:
-    st.session_state.logado = False  # Começa como falso para mostrar a página de vendas
+    st.session_state.logado = False
+
+if 'nome_usuario' not in st.session_state:
+    st.session_state.nome_usuario = "Irmão"
+
+if 'plano' not in st.session_state:
+    st.session_state.plano = "PREMIUM"  # Define o plano padrão de teste
+
+# --- CSS GLOBAL PARA OCULTAR A BARRA LATERAL ---
+st.markdown("""
+    <style>
+    [data-testid="stSidebar"], [data-testid="stSidebarCollapseButton"] {
+        display: none !important;
+    }
+    .block-container {
+        padding-left: 4rem !important;
+        padding-right: 4rem !important;
+        max-width: 100% !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 def exibir_painel_inicial():
-    # --- CSS PERSONALIZADO (REMOVE A SIDEBAR, AJUSTA FONTES E BOTÃO PULSANTE) ---
+    # --- CSS DA VITRINE (BOTÃO PULSANTE) ---
     st.markdown("""
         <style>
-        /* REMOVE COMPLETAMENTE A BARRA LATERAL DE NAVEGAÇÃO */
-        [data-testid="stSidebar"] {
-            display: none !important;
-        }
-        [data-testid="stSidebarCollapseButton"] {
-            display: none !important;
-        }
-        
-        /* Ajuste do bloco principal para garantir o preenchimento total */
-        .block-container {
-            padding-left: 4rem !important;
-            padding-right: 4rem !important;
-            max-width: 100% !important;
-        }
-        
-        /* Estilos para aumentar e destacar as informações dos pacotes */
         .texto-grande-pacote {
             font-size: 1.25rem !important;
             line-height: 1.8 !important;
@@ -44,46 +47,32 @@ def exibir_painel_inicial():
             font-weight: bold !important;
             margin-bottom: 10px !important;
         }
-        
-        /* Animação que faz o botão de compra piscar/pulsar de forma chamativa */
         div.stLinkButton > a {
             animation: pulsarBotao 2s infinite !important;
             font-weight: bold !important;
             letter-spacing: 1px !important;
             transition: all 0.3s ease-in-out !important;
         }
-        
         @keyframes pulsarBotao {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 45, 149, 0.7);
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 0 15px 5px rgba(255, 45, 149, 0.4);
-                transform: scale(1.02);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 45, 149, 0);
-                transform: scale(1);
-            }
+            0% { box-shadow: 0 0 0 0 rgba(255, 45, 149, 0.7); transform: scale(1); }
+            50% { box-shadow: 0 0 15px 5px rgba(255, 45, 149, 0.4); transform: scale(1.02); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 45, 149, 0); transform: scale(1); }
         }
         </style>
     """, unsafe_allow_html=True)
 
     # --- 1. IMAGEM DE CAPA (HERO MOCKUP) ---
     img_topo = "hero_mockup.png"
-    caminho_assets = f"assets/{img_topo}"
-    
-    if os.path.exists(caminho_assets):
-        st.image(caminho_assets, use_container_width=True)
+    if os.path.exists(f"assets/{img_topo}"):
+        st.image(f"assets/{img_topo}", use_container_width=True)
     elif os.path.exists(img_topo):
         st.image(img_topo, use_container_width=True)
     else:
-        st.markdown("<div style='text-align: center; padding: 30px; color: #555;'>🖼️ Capa: hero_mockup.png</div>", unsafe_allow_html=True)
+        st.markdown("<div style='text-align: center; padding: 30px; color: #555;'></div>", unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # --- 2. TEXTO INFORMATIVO ANTES DA VENDA ---
+    # --- 2. TEXTO INFORMATIVO ---
     st.markdown("<h2 style='text-align: center; color: #00D2FF; font-weight: bold;'>Por que o Comunicando Igrejas é para você?</h2>", unsafe_allow_html=True)
     st.markdown("""
         <p style='text-align: center; color: #bbbbbb; font-size: 1.2rem; max-width: 1000px; margin: 0 auto;'>
@@ -94,7 +83,7 @@ def exibir_painel_inicial():
     """, unsafe_allow_html=True)
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # --- 3. TABELA DOS PACOTES ALARGADA ---
+    # --- 3. QUADROS DOS PACOTES ALARGADOS ---
     st.markdown("<h2 style='text-align: center; color: #FF2D95; font-weight: bold;'>💎 Escolha o Plano Ideal para sua Igreja</h2>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -156,8 +145,8 @@ def exibir_painel_inicial():
         
     st.markdown("<br><br><br>", unsafe_allow_html=True)
 
-    # --- 4. ÁREA DE LOGIN NO FINAL ---
-    st.markdown("<div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 25px; margin-top: 20px;'>", unsafe_allow_html=True)
+    # --- 4. ÁREA DE LOGIN NO RODAPÉ ---
+    st.markdown("<div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 25px;'>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: #ffffff; margin-top:0;'>🔑 Já comprou? Faça login para acessar seus templates</h3>", unsafe_allow_html=True)
     
     log_col1, log_col2, log_col3 = st.columns([2, 2, 1])
@@ -167,33 +156,17 @@ def exibir_painel_inicial():
         senha_login = st.text_input("Senha", type="password", placeholder="Sua senha", label_visibility="collapsed", key="init_senha")
     with log_col3:
         if st.button("🔓 ENTRAR", use_container_width=True, key="init_btn_entrar"):
-            # LÓGICA DE VALIDAÇÃO CORRIGIDA:
             if email_login != "" and senha_login != "":
-                st.session_state.logado = True  # Define que o usuário está logado
+                st.session_state.logado = True
+                st.session_state.nome_usuario = email_login.split('@')[0].capitalize()
                 st.success("Acesso autorizado!") 
-                st.rerun()  # Reinicia o app aplicando a mudança
+                st.rerun()
             else:
-                st.error("Por favor, preencha o e-mail e a senha.")
-            
+                st.error("Preencha o e-mail e a senha, varão!")
     st.markdown("</div>", unsafe_allow_html=True)
 
-
-# --- FUNÇÃO PARA EXIBIR O CONTEÚDO PRIVADO DOS MEMBROS ---
-def exibir_dashboard_membros():
-    st.title("⛪ Bem-vindo à Área de Membros - Comunicando Igrejas")
-    st.write("Aqui ficam as suas categorias de artes exclusivas (Cultos Gerais, Santa Ceia, etc.)")
-    
-    # Botão para deslogar (Sair) caso precise voltar à tela inicial
-    if st.button("🚪 Sair da Área de Membros"):
-        st.session_state.logado = False
-        st.rerun()
-
-
-# --- CONTROLADOR CENTRAL DE EXIBIÇÃO ---
+# --- CONTROLADOR CENTRAL ---
 if st.session_state.logado:
-    # Se estiver logado, entra na Área de Membros
-    exibir_dashboard_membros()
+    Dashboard.exibir()  # Executa a função do seu arquivo separado
 else:
-    # Se não estiver logado e nenhuma página aberta, exibe a Vitrine de Vendas
-    if st.session_state.pagina_atual is None or st.session_state.pagina_atual == "":
-        exibir_painel_inicial()
+    exibir_painel_inicial()
