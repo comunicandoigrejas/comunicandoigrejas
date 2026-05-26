@@ -27,7 +27,7 @@ def exibir_painel_inicial():
     else:
         st.markdown("<div style='text-align: center; padding: 10px; color: #555;'></div>", unsafe_allow_html=True)
 
-    # --- CSS PERSONALIZADO (ESTILOS DA VITRINE) ---
+    # --- CSS PERSONALIZADO (CENTRALIZAÇÃO, FONTES MAIORES E BOTÃO LUMINOSO) ---
     st.markdown("""
         <style>
         /* Remove barras laterais e espaçamentos indesejados */
@@ -75,44 +75,53 @@ def exibir_painel_inicial():
             line-height: 1.5;
         }
         
-        /* Botão Pulsante Superior de Âncora */
-        div.stButton > button.btn-ancora {
+        /* --- BOTÃO LUMINOSO (EFREITO NEON PULSANTE) --- */
+        div.stButton > button {
             background: linear-gradient(90deg, #FF2D95 0%, #00D2FF 100%) !important;
-            color: white !important;
+            color: #ffffff !important;
             font-weight: bold !important;
-            font-size: 1.25rem !important;
+            font-size: 1.4rem !important; /* Aumentado o texto do botão */
             border: none !important;
-            padding: 15px 30px !important;
-            border-radius: 8px !important;
-            animation: pulsarBotao 2s infinite !important;
+            padding: 18px 40px !important;
+            border-radius: 50px !important; /* Deixa o botão arredondado e elegante */
+            letter-spacing: 1px !important;
+            display: block !important;
+            margin: 0 auto !important; /* Força a centralização absoluta */
+            box-shadow: 0 0 15px #FF2D95, 0 0 30px #00D2FF !important;
+            animation: glowPulsar 1.8s infinite alternate !important;
             transition: all 0.3s ease-in-out !important;
-            display: block;
-            margin: 0 auto;
         }
         
-        @keyframes pulsarBotao {
-            0% { box-shadow: 0 0 0 0 rgba(255, 45, 149, 0.7); transform: scale(1); }
-            50% { box-shadow: 0 0 20px 8px rgba(255, 45, 149, 0.4); transform: scale(1.03); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 45, 149, 0); transform: scale(1); }
+        @keyframes glowPulsar {
+            0% {
+                box-shadow: 0 0 10px #FF2D95, 0 0 20px #00D2FF;
+                transform: scale(1);
+            }
+            100% {
+                box-shadow: 0 0 25px #FF2D95, 0 0 50px #00D2FF, 0 0 70px #FF2D95;
+                transform: scale(1.04);
+            }
         }
         </style>
     """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # --- 2. CHAMADA PRINCIPAL COM VALOR E BOTÃO DE ROLAGEM ---
-    st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-    st.markdown("<p style='color: #888888; font-size: 1.1rem; margin-bottom: 0; text-decoration: line-through;'>De R$ 197 por Apenas</p>", unsafe_allow_html=True)
-    st.markdown("<h1 style='color: #ffffff; font-size: 3.5rem; font-weight: 900; margin-top: 0; margin-bottom: 5px;'>R$ 29,90</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='color: #00D2FF; font-size: 1.1rem; margin-bottom: 20px;'>Comece hoje e nunca mais dependa de designers!</p>", unsafe_allow_html=True)
+    # --- 2. CHAMADA PRINCIPAL CENTRALIZADA E AMPLIADA ---
+    st.markdown("""
+        <div style='text-align: center; margin-bottom: 10px;'>
+            <p style='color: #a0a0a0; font-size: 1.3rem; margin-bottom: 0; text-decoration: line-through; letter-spacing: 1px;'>De R$ 197 por Apenas</p>
+            <h1 style='color: #ffffff; font-size: 4.8rem; font-weight: 900; margin-top: -5px; margin-bottom: 0px; text-shadow: 0px 0px 20px rgba(255,255,255,0.2);'>R$ 29,90</h1>
+            <p style='color: #00D2FF; font-size: 1.3rem; font-weight: bold; margin-top: 5px; margin-bottom: 30px; letter-spacing: 0.5px;'>Comece hoje e nunca mais dependa de designers!</p>
+        </div>
+    """, unsafe_allow_html=True)
     
-    # Botão nativo configurado com a classe CSS personalizada para rolar até o rodapé
-    if st.button("🚀 QUERO MEU ACESSO AGORA MESMO", key="btn_ancora_topo", use_container_width=False):
+    # Botão luminoso centralizado que joga para os planos no final da página
+    if st.button("🚀 QUERO MEU ACESSO AGORA MESMO", key="btn_luminoso_topo"):
         st.markdown("<script>window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});</script>", unsafe_allow_html=True)
-        # Fallback de rolagem usando ancoragem nativa estável do Streamlit
         st.components.v1.html("""<script>window.parent.document.getElementById("tabela-precos").scrollIntoView({behavior: "smooth"});</script>""", height=0)
     
-    st.markdown("</div><br><br>", unsafe_allow_html=True)
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
 
     # --- 3. QUADRO INFORMATIVO: E O QUE VOCÊ TERÁ ACESSO? ---
     st.markdown("""
@@ -202,7 +211,7 @@ def exibir_painel_inicial():
         st.markdown("""
             <div style='background-color: #0c0c0c; border: 1px solid #FF2D95; border-radius: 15px; padding: 30px; text-align: center; min-height: 580px; box-shadow: 0 0 15px rgba(255, 45, 149, 0.15);'>
                 <h3 class='titulo-plano' style='color: #FF2D95;'>👑 Plano PREMIUM</h3>
-                <p style='font-size: 1rem; color: #bbbbbb;'>O combo completo com atualizações constantes e materiais de ministérios.</p>
+                <p style='font-size: 1rem; color: #bbbbbb;'>O combo completo com updates constantes e materiais de ministérios.</p>
                 <hr style='border-color: #1f1f1f;'>
                 <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px; line-height: 1.8;'>
                     <li>🔥 <b>Acesso VITALÍCIO</b> (Paga uma única vez)</li>
