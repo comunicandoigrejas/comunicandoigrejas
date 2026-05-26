@@ -3,7 +3,7 @@ import os
 
 # --- CONFIGURAÇÃO DA PÁGINA (ALARGA A TELA E COLAPSA A SIDEBAR) ---
 st.set_page_config(
-    layout="wide",  # ISSO FAZ A PÁGINA OCUPAR TODA A LARGURA DA TELA
+    layout="wide",  # Faz a página ocupar toda a largura da tela
     initial_sidebar_state="collapsed"
 )
 
@@ -32,7 +32,7 @@ def exibir_painel_inicial():
         
         /* Estilos para aumentar e destacar as informações dos pacotes */
         .texto-grande-pacote {
-            font-size: 1.25rem !important; /* Fonte ligeiramente maior para aproveitar o espaço amplo */
+            font-size: 1.25rem !important;
             line-height: 1.8 !important;
             color: #dddddd;
         }
@@ -91,7 +91,7 @@ def exibir_painel_inicial():
     """, unsafe_allow_html=True)
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # --- 3. TABELA DOS PACOTES ALARGADA ---
+    # --- 3. TABELA DOS PACOTES ALARGADA COM LINKS DO HOTMART ---
     st.markdown("<h2 style='text-align: center; color: #FF2D95; font-weight: bold;'>💎 Escolha o Plano Ideal para sua Igreja</h2>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -122,7 +122,8 @@ def exibir_painel_inicial():
                 <h2 style='color: #ffffff; margin-top: 5px; margin-bottom: 15px; font-size: 2.8rem;'>R$ 29,90</h2>
             </div>
         """, unsafe_allow_html=True)
-        st.link_button("🛍️ QUERO O PLANO BÁSICO", "URL_DE_PAGAMENTO_START_AQUI", use_container_width=True, key="buy_start")
+        # Link do Plano Básico configurado
+        st.link_button("🛍️ QUERO O PLANO BÁSICO", "https://pay.hotmart.com/Y106003109C", use_container_width=True, key="buy_start")
 
     with vendas_col2:
         st.markdown("""
@@ -149,7 +150,8 @@ def exibir_painel_inicial():
                 <h2 style='color: #FF2D95; margin-top: 5px; margin-bottom: 15px; font-size: 2.8rem;'>R$ 59,90</h2>
             </div>
         """, unsafe_allow_html=True)
-        st.link_button("👑 QUERO O PACOTE COMPLETO", "URL_DE_PAGAMENTO_PREMIUM_AQUI", use_container_width=True, key="buy_premium")
+        # Link do Plano Premium configurado
+        st.link_button("👑 QUERO O PACOTE COMPLETO", "https://pay.hotmart.com/Y98906000N?off=7dey0pfj", use_container_width=True, key="buy_premium")
         
     st.markdown("<br><br><br>", unsafe_allow_html=True)
 
