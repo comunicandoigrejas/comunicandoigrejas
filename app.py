@@ -1,8 +1,11 @@
 import streamlit as st
 import os
 
-# --- CONFIGURAÇÃO DA PÁGINA (OCULTA O BOTÃO PADRÃO DA SIDEBAR SE HOUVER) ---
-st.set_page_config(initial_sidebar_state="collapsed")
+# --- CONFIGURAÇÃO DA PÁGINA (ALARGA A TELA E COLAPSA A SIDEBAR) ---
+st.set_page_config(
+    layout="wide",  # ISSO FAZ A PÁGINA OCUPAR TODA A LARGURA DA TELA
+    initial_sidebar_state="collapsed"
+)
 
 # --- GARANTE QUE A VARIÁVEL EXISTE NO INÍCIO DO SISTEMA ---
 if 'pagina_atual' not in st.session_state:
@@ -20,14 +23,21 @@ def exibir_painel_inicial():
             display: none !important;
         }
         
+        /* Ajuste do bloco principal para garantir o preenchimento total */
+        .block-container {
+            padding-left: 4rem !important;
+            padding-right: 4rem !important;
+            max-width: 100% !important;
+        }
+        
         /* Estilos para aumentar e destacar as informações dos pacotes */
         .texto-grande-pacote {
-            font-size: 1.2rem !important;
+            font-size: 1.25rem !important; /* Fonte ligeiramente maior para aproveitar o espaço amplo */
             line-height: 1.8 !important;
             color: #dddddd;
         }
         .titulo-plano {
-            font-size: 1.8rem !important;
+            font-size: 2rem !important;
             font-weight: bold !important;
             margin-bottom: 10px !important;
         }
@@ -73,7 +83,7 @@ def exibir_painel_inicial():
     # --- 2. TEXTO INFORMATIVO ANTES DA VENDA ---
     st.markdown("<h2 style='text-align: center; color: #00D2FF; font-weight: bold;'>Por que o Comunicando Igrejas é para você?</h2>", unsafe_allow_html=True)
     st.markdown("""
-        <p style='text-align: center; color: #bbbbbb; font-size: 1.1rem; max-width: 800px; margin: 0 auto;'>
+        <p style='text-align: center; color: #bbbbbb; font-size: 1.2rem; max-width: 1000px; margin: 0 auto;'>
         Sabemos que a rotina da igreja é intensa. Nosso objetivo é poupar o seu tempo e elevar a qualidade visual 
         da sua comunidade com artes prontas, modernas e 100% editáveis no Canva. Veja abaixo tudo o que preparamos 
         para abençoar o seu ministério midiático!
@@ -81,7 +91,7 @@ def exibir_painel_inicial():
     """, unsafe_allow_html=True)
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # --- 3. TABELA DOS PACOTES ---
+    # --- 3. TABELA DOS PACOTES ALARGADA ---
     st.markdown("<h2 style='text-align: center; color: #FF2D95; font-weight: bold;'>💎 Escolha o Plano Ideal para sua Igreja</h2>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -89,9 +99,9 @@ def exibir_painel_inicial():
 
     with vendas_col1:
         st.markdown("""
-            <div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 30px; text-align: center; min-height: 580px;'>
+            <div style='background-color: #0c0c0c; border: 1px solid #1f1f1f; border-radius: 15px; padding: 35px; text-align: center; min-height: 620px;'>
                 <h3 class='titulo-plano' style='color: #00D2FF;'>🚀 Plano BÁSICO</h3>
-                <p style='font-size: 1rem; color: #bbbbbb;'>Acesso direto às artes essenciais para as redes sociais da igreja, para você que quer começar a economizar tempo.</p>
+                <p style='font-size: 1.05rem; color: #bbbbbb;'>Acesso direto às artes essenciais para as redes sociais da igreja, para você que quer começar a economizar tempo.</p>
                 <hr style='border-color: #1f1f1f;'>
                 <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px; line-height: 1.8;'>
                     <li>⏳ Validade de <b>1 ano (Acesso Anual)</b></li>
@@ -109,16 +119,16 @@ def exibir_painel_inicial():
                 </ul>
                 <hr style='border-color: #1f1f1f;'>
                 <p style='color: #888888; margin-bottom: 0; font-size: 1rem;'>Acesso por 1 ano por apenas</p>
-                <h2 style='color: #ffffff; margin-top: 5px; margin-bottom: 15px; font-size: 2.5rem;'>R$ 29,90</h2>
+                <h2 style='color: #ffffff; margin-top: 5px; margin-bottom: 15px; font-size: 2.8rem;'>R$ 29,90</h2>
             </div>
         """, unsafe_allow_html=True)
         st.link_button("🛍️ QUERO O PLANO BÁSICO", "URL_DE_PAGAMENTO_START_AQUI", use_container_width=True, key="buy_start")
 
     with vendas_col2:
         st.markdown("""
-            <div style='background-color: #0c0c0c; border: 1px solid #FF2D95; border-radius: 15px; padding: 30px; text-align: center; min-height: 580px; box-shadow: 0 0 15px rgba(255, 45, 149, 0.15);'>
+            <div style='background-color: #0c0c0c; border: 1px solid #FF2D95; border-radius: 15px; padding: 35px; text-align: center; min-height: 620px; box-shadow: 0 0 15px rgba(255, 45, 149, 0.15);'>
                 <h3 class='titulo-plano' style='color: #FF2D95;'>👑 Plano PREMIUM</h3>
-                <p style='font-size: 1rem; color: #bbbbbb;'>O combo completo com atualizações constantes e materiais de ministérios.</p>
+                <p style='font-size: 1.05rem; color: #bbbbbb;'>O combo completo com atualizações constantes e materiais de ministérios.</p>
                 <hr style='border-color: #1f1f1f;'>
                 <ul class='texto-grande-pacote' style='text-align: left; padding-left: 20px; line-height: 1.8;'>
                     <li>🔥 <b>Acesso VITALÍCIO</b> (Paga uma única vez)</li>
@@ -136,7 +146,7 @@ def exibir_painel_inicial():
                 </ul>
                 <hr style='border-color: #1f1f1f;'>
                 <p style='color: #888888; margin-bottom: 0; font-size: 1rem;'>Acesso Vitalício por apenas</p>
-                <h2 style='color: #FF2D95; margin-top: 5px; margin-bottom: 15px; font-size: 2.5rem;'>R$ 59,90</h2>
+                <h2 style='color: #FF2D95; margin-top: 5px; margin-bottom: 15px; font-size: 2.8rem;'>R$ 59,90</h2>
             </div>
         """, unsafe_allow_html=True)
         st.link_button("👑 QUERO O PACOTE COMPLETO", "URL_DE_PAGAMENTO_PREMIUM_AQUI", use_container_width=True, key="buy_premium")
