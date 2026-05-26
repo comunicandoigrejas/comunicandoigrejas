@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-import Dashboard  # Importa o seu arquivo Dashboard.py separado
+from pages import Dashboard  
 
 # --- CONFIGURAÇÃO DA PÁGINA (TELA AMPLA E SEM SIDEBAR) ---
 st.set_page_config(
