@@ -86,8 +86,12 @@ def exibir_painel_inicial():
                     <li>❌ <b>Sem</b> atualização semanal</li>
                     <li>✅ ⛪ Cultos Gerais</li>
                     <li>✅ 📅 Datas Comemorativas</li>
+                    <li>✅ 👥 Culto da Família</li>
                     <li>✅ 👨 Culto de Homens</li>
                     <li>✅ 👩 Culto de Mulheres</li>
+                    <li>✅ 👦 Culto Infantil 🧸</li>
+                    <li>✅ 🔥 Culto de Jovens</li>
+                    <li>✅ 🍷 Culto de Santa Ceia</li>
                     <li>✅ 🧱 Campanhas</li>
                 </ul>
                 <hr style='border-color: #1f1f1f;'>
