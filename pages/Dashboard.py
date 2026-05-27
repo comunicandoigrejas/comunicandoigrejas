@@ -30,6 +30,7 @@ def exibir():
             border: none !important;
             height: 50px !important;
             transition: background-color 0.2s !important;
+            margin-top: 8px !important;
         }
         div.stButton > button:hover {
             background-color: #3ccb57 !important;
@@ -43,52 +44,46 @@ def exibir():
     nome = st.session_state.get('nome_usuario', 'Irmão')
     plano = st.session_state.get('plano', 'PREMIUM')
     st.markdown(f"<p style='text-align: center; color: #888;'>👋 Olá, irmão {nome} | Abaixo estão as suas artes do plano {plano}</p>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     if 'pagina_atual' not in st.session_state:
         st.session_state.pagina_atual = None
 
-    # --- 1. EXIBIÇÃO DA IMAGEM DE CAPA (NO TOPO) ---
-    capa_carregar = None
-    
-    # Define qual capa mostrar: se nenhuma página foi clicada, mostra Cultos Gerais por padrão
-    if st.session_state.pagina_atual is None:
-        capa_carregar = "assets/Cultos Gerais 08.jpg"
-    else:
-        dados_pagina_ativa = next((p for p in PAGINAS if p['modulo'] == st.session_state.pagina_atual), None)
-        if dados_pagina_ativa and dados_pagina_ativa['capa']:
-            capa_carregar = f"assets/{dados_pagina_ativa['capa']}"
-
-    # Renderiza a capa centralizada ocupando a largura ideal
-    if capa_carregar:
-        if os.path.exists(capa_carregar):
-            # Cria colunas para centralizar e não deixar a imagem gigante em telas muito largas
-            col_img_esq, col_img_centro, col_img_dir = st.columns([1, 4, 1])
-            with col_img_centro:
-                st.image(capa_carregar, use_container_width=True)
-                st.markdown("<br>", unsafe_allow_html=True)
-
-    # --- 2. GRID DE BOTÕES (ABAIXO DA IMAGEM DE CAPA) ---
-    # Organizados em 4 colunas para ficarem bem distribuídos horizontalmente
-    cols_botoes = st.columns(4)
+    # --- GRID DE VITRINE (IMAGEM + BOTÃO LOGO ABAIXO) ---
+    # Organizados em colunas para criar uma galeria de temas linda
+    cols_vitrine = st.columns(3) # Exibe de 3 em 3 categorias por linha para dar um excelente destaque às capas
     
     for i, pagina in enumerate(PAGINAS):
-        with cols_botoes[i % 4]:
+        with cols_vitrine[i % 3]:
+            # 1. Busca e renderiza a imagem da capa acima do botão
+            if pagina['capa']:
+                caminho_capa = f"assets/{pagina['capa']}"
+                if os.path.exists(caminho_capa):
+                    st.image(caminho_capa, use_container_width=True)
+                else:
+                    # Fallback elegante caso a imagem ainda não esteja na pasta assets
+                    st.markdown(f"<div style='background-color: #111; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px dashed #333; color: #555; font-size: 0.85rem;'>🖼️ Capa {pagina['titulo']}</div>", unsafe_allow_html=True)
+            else:
+                # Caso a categoria não tenha capa definida ainda, deixa um espaço ou mockup padronizado
+                st.markdown(f"<div style='background-color: #111; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px dashed #333; color: #444; font-size: 0.85rem;'>🖼️ Breve - Capa {pagina['titulo']}</div>", unsafe_allow_html=True)
+            
+            # 2. Configuração do Botão Verde posicionado logo abaixo da sua respectiva imagem
             temas_premium = ["Santa Ceia", "Mulheres", "Jovens"]
             e_premium = pagina['titulo'] in temas_premium
             label = f"{pagina['icone']}  {pagina['titulo']}"
             
-            # Lógica de Bloqueio por Plano
             if e_premium and plano == "START":
-                st.button(f"🔒 {pagina['titulo']}", key=f"btn_dash_lock_{pagina['modulo']}", disabled=True, use_container_width=True)
+                st.button(f"🔒 {pagina['titulo']}", key=f"btn_vitrine_lock_{pagina['modulo']}", disabled=True, use_container_width=True)
                 st.caption("<center style='color:#666;'>Disponível no Premium</center>", unsafe_allow_html=True)
             else:
-                if st.button(label, key=f"btn_dash_{pagina['modulo']}", use_container_width=True):
+                if st.button(label, key=f"btn_vitrine_{pagina['modulo']}", use_container_width=True):
                     st.session_state.pagina_atual = pagina['modulo']
                     st.rerun()
-            st.markdown("<br>", unsafe_allow_html=True)
+            
+            st.markdown("<br><br>", unsafe_allow_html=True)
 
     # --- 3. RENDERIZAÇÃO DOS MODELOS DA PÁGINA SELECIONADA ---
+    # Quando o irmão clicar em qualquer botão verde da vitrine, os modelos abrem logo aqui abaixo
     if st.session_state.pagina_atual:
         st.markdown("---") # Linha divisória elegante
         
