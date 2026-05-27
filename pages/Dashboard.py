@@ -46,8 +46,8 @@ def exibir():
         st.markdown("<h1 class='gradient-title'>🏠 Dashboard</h1>", unsafe_allow_html=True)
         nome = st.session_state.get('nome_usuario', 'Irmão')
         plano = st.session_state.get('plano', 'PREMIUM')
-        st.success(f"👋 Olá, **{nome}** | Plano: **{plano}**")
-        st.markdown("<br>### 🎨 Escolha um tema para acessar as artes:", unsafe_allow_html=True)
+        st.success(f"👋 Olá, **{nome}** | BEM VINDO AO PLANO: **{plano}**")
+        st.markdown("<br> 🎨 ESCOLHA UM TEMA PARA ACESSAR AS ARTES:", unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
 
         # Grid em 3 colunas para exibir os cards de capas + botões
