@@ -11,7 +11,7 @@ PAGINAS = [
     {"icone": "🧸", "titulo": "Culto Infantil",         "modulo": "pages.Infantil",             "capa": None},
     {"icone": "⚡", "titulo": "Culto de Jovens",       "modulo": "pages.Jovens",               "capa": None},
     {"icone": "🌸", "titulo": "Culto de Mulheres",     "modulo": "pages.Mulheres",             "capa": None},
-    {"icone": "🍷", "titulo": "Culto de Ceia",          "modulo": "pages.Santa_Ceia",           "capa": None},
+    {"icone": "🍷", "titulo": "Culto de Ceia",          "modulo": "pages.Santa_Ceia",           "capa": "Santa Ceia 04.png},
 ]
 
 def exibir():
