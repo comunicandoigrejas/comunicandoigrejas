@@ -7,7 +7,7 @@ PAGINAS = [
     {"icone": "⛪", "titulo": "Cultos Gerais",        "modulo": "pages.Cultos_Gerais",        "capa": "Cultos Gerais 08.jpg"},
     {"icone": "🎉", "titulo": "Datas Comemorativas",  "modulo": "pages.Datas_Comemorativas",  "capa": None},
     {"icone": "👨‍👩‍👧‍👦", "titulo": "Culto da Família",     "modulo": "pages.Familia",              "capa": "Culto Familia 08.png"},
-    {"icone": "🧔", "titulo": "Culto de Homens",       "modulo": "pages.Homens",               "capa": None},
+    {"icone": "🧔", "titulo": "Culto de Homens",       "modulo": "pages.Homens",               "capa": "Homens 07.png"},
     {"icone": "🧸", "titulo": "Culto Infantil",         "modulo": "pages.Infantil",             "capa": None},
     {"icone": "⚡", "titulo": "Culto de Jovens",       "modulo": "pages.Jovens",               "capa": None},
     {"icone": "🌸", "titulo": "Culto de Mulheres",     "modulo": "pages.Mulheres",             "capa": None},
