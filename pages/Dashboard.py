@@ -26,9 +26,6 @@ PORTAIS = [
 
 def exibir():
     # --- CSS DOS BOTÕES VERDES DE ACESSO ---
-    with open("style.css") as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-        
     st.markdown("""
         <style>
         div.stButton > button {
@@ -55,10 +52,13 @@ def exibir():
 
     # --- NÍVEL 1: MENU PRINCIPAL DO DASHBOARD (OS 6 GRANDES PORTAIS) ---
     if st.session_state.portal_atual is None:
-        st.markdown("<h1 class='gradient-title'>🏠 Dashboard</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='color: white;'>🏠 Painel Inicial</h1>", unsafe_allow_html=True)
         nome = st.session_state.get('nome_usuario', 'Irmão')
-        plano = st.session_state.get('plano', 'PREMIUM')
-        st.success(f"👋 Olá, **{nome}** | Plano: **{plano}**")
+        # Definindo um plano padrão caso não esteja definido no login
+        if 'plano' not in st.session_state:
+            st.session_state.plano = "PREMIUM"
+        
+        st.success(f"👋 Olá, **{nome}** | Seu acesso está liberado!")
         st.markdown("<br>### 🚀 Acesse os módulos do seu portal:", unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
 
@@ -72,10 +72,10 @@ def exibir():
                 if os.path.exists(caminho_capa):
                     st.image(caminho_capa, use_container_width=True)
                 else:
-                    st.markdown(f"<div style='background-color: #1a1a1a; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #555; font-size:0.85rem; border: 1px dashed #333;'>🖼️ Módulo: {portal['titulo']}</div>", unsafe_allow_html=True)
+                    st.markdown(f"<div style='background-color: #0c0c0c; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #777; font-size:0.9rem; border: 1px solid #333; font-weight: bold; text-align: center; padding: 10px;'>{portal['icone']}<br>{portal['titulo']}</div>", unsafe_allow_html=True)
                 
                 # Botão verde logo abaixo da capa
-                if st.button(f"{portal['icone']} {portal['titulo']}", key=f"btn_portal_{portal['chave']}", use_container_width=True):
+                if st.button(f"ACESSAR MÓDULO", key=f"btn_portal_{portal['chave']}", use_container_width=True):
                     st.session_state.portal_atual = portal['chave']
                     st.rerun()
                 
@@ -87,7 +87,7 @@ def exibir():
             st.session_state.portal_atual = None
             st.rerun()
             
-        st.markdown("<h2 style='text-align: center; color: white;'>🎨 VITRINE DE TEMPLATES CANVA</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='text-align: center; color: white; font-weight: bold;'>🎨 VITRINE DE TEMPLATES CANVA</h2>", unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
 
         # Grade de 3 colunas para as subcategorias de artes do Canva
@@ -106,21 +106,13 @@ def exibir():
                     st.markdown(f"<div style='background-color: #1a1a1a; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #444; font-size:0.85rem; border: 1px dashed #222;'>🖼️ Em breve: {pagina['titulo']}</div>", unsafe_allow_html=True)
                 
                 # Botão verde para acessar as artes específicas
-                temas_premium = ["Culto de Ceia", "Culto de Mulheres", "Culto de Jovens"]
-                e_premium = pagina['titulo'] in temas_premium
-                plano = st.session_state.get('plano', 'PREMIUM')
-                
-                if e_premium and plano == "START":
-                    st.button(f"🔒 {pagina['titulo']}", key=f"btn_sub_lock_{pagina['modulo']}", disabled=True, use_container_width=True)
-                    st.caption("<center style='color:#666; font-size:0.8rem;'>Disponível no Premium</center>", unsafe_allow_html=True)
-                else:
-                    if st.button(f"{pagina['icone']}  Acessar {pagina['titulo']}", key=f"btn_sub_{pagina['modulo']}", use_container_width=True):
-                        st.session_state.sub_pagina_canva = pagina['modulo']
-                        st.rerun()
+                if st.button(f"{pagina['icone']}  Acessar {pagina['titulo']}", key=f"btn_sub_{pagina['modulo']}", use_container_width=True):
+                    st.session_state.sub_pagina_canva = pagina['modulo']
+                    st.rerun()
                 
                 st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # --- NÍVEL 3: DENTRO DE UMA PÁGINA ESPECÍFICA DO CANVA (EX: CULTOS GERAIS, SANTA CEIA) ---
+    # --- NÍVEL 3: DENTRO DE UMA PÁGINA ESPECÍFICA DO CANVA ---
     elif st.session_state.portal_atual == "templates_canva" and st.session_state.sub_pagina_canva is not None:
         if st.button("⬅️ VOLTAR PARA TEMPLATES CANVA", use_container_width=True):
             st.session_state.sub_pagina_canva = None
