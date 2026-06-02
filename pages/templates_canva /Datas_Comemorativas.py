@@ -1,45 +1,51 @@
 import streamlit as st
-
-if not st.session_state.get("logado", False):
-    st.warning("🔒 Acesso restrito. Faça login para continuar.")
-    st.stop()
-
-st.set_page_config(page_title="Datas Comemorativas", layout="wide", page_icon="🎉")
-
-with open("style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-st.sidebar.markdown(f"### 👋 Olá, **{st.session_state.get('nome_usuario', 'Membro')}**")
-st.sidebar.markdown(f"**Plano:** {st.session_state.get('plano', 'START')}")
-if st.sidebar.button("🏠 Voltar ao Dashboard"):
-    st.switch_page("app.py")
-if st.sidebar.button("🚪 Sair"):
-    for key in list(st.session_state.keys()):
-        del st.session_state[key]
-    st.switch_page("app.py")
+import os
 
 def exibir():
-    st.markdown("<h1 class='gradient-title'>🎉 Datas Comemorativas</h1>", unsafe_allow_html=True)
-    st.markdown("<p class='sub-title'>Templates para Natal, Páscoa, Ano Novo, Dia das Mães e Pais.</p>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: white; font-weight: bold;'>🎉 MODELOS DISPONÍVEIS: DATAS COMEMORATIVAS</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #888; font-size: 0.95rem;'>Escolha o formato desejado para abrir o modelo editável diretamente no seu Canva.</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    col1, col2 = st.columns(2)
+    # CSS unificado para os botões brancos elegantes
+    st.markdown("""
+        <style>
+        div.stButton > button {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            font-weight: bold !important;
+            font-size: 0.85rem !important;
+            border-radius: 4px !important;
+            border: none !important;
+            padding: 6px 12px !important;
+            transition: background-color 0.2s !important;
+        }
+        div.stButton > button:hover {
+            background-color: #e5e5e5 !important;
+            color: #000000 !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
 
-    with col1:
-        st.markdown("<div class='premium-card'>", unsafe_allow_html=True)
-        st.image("assets/artes_natal.png", caption="Natal", use_container_width=True)
-        st.markdown("**Pack Natal e Páscoa**")
-        st.write("30 Templates Especiais")
-        st.link_button("Editar Pack Comemorativos", "https://www.canva.com/...", use_container_width=True)
-        st.markdown("</div>", unsafe_allow_html=True)
+    # Lista estruturada seguindo o padrão oficial
+    artes_comemorativas = [
+        {"nome": "artes_natal.png", "titulo": "Pack Natal e Páscoa", "qtd": "30 Templates Especiais", "link": "https://www.canva.com/..."},
+    ]
 
-    with col2:
-        st.markdown("<div class='premium-card'>", unsafe_allow_html=True)
-        st.markdown("**Pack Ano Novo**")
-        st.write("Disponível em breve!")
-        st.markdown("</div>", unsafe_allow_html=True)
+    # Grid de 3 colunas limpo
+    col1, col2, col3 = st.columns(3)
 
-    st.markdown("---")
-    st.info("🔄 Novos packs são adicionados semanalmente!")
-
-exibir()
+    for idx, arte in enumerate(artes_comemorativas):
+        coluna_alvo = col1 if idx % 3 == 0 else (col2 if idx % 3 == 1 else col3)
+        
+        with coluna_alvo:
+            caminho_imagem = f"assets/{arte['nome']}"
+            
+            if os.path.exists(caminho_imagem):
+                st.image(caminho_imagem, use_container_width=True)
+            else:
+                st.markdown(f"<div style='background-color: #1a1a1a; padding: 120px 10px; text-align: center; border-radius: 8px; color: #555; font-size:0.85rem;'>🖼️ {arte['nome']}<br>(Não encontrada em assets/)</div>", unsafe_allow_html=True)
+            
+            st.markdown(f"<p style='margin-bottom:2px; font-weight:bold; color:white;'>{arte['titulo']}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='color:#888; font-size:0.85rem; margin-bottom:8px;'>{arte['qtd']}</p>", unsafe_allow_html=True)
+            
+            st.link_button("🎨 EDITAR NO CANVA", arte["link"], use_container_width=True)
