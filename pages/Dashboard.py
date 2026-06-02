@@ -1,9 +1,9 @@
 import streamlit as st
 import importlib
+import sys
 import os
 
 # --- CONFIGURAÇÃO DE ROTAS E DIRETÓRIOS ---
-# Garante que o caminho aponte exatamente para a pasta vista na imagem image_3c73d8.png
 PASTA_CANVA = "pages.templates_canva"
 
 PAGINAS_CANVA = [
@@ -47,19 +47,25 @@ def renderizar_css_botoes():
     """, unsafe_allow_html=True)
 
 def carregar_modulo_dinamico(caminho_modulo):
-    """Importa e renderiza um módulo Python de forma limpa e isolada."""
+    """Importa e executa o módulo limpando o cache para evitar travamentos."""
     try:
-        # Força o Python a mapear o caminho absoluto partindo do diretório raiz
+        # Se o módulo já foi carregado antes, remove do cache para forçar atualização limpa
+        if caminho_modulo in sys.modules:
+            del sys.modules[caminho_modulo]
+            
         modulo = importlib.import_module(caminho_modulo)
-        importlib.reload(modulo)
-        modulo.exibir()
+        # Executa a função exibir() de dentro do arquivo alvo (ex: Cultos_Gerais.py)
+        if hasattr(modulo, "exibir"):
+            modulo.exibir()
+        else:
+            st.error(f"O módulo {caminho_modulo} não possui a função exibir().")
     except Exception as e:
         st.error(f"Erro ao carregar o módulo interno: {e}")
 
 def exibir():
     renderizar_css_botoes()
 
-    # Inicialização profissional dos estados de navegação
+    # Inicialização dos estados de navegação no session_state
     if 'portal_atual' not in st.session_state:
         st.session_state.portal_atual = None
     if 'sub_pagina_canva' not in st.session_state:
@@ -135,3 +141,7 @@ def exibir():
         st.session_state.portal_atual = None
         st.session_state.sub_pagina_canva = None
         st.rerun()
+
+# --- EXECUÇÃO DO ARQUIVO ---
+if __name__ == "__main__":
+    exibir()
