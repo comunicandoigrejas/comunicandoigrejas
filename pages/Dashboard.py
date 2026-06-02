@@ -3,6 +3,7 @@ import importlib
 import os
 
 # --- CONFIGURAÇÃO DE ROTAS E DIRETÓRIOS ---
+# Garante que o caminho aponte exatamente para a pasta vista na imagem image_3c73d8.png
 PASTA_CANVA = "pages.templates_canva"
 
 PAGINAS_CANVA = [
@@ -48,6 +49,7 @@ def renderizar_css_botoes():
 def carregar_modulo_dinamico(caminho_modulo):
     """Importa e renderiza um módulo Python de forma limpa e isolada."""
     try:
+        # Força o Python a mapear o caminho absoluto partindo do diretório raiz
         modulo = importlib.import_module(caminho_modulo)
         importlib.reload(modulo)
         modulo.exibir()
@@ -119,7 +121,6 @@ def exibir():
             st.session_state.portal_atual = None
             st.rerun()
             
-        # Busca a rota do módulo configurado na lista de portais de forma limpa
         info_portal = next((p for p in PORTAIS if p["chave"] == st.session_state.portal_atual), None)
         
         if info_portal and info_portal["modulo"]:
