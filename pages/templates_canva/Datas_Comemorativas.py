@@ -28,21 +28,21 @@ def exibir():
 
     # Lista estruturada com as 15 artes e seus respectivos links oficiais de Feed e Story
     artes_comemorativas = [
-        {"nome": "Datas Comemorativas 01.jpg", "feed": "https://canva.link/sxvloj2bx2zsp8u", "story": "https://canva.link/771udu9xp9cxp1f"},
-        {"nome": "Datas Comemorativas 02.jpg", "feed": "https://canva.link/tk3k2s2hqif1dsp", "story": "https://canva.link/e259o5byvc79m03"},
-        {"nome": "Datas Comemorativas 03.jpg", "feed": "https://canva.link/6d8xjqfp8s9ftq8", "story": "https://canva.link/3jrunuiwrejkcqr"},
-        {"nome": "Datas Comemorativas 04.jpg", "feed": "https://canva.link/bdfhu1jdfo7n183", "story": "https://canva.link/jk1wlowljn9etet"},
-        {"nome": "Datas Comemorativas 05.jpg", "feed": "https://canva.link/wrrtv5cotfcv2ff", "story": "https://canva.link/pbk9rlozylgdmv3"},
-        {"nome": "Datas Comemorativas 06.jpg", "feed": "https://canva.link/pgwxgbr4fhx18c7", "story": "https://canva.link/9pnhvcb13vtlopb"},
-        {"nome": "Datas Comemorativas 07.jpg", "feed": "https://canva.link/gzjcqcekh3jm24w", "story": "https://canva.link/m12mx83irk9l7o0"},
-        {"nome": "Datas Comemorativas 08.jpg", "feed": "https://canva.link/4kptl4x693xfb2z", "story": "https://canva.link/up5ko39u9876tug"},
-        {"nome": "Datas Comemorativas 09.jpg", "feed": "https://canva.link/t9p7l9azdp666q6", "story": "https://canva.link/ipydm7u701zbcw0"},
-        {"nome": "Datas Comemorativas 10.jpg", "feed": "https://canva.link/sgrrawaqgwfrbsd", "story": "https://canva.link/c54o69jbn3z6yd7"},
-        {"nome": "Datas Comemorativas 11.jpg", "feed": "https://canva.link/13lvjkyim37o7rj", "story": "https://canva.link/pfkkj8p4fkwxy6d"},
-        {"nome": "Datas Comemorativas 12.jpg", "feed": "https://canva.link/4wggpocbjjtxtqd", "story": "https://canva.link/d7inwhu2buy9yjs"},
-        {"nome": "Datas Comemorativas 13.jpg", "feed": "https://canva.link/eo2eli5c4ttctyd", "story": "https://canva.link/arfkl6dqugk1bkh"},
-        {"nome": "Datas Comemorativas 14.jpg", "feed": "https://canva.link/oi4pkedd0cxgvti", "story": "https://canva.link/gkfa8a7i8mlpxwb"},
-        {"nome": "Datas Comemorativas 15.jpg", "feed": "https://canva.link/3n44wxkrar8pbfn", "story": "https://canva.link/ptr9avt6mo1hywf"},
+        {"nome": "Datas Comemorativas 01.png", "feed": "https://canva.link/sxvloj2bx2zsp8u", "story": "https://canva.link/771udu9xp9cxp1f"},
+        {"nome": "Datas Comemorativas 02.png", "feed": "https://canva.link/tk3k2s2hqif1dsp", "story": "https://canva.link/e259o5byvc79m03"},
+        {"nome": "Datas Comemorativas 03.png", "feed": "https://canva.link/6d8xjqfp8s9ftq8", "story": "https://canva.link/3jrunuiwrejkcqr"},
+        {"nome": "Datas Comemorativas 04.png", "feed": "https://canva.link/bdfhu1jdfo7n183", "story": "https://canva.link/jk1wlowljn9etet"},
+        {"nome": "Datas Comemorativas 05.png", "feed": "https://canva.link/wrrtv5cotfcv2ff", "story": "https://canva.link/pbk9rlozylgdmv3"},
+        {"nome": "Datas Comemorativas 06.png", "feed": "https://canva.link/pgwxgbr4fhx18c7", "story": "https://canva.link/9pnhvcb13vtlopb"},
+        {"nome": "Datas Comemorativas 07.png", "feed": "https://canva.link/gzjcqcekh3jm24w", "story": "https://canva.link/m12mx83irk9l7o0"},
+        {"nome": "Datas Comemorativas 08.png", "feed": "https://canva.link/4kptl4x693xfb2z", "story": "https://canva.link/up5ko39u9876tug"},
+        {"nome": "Datas Comemorativas 09.png", "feed": "https://canva.link/t9p7l9azdp666q6", "story": "https://canva.link/ipydm7u701zbcw0"},
+        {"nome": "Datas Comemorativas 10.png", "feed": "https://canva.link/sgrrawaqgwfrbsd", "story": "https://canva.link/c54o69jbn3z6yd7"},
+        {"nome": "Datas Comemorativas 11.png", "feed": "https://canva.link/13lvjkyim37o7rj", "story": "https://canva.link/pfkkj8p4fkwxy6d"},
+        {"nome": "Datas Comemorativas 12.png", "feed": "https://canva.link/4wggpocbjjtxtqd", "story": "https://canva.link/d7inwhu2buy9yjs"},
+        {"nome": "Datas Comemorativas 13.png", "feed": "https://canva.link/eo2eli5c4ttctyd", "story": "https://canva.link/arfkl6dqugk1bkh"},
+        {"nome": "Datas Comemorativas 14.png", "feed": "https://canva.link/oi4pkedd0cxgvti", "story": "https://canva.link/gkfa8a7i8mlpxwb"},
+        {"nome": "Datas Comemorativas 15.png", "feed": "https://canva.link/3n44wxkrar8pbfn", "story": "https://canva.link/ptr9avt6mo1hywf"},
     ]
 
     # Grid organizada em 3 colunas largas para exibição das mídias
