@@ -4,7 +4,7 @@ import sys
 import os
 
 # --- CONFIGURAÇÃO DE ROTAS E DIRETÓRIOS ---
-PASTA_CANVA = "pages.templates_canva"   # Nome corrigido (sem espaço)
+PASTA_CANVA = "pages.templates_canva"
 
 PAGINAS_CANVA = [
     {"icone": "⛪", "titulo": "Cultos Gerais",        "modulo": f"{PASTA_CANVA}.Cultos_Gerais",        "capa": "Cultos Gerais 08.jpg"},
@@ -27,7 +27,6 @@ PORTAIS = [
 ]
 
 def renderizar_css_botoes():
-    """Aplica a estilização limpa para os botões padrões do sistema."""
     st.markdown("""
         <style>
         div.stButton > button {
@@ -38,7 +37,6 @@ def renderizar_css_botoes():
             border: none !important;
             height: 48px !important;
             transition: background-color 0.2s !important;
-            margin-top: 5px !important;
         }
         div.stButton > button:hover {
             background-color: #3ccb57 !important;
@@ -47,9 +45,7 @@ def renderizar_css_botoes():
     """, unsafe_allow_html=True)
 
 def carregar_modulo_dinamico(caminho_modulo):
-    """Importa e executa o módulo com melhor tratamento de erro."""
     try:
-        # Remove do cache para evitar problemas de cache antigo
         if caminho_modulo in sys.modules:
             del sys.modules[caminho_modulo]
             
@@ -58,35 +54,30 @@ def carregar_modulo_dinamico(caminho_modulo):
         if hasattr(modulo, "exibir"):
             modulo.exibir()
         else:
-            st.error(f"❌ O módulo {caminho_modulo} não possui a função `exibir()`.")
+            st.error(f"❌ O módulo {caminho_modulo} não possui a função exibir().")
             
     except ModuleNotFoundError:
         st.error(f"❌ Módulo não encontrado: **{caminho_modulo}**")
-        st.info("💡 Verifique se:")
-        st.info("   • A pasta `pages/templates_canva` existe **sem espaços** no nome")
-        st.info("   • O arquivo `.py` existe dentro da pasta")
-        st.info("   • O nome do arquivo está correto (case-sensitive)")
-        
+        st.info("💡 Dicas:")
+        st.info("• A pasta `pages/templates_canva` deve existir **sem espaços** no nome")
+        st.info("• O arquivo `.py` deve estar dentro dela")
     except Exception as e:
-        st.error(f"❌ Erro ao carregar o módulo **{caminho_modulo}**")
-        st.info("Isso geralmente acontece por nome de pasta incorreto ou arquivo faltando.")
-        with st.expander("Detalhes técnicos do erro"):
+        st.error(f"❌ Erro ao carregar **{caminho_modulo}**")
+        with st.expander("Detalhes do erro"):
             st.exception(e)
 
 def exibir():
     renderizar_css_botoes()
 
-    # Inicialização dos estados de navegação
     if 'portal_atual' not in st.session_state:
         st.session_state.portal_atual = None
     if 'sub_pagina_canva' not in st.session_state:
         st.session_state.sub_pagina_canva = None
 
-    # --- NÍVEL 1: MENU PRINCIPAL ---
+    # MENU PRINCIPAL
     if st.session_state.portal_atual is None:
         st.markdown("<h1 style='color: white;'>🏠 Painel Inicial</h1>", unsafe_allow_html=True)
         nome = st.session_state.get('nome_usuario', 'Irmão')
-        
         st.success(f"👋 Olá, **{nome}** | Seu acesso está liberado!")
         st.markdown("### 🚀 Acesse os módulos do seu portal:")
 
@@ -110,7 +101,7 @@ def exibir():
                     st.session_state.portal_atual = portal['chave']
                     st.rerun()
 
-    # --- NÍVEL 2: TEMPLATES CANVA ---
+    # VITRINE TEMPLATES CANVA
     elif st.session_state.portal_atual == "templates_canva" and st.session_state.sub_pagina_canva is None:
         if st.button("⬅️ VOLTAR AO MENU PRINCIPAL", use_container_width=True):
             st.session_state.portal_atual = None
@@ -121,7 +112,7 @@ def exibir():
         cols_canva = st.columns(3)
         for i, pagina in enumerate(PAGINAS_CANVA):
             with cols_canva[i % 3]:
-                caminho_capa = f"assets/{pagina['capa']}" if pagina['capa'] else ""
+                caminho_capa = f"assets/{pagina['capa']}" if pagina.get('capa') else ""
                 if caminho_capa and os.path.exists(caminho_capa):
                     st.image(caminho_capa, use_container_width=True)
                 else:
@@ -137,10 +128,28 @@ def exibir():
                     st.session_state.sub_pagina_canva = pagina['modulo']
                     st.rerun()
 
-    # --- NÍVEL 3: DENTRO DE UMA CATEGORIA DE TEMPLATES ---
+    # PÁGINA INTERNA DE TEMPLATES
     elif st.session_state.portal_atual == "templates_canva" and st.session_state.sub_pagina_canva is not None:
         if st.button("⬅️ VOLTAR PARA TEMPLATES CANVA", use_container_width=True):
             st.session_state.sub_pagina_canva = None
             st.rerun()
-            
-        carregar_modulo_dinamico(st.session_state.sub_pagina_canva
+        carregar_modulo_dinamico(st.session_state.sub_pagina_canva)
+
+    # OUTROS PORTAIS
+    else:
+        if st.button("⬅️ VOLTAR AO MENU PRINCIPAL", use_container_width=True):
+            st.session_state.portal_atual = None
+            st.rerun()
+        st.warning("🔧 Este módulo ainda está em desenvolvimento.")
+
+    # LOGOUT
+    st.markdown("<br><br><br><hr style='border-color: #1f1f1f;'>", unsafe_allow_html=True)
+    if st.button("🚪 DESLOGAR DO SISTEMA", use_container_width=True):
+        for key in list(st.session_state.keys()):
+            if key not in ['logado']:
+                del st.session_state[key]
+        st.session_state.logado = False
+        st.rerun()
+
+if __name__ == "__main__":
+    exibir()
