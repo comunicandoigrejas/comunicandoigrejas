@@ -65,8 +65,8 @@ def exibir():
             # Botões dinâmicos horizontais apontando direto para os templates do Canva
             b_feed, b_story = st.columns(2)
             with b_feed:
-                st.link_button("📱 FEED (1:1)", arte["feed"], use_container_width=True)
+                st.link_button("📱 FEED", arte["feed"], use_container_width=True)
             with b_story:
-                st.link_button("📐 STORY (9:16)", arte["story"], use_container_width=True)
+                st.link_button("📐 STORY", arte["story"], use_container_width=True)
             
             st.markdown("<br>", unsafe_allow_html=True)
