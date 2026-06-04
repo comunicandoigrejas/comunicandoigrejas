@@ -13,7 +13,7 @@ PAGINAS_CANVA = [
     {"icone": "🧔", "titulo": "Culto de Homens",       "modulo": f"{PASTA_CANVA}.Homens",               "capa": "Homens 01.png"},
     {"icone": "🧸", "titulo": "Culto Infantil",         "modulo": f"{PASTA_CANVA}.Infantil",             "capa": None},
     {"icone": "⚡", "titulo": "Culto de Jovens",       "modulo": f"{PASTA_CANVA}.Jovens",               "capa": None},
-    {"icone": "🌸", "titulo": "Culto de Mulheres",     "modulo": f"{PASTA_CANVA}.Mulheres",             "capa": None},
+    {"icone": "🌸", "titulo": "Culto de Mulheres",     "modulo": f"{PASTA_CANVA}.Mulheres",             "capa": "Mulher 09.png"},
     {"icone": "🍷", "titulo": "Culto de Ceia",          "modulo": f"{PASTA_CANVA}.Santa_Ceia",           "capa": None},
 ]
 
