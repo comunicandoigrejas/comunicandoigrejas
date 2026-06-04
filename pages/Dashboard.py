@@ -8,7 +8,7 @@ PASTA_CANVA = "pages.templates_canva"
 
 PAGINAS_CANVA = [
     {"icone": "⛪", "titulo": "Cultos Gerais",        "modulo": f"{PASTA_CANVA}.Cultos_Gerais",        "capa": "Cultos Gerais 08.jpg"},
-    {"icone": "🎉", "titulo": "Datas Comemorativas",  "modulo": f"{PASTA_CANVA}.Datas_Comemorativas",  "capa": None},
+    {"icone": "🎉", "titulo": "Datas Comemorativas",  "modulo": f"{PASTA_CANVA}.Datas_Comemorativas",  "capa": "Comemorativa 14.png"},
     {"icone": "👨‍👩‍👧‍👦", "titulo": "Culto da Família",     "modulo": f"{PASTA_CANVA}.Familia",              "capa": "Culto Familia 08.png"},
     {"icone": "🧔", "titulo": "Culto de Homens",       "modulo": f"{PASTA_CANVA}.Homens",               "capa": "Homens 01.png"},
     {"icone": "🧸", "titulo": "Culto Infantil",         "modulo": f"{PASTA_CANVA}.Infantil",             "capa": None},
