@@ -28,15 +28,15 @@ def exibir():
 
     # Lista estruturada com as 9 mídias e seus respectivos links oficiais de Feed e Story
     artes_infantil = [
-        {"nome": "Culto Infantil 01.jpg", "feed": "https://canva.link/v4kmuk6aklzvx4t", "story": "https://canva.link/cfsvbw2tu16gcxy"},
-        {"nome": "Culto Infantil 02.jpg", "feed": "https://canva.link/7v0vr69th916y3r", "story": "https://canva.link/kbgu19at8m8ux4y"},
-        {"nome": "Culto Infantil 03.jpg", "feed": "https://canva.link/h2rupxa1wjdpefy", "story": "https://canva.link/95qzq4up1h8evg7"},
-        {"nome": "Culto Infantil 04.jpg", "feed": "https://canva.link/apapuidnikn6wu5", "story": "https://canva.link/mijp8nc7bb22zv7"},
-        {"nome": "Culto Infantil 05.jpg", "feed": "https://canva.link/1nlqibv2yrkfis9", "story": "https://canva.link/p03j3dp2l6q0lg7"},
-        {"nome": "Culto Infantil 06.jpg", "feed": "https://canva.link/fr8e79rz1h2otxi", "story": "https://canva.link/lb2u82yrhbcahua"},
-        {"nome": "Culto Infantil 07.jpg", "feed": "https://canva.link/xieny074bew0uv8", "story": "https://canva.link/jllanhplkfris0h"},
-        {"nome": "Culto Infantil 08.jpg", "feed": "https://canva.link/w5nzea5xy65otnt", "story": "https://canva.link/9sztooeifsyc9dr"},
-        {"nome": "Culto Infantil 09.jpg", "feed": "https://canva.link/5n55y3s83qhd6j2", "story": "https://canva.link/rasx5l5kp23mfc8"},
+        {"nome": "Culto Infantil 01.png", "feed": "https://canva.link/v4kmuk6aklzvx4t", "story": "https://canva.link/cfsvbw2tu16gcxy"},
+        {"nome": "Culto Infantil 02.png", "feed": "https://canva.link/7v0vr69th916y3r", "story": "https://canva.link/kbgu19at8m8ux4y"},
+        {"nome": "Culto Infantil 03.png", "feed": "https://canva.link/h2rupxa1wjdpefy", "story": "https://canva.link/95qzq4up1h8evg7"},
+        {"nome": "Culto Infantil 04.png", "feed": "https://canva.link/apapuidnikn6wu5", "story": "https://canva.link/mijp8nc7bb22zv7"},
+        {"nome": "Culto Infantil 05.png", "feed": "https://canva.link/1nlqibv2yrkfis9", "story": "https://canva.link/p03j3dp2l6q0lg7"},
+        {"nome": "Culto Infantil 06.png", "feed": "https://canva.link/fr8e79rz1h2otxi", "story": "https://canva.link/lb2u82yrhbcahua"},
+        {"nome": "Culto Infantil 07.png", "feed": "https://canva.link/xieny074bew0uv8", "story": "https://canva.link/jllanhplkfris0h"},
+        {"nome": "Culto Infantil 08.png", "feed": "https://canva.link/w5nzea5xy65otnt", "story": "https://canva.link/9sztooeifsyc9dr"},
+        {"nome": "Culto Infantil 09.png", "feed": "https://canva.link/5n55y3s83qhd6j2", "story": "https://canva.link/rasx5l5kp23mfc8"},
     ]
 
     # Grid organizada em 3 colunas de exibição
