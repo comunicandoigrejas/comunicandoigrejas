@@ -11,7 +11,7 @@ PAGINAS_CANVA = [
     {"icone": "🎉", "titulo": "Datas Comemorativas",  "modulo": f"{PASTA_CANVA}.Datas_Comemorativas",  "capa": "Comemorativa 14.png"},
     {"icone": "👨‍👩‍👧‍👦", "titulo": "Culto da Família",     "modulo": f"{PASTA_CANVA}.Familia",              "capa": "Culto Familia 08.png"},
     {"icone": "🧔", "titulo": "Culto de Homens",       "modulo": f"{PASTA_CANVA}.Homens",               "capa": "Homens 01.png"},
-    {"icone": "🧸", "titulo": "Culto Infantil",         "modulo": f"{PASTA_CANVA}.Infantil",             "capa": None},
+    {"icone": "🧸", "titulo": "Culto Infantil",         "modulo": f"{PASTA_CANVA}.Infantil",             "capa": "Infantil 01.png"},
     {"icone": "⚡", "titulo": "Culto de Jovens",       "modulo": f"{PASTA_CANVA}.Jovens",               "capa": None},
     {"icone": "🌸", "titulo": "Culto de Mulheres",     "modulo": f"{PASTA_CANVA}.Mulheres",             "capa": "Mulher 09.png"},
     {"icone": "🍷", "titulo": "Culto de Ceia",          "modulo": f"{PASTA_CANVA}.Santa_Ceia",           "capa": "Santa Ceia 01.png"},
