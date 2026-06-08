@@ -2,7 +2,7 @@ import streamlit as st
 import os
 
 def exibir():
-    st.markdown("<h2 style='text-align: center; color: white; font-weight: bold;'>⬜ MODELOS DISPONÍVEIS: AÇÃO SOCIAL</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: white; font-weight: bold;'>🤝 MODELOS DISPONÍVEIS: AÇÃO SOCIAL</h2>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: #888; font-size: 0.95rem;'>Escolha o formato desejado para abrir o modelo editável diretamente no seu Canva.</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
