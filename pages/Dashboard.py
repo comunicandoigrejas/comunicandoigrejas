@@ -30,7 +30,7 @@ PAGINAS_CANVA = [
 
 PORTAIS = [
     {"titulo": "TEMPLATES CANVA",            "chave": "templates_canva", "icone": "🎨", "capa": "capa_canva.png",        "modulo": None},
-    {"titulo": "BÔNUS",                      "chave": "bonus",           "icone": "🎁", "capa": "capa_bonus.png",        "modulo": "pages.bonus.inicial"},
+    {"titulo": "BÔNUS",                      "chave": "bonus",           "icone": "🎁", "capa": "capa_bonus.png",        "modulo": "bonus"},
     {"titulo": "FERRAMENTAS",                "chave": "ferramentas",     "icone": "🛠️", "capa": "capa_ferramentas.png",   "modulo": "pages.ferramentas.inicial"},
     {"titulo": "KIT MINISTÉRIO INFANTIL",     "chave": "kit_infantil",    "icone": "🧸", "capa": "capa_kit_infantil.png",  "modulo": "pages.kit_infantil.inicial"},
     {"titulo": "KIT SECRETARIA DE IGREJA",   "chave": "secretaria",      "icone": "📁", "capa": "capa_secretaria.png",   "modulo": "pages.secretaria.inicial"},
