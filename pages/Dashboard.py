@@ -31,7 +31,7 @@ PAGINAS_CANVA = [
 PORTAIS = [
     {"titulo": "TEMPLATES CANVA",            "chave": "templates_canva", "icone": "🎨", "capa": "capa_canva.png",        "modulo": None},
     {"titulo": "BÔNUS",                      "chave": "bonus",           "icone": "🎁", "capa": "capa_bonus.png",        "modulo": "bonus"},
-    {"titulo": "FERRAMENTAS",                "chave": "ferramentas",     "icone": "🛠️", "capa": "capa_ferramentas.png",   "modulo": "pages.ferramentas.inicial"},
+    {"titulo": "FERRAMENTAS",                "chave": "ferramentas",     "icone": "🛠️", "capa": "capa_ferramentas.png",   "modulo": "ferramentas"},
     {"titulo": "KIT MINISTÉRIO INFANTIL",     "chave": "kit_infantil",    "icone": "🧸", "capa": "capa_kit_infantil.png",  "modulo": "pages.kit_infantil.inicial"},
     {"titulo": "KIT SECRETARIA DE IGREJA",   "chave": "secretaria",      "icone": "📁", "capa": "capa_secretaria.png",   "modulo": "pages.secretaria.inicial"},
     {"titulo": "SERMÃOS PRONTOS",            "chave": "sermoes",         "icone": "📖", "capa": "capa_sermoes.png",       "modulo": "pages.sermoes.inicial"},
