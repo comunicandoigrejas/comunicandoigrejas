@@ -7,25 +7,25 @@ import os
 PASTA_CANVA = "pages.templates_canva"
 
 PAGINAS_CANVA = [
-    {"icone": "⛪", "titulo": "Cultos Gerais",        "modulo": f"{PASTA_CANVA}.Cultos_Gerais",        "capa": "Cultos Gerais 08.jpg"},
-    {"icone": "🎉", "titulo": "Datas Comemorativas",  "modulo": f"{PASTA_CANVA}.Datas_Comemorativas",  "capa": "Comemorativa 14.png"},
-    {"icone": "👨‍👩‍👧‍👦", "titulo": "Culto da Família",     "modulo": f"{PASTA_CANVA}.Familia",              "capa": "Culto Familia 08.png"},
-    {"icone": "🧔", "titulo": "Culto de Homens",       "modulo": f"{PASTA_CANVA}.Homens",               "capa": "Homens 01.png"},
-    {"icone": "🧸", "titulo": "Culto Infantil",         "modulo": f"{PASTA_CANVA}.Infantil",             "capa": "Infantil 01.png"},
-    {"icone": "⚡", "titulo": "Culto de Jovens",       "modulo": f"{PASTA_CANVA}.Jovens",               "capa": "Jovens 06.png"},
-    {"icone": "🌸", "titulo": "Culto de Mulheres",     "modulo": f"{PASTA_CANVA}.Mulheres",             "capa": "Mulher 09.png"},
-    {"icone": "🍷", "titulo": "Culto de Ceia",          "modulo": f"{PASTA_CANVA}.Santa_Ceia",           "capa": "Santa Ceia 01.png"},
-    {"icone": "📢", "titulo": "Campanhas",              "modulo": f"{PASTA_CANVA}.Campanhas",           "capa": "Campanha 01.png"},
-    {"icone": "🔄", "titulo": "Atualizações Semanais",  "modulo": f"{PASTA_CANVA}.Atualizacoes_Semanais","capa": "Santa Ceia 01.png"},
-    {"icone": "⬜", "titulo": "Ação Social",            "modulo": f"{PASTA_CANVA}.Acao_Social",          "capa": "Santa Ceia 01.png"},
-    {"icone": "📅", "titulo": "Agenda",                "modulo": f"{PASTA_CANVA}.Agenda",                "capa": "Santa Ceia 01.png"},
-    {"icone": "🌊", "titulo": "Batismo",               "modulo": f"{PASTA_CANVA}.Batismo",               "capa": "Santa Ceia 01.png"},
-    {"icone": "🏡", "titulo": "Culto de Célula",        "modulo": f"{PASTA_CANVA}.Culto_Celular",        "capa": "Santa Ceia 01.png"},
-    {"icone": "🌍", "titulo": "Culto de Missões",       "modulo": f"{PASTA_CANVA}.Culto_Missoes",        "capa": "Santa Ceia 01.png"},
-    {"icone": "💍", "titulo": "Encontro de Casais",     "modulo": f"{PASTA_CANVA}.Encontro_Casais",      "capa": "Santa Ceia 01.png"},
-    {"icone": "🎪", "titulo": "Eventos",               "modulo": f"{PASTA_CANVA}.Eventos",               "capa": "Santa Ceia 01.png"},
-    {"icone": "ℹ️", "titulo": "Informações Gerais",     "modulo": f"{PASTA_CANVA}.Informacoes_Gerais",   "capa": "Santa Ceia 01.png"},
-    {"icone": "🎨", "titulo": "Outros Temas",           "modulo": f"{PASTA_CANVA}.Outros_Temas",         "capa": "Santa Ceia 01.png"},
+    {"icone": "⬜", "titulo": "Ação Social",            "modulo": f"{PASTA_CANVA}.Acao_Social",           "capa": "Acao_Social.png"},
+    {"icone": "📅", "titulo": "Agenda",                "modulo": f"{PASTA_CANVA}.Agenda",                "capa": "Agenda.png"},
+    {"icone": "🔄", "titulo": "Atualizações Semanais",  "modulo": f"{PASTA_CANVA}.Atualizacoes_Semanais",  "capa": "Atualizacoes_Semanais.png"},
+    {"icone": "🌊", "titulo": "Batismo",               "modulo": f"{PASTA_CANVA}.Batismo",               "capa": "Batismo.png"},
+    {"icone": "📢", "titulo": "Campanhas",             "modulo": f"{PASTA_CANVA}.Campanhas",             "capa": "Campanha 01.png"},
+    {"icone": "⛪", "titulo": "Cultos Gerais",          "modulo": f"{PASTA_CANVA}.Cultos_Gerais",          "capa": "Cultos Gerais 08.jpg"},
+    {"icone": "🏡", "titulo": "Culto de Célula",        "modulo": f"{PASTA_CANVA}.Culto_Celular",         "capa": "Culto_Celular.png"},
+    {"icone": "👨‍👩‍👧‍👦", "titulo": "Culto da Família",       "modulo": f"{PASTA_CANVA}.Familia",               "capa": "Culto Familia 08.png"},
+    {"icone": "🧔", "titulo": "Culto de Homens",        "modulo": f"{PASTA_CANVA}.Homens",                "capa": "Homens 01.png"},
+    {"icone": "🧸", "titulo": "Culto Infantil",          "modulo": f"{PASTA_CANVA}.Infantil",              "capa": "Infantil 01.png"},
+    {"icone": "⚡", "titulo": "Culto de Jovens",        "modulo": f"{PASTA_CANVA}.Jovens",                "capa": "Jovens 06.png"},
+    {"icone": "🌍", "titulo": "Culto de Missões",       "modulo": f"{PASTA_CANVA}.Culto_Missoes",         "capa": "Culto_Missoes.png"},
+    {"icone": "🌸", "titulo": "Culto de Mulheres",      "modulo": f"{PASTA_CANVA}.Mulheres",              "capa": "Mulher 09.png"},
+    {"icone": "🍷", "titulo": "Culto de Ceia",          "modulo": f"{PASTA_CANVA}.Santa_Ceia",             "capa": "Santa Ceia 01.png"},
+    {"icone": "🎉", "titulo": "Datas Comemorativas",    "modulo": f"{PASTA_CANVA}.Datas_Comemorativas",    "capa": "Comemorativa 14.png"},
+    {"icone": "💍", "titulo": "Encontro de Casais",     "modulo": f"{PASTA_CANVA}.Encontro_Casais",       "capa": "Encontro_Casais.png"},
+    {"icone": "🎪", "titulo": "Eventos",               "modulo": f"{PASTA_CANVA}.Eventos",               "capa": "Eventos.png"},
+    {"icone": "ℹ️", "titulo": "Informações Gerais",     "modulo": f"{PASTA_CANVA}.Informacoes_Gerais",    "capa": "Informacoes_Gerais.png"},
+    {"icone": "🎨", "titulo": "Outros Temas",           "modulo": f"{PASTA_CANVA}.Outros_Temas",          "capa": "Outros_Temas.png"},
 ]
 
 PORTAIS = [
@@ -69,9 +69,7 @@ def carregar_modulo_dinamico(caminho_modulo):
             
     except ModuleNotFoundError:
         st.error(f"❌ Módulo não encontrado: **{caminho_modulo}**")
-        st.info("💡 Dicas:")
-        st.info("• A pasta `pages/templates_canva` deve existir **sem espaços** no nome")
-        st.info("• O arquivo `.py` deve estar dentro dela")
+        st.info("💡 Dica: Crie o arquivo correspondente para que o botão funcione.")
     except Exception as e:
         st.error(f"❌ Erro ao carregar **{caminho_modulo}**")
         with st.expander("Detalhes do erro"):
@@ -124,14 +122,17 @@ def exibir():
         for i, pagina in enumerate(PAGINAS_CANVA):
             with cols_canva[i % 3]:
                 caminho_capa = f"assets/{pagina['capa']}" if pagina.get('capa') else ""
+                
+                # CORREÇÃO CRUCIAL: Se a capa não existir fisicamente, o app não quebra e desenha o card cinza com o ícone!
                 if caminho_capa and os.path.exists(caminho_capa):
                     st.image(caminho_capa, use_container_width=True)
                 else:
                     st.markdown(f"""
                         <div style='background-color: #1a1a1a; height: 180px; display: flex; 
                         align-items: center; justify-content: center; border-radius: 8px; 
-                        color: #555; font-size:0.85rem; border: 1px dashed #333;'>
-                        {pagina['icone']}<br>{pagina['titulo']}
+                        color: #eee; font-size:1rem; border: 1px dashed #444; font-weight: bold;
+                        text-align: center; padding: 20px; margin-bottom: 5px;'>
+                        <span style='font-size: 2rem;'>{pagina['icone']}</span><br><br>{pagina['titulo']}
                         </div>
                     """, unsafe_allow_html=True)
                 
