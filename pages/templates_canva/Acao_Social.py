@@ -30,7 +30,7 @@ def exibir():
     artes_acao = [
         {"nome": "Ação 01.png", "feed": "https://canva.link/uew46jomhs413tk", "story": "https://canva.link/650id0yndi1cwez"},
         {"nome": "Ação 02.png", "feed": "https://canva.link/yw7ssns1snpyjo3", "story": "https://canva.link/bgfltnecs11kmoi"},
-        {"nome": "Ação 03.png", "feed": "https://canva.link/07z9f9g4ihyio2g", "story": "https://canva.link/1f5rcnadil7z0v7"},
+        {"nome": "Acao 03.png", "feed": "https://canva.link/07z9f9g4ihyio2g", "story": "https://canva.link/1f5rcnadil7z0v7"},
         {"nome": "Ação 04.png", "feed": "https://canva.link/knnu5mg8b0qvrcw", "story": "https://canva.link/mjld03s9p0kjgsw"},
         {"nome": "Ação 05.png", "feed": "https://canva.link/uk4xmq11ra01a5r", "story": "https://canva.link/j1d0shcg2vwijlx"},
         {"nome": "Ação 06.png", "feed": "https://canva.link/s1r5j071gjnuwca", "story": "https://canva.link/m7a7xh2jrt1m5zr"},
