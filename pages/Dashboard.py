@@ -15,6 +15,17 @@ PAGINAS_CANVA = [
     {"icone": "⚡", "titulo": "Culto de Jovens",       "modulo": f"{PASTA_CANVA}.Jovens",               "capa": "Jovens 06.png"},
     {"icone": "🌸", "titulo": "Culto de Mulheres",     "modulo": f"{PASTA_CANVA}.Mulheres",             "capa": "Mulher 09.png"},
     {"icone": "🍷", "titulo": "Culto de Ceia",          "modulo": f"{PASTA_CANVA}.Santa_Ceia",           "capa": "Santa Ceia 01.png"},
+    {"icone": "📢", "titulo": "Campanhas",              "modulo": f"{PASTA_CANVA}.Campanhas",           "capa": "Campanha 01.png"},
+    {"icone": "🔄", "titulo": "Atualizações Semanais",  "modulo": f"{PASTA_CANVA}.Atualizacoes_Semanais","capa": "Santa Ceia 01.png"},
+    {"icone": "⬜", "titulo": "Ação Social",            "modulo": f"{PASTA_CANVA}.Acao_Social",          "capa": "Santa Ceia 01.png"},
+    {"icone": "📅", "titulo": "Agenda",                "modulo": f"{PASTA_CANVA}.Agenda",                "capa": "Santa Ceia 01.png"},
+    {"icone": "🌊", "titulo": "Batismo",               "modulo": f"{PASTA_CANVA}.Batismo",               "capa": "Santa Ceia 01.png"},
+    {"icone": "🏡", "titulo": "Culto de Célula",        "modulo": f"{PASTA_CANVA}.Culto_Celular",        "capa": "Santa Ceia 01.png"},
+    {"icone": "🌍", "titulo": "Culto de Missões",       "modulo": f"{PASTA_CANVA}.Culto_Missoes",        "capa": "Santa Ceia 01.png"},
+    {"icone": "💍", "titulo": "Encontro de Casais",     "modulo": f"{PASTA_CANVA}.Encontro_Casais",      "capa": "Santa Ceia 01.png"},
+    {"icone": "🎪", "titulo": "Eventos",               "modulo": f"{PASTA_CANVA}.Eventos",               "capa": "Santa Ceia 01.png"},
+    {"icone": "ℹ️", "titulo": "Informações Gerais",     "modulo": f"{PASTA_CANVA}.Informacoes_Gerais",   "capa": "Santa Ceia 01.png"},
+    {"icone": "🎨", "titulo": "Outros Temas",           "modulo": f"{PASTA_CANVA}.Outros_Temas",         "capa": "Santa Ceia 01.png"},
 ]
 
 PORTAIS = [
