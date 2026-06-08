@@ -28,13 +28,14 @@ PAGINAS_CANVA = [
     {"icone": "🎨", "titulo": "Outros Temas",           "modulo": f"{PASTA_CANVA}.Outros_Temas",          "capa": "Outros_Temas.png"},
 ]
 
+# CORREÇÃO: Rotas ajustadas com o padrão completo 'pages.nome_da_pasta.inicial'
 PORTAIS = [
     {"titulo": "TEMPLATES CANVA",            "chave": "templates_canva", "icone": "🎨", "capa": "capa_canva.png",        "modulo": None},
     {"titulo": "BÔNUS",                      "chave": "bonus",           "icone": "🎁", "capa": "capa_bonus.png",        "modulo": "pages.bonus.inicial"},
-    {"titulo": "FERRAMENTAS",                "chave": "ferramentas",     "icone": "🛠️", "capa": "capa_ferramentas.png",   "modulo": "ferramentas"},
-    {"titulo": "KIT MINISTÉRIO INFANTIL",     "chave": "kit_infantil",    "icone": "🧸", "capa": "capa_kit_infantil.png",  "modulo": "kit_infantil"},
-    {"titulo": "KIT SECRETARIA DE IGREJA",   "chave": "secretaria",      "icone": "📁", "capa": "capa_secretaria.png",   "modulo": "secretaria"},
-    {"titulo": "SERMÃOS PRONTOS",            "chave": "sermoes",         "icone": "📖", "capa": "capa_sermoes.png",       "modulo": "sermoes"},
+    {"titulo": "FERRAMENTAS",                "chave": "ferramentas",     "icone": "🛠️", "capa": "capa_ferramentas.png",   "modulo": "pages.ferramentas.inicial"},
+    {"titulo": "KIT MINISTÉRIO INFANTIL",     "chave": "kit_infantil",    "icone": "🧸", "capa": "capa_kit_infantil.png",  "modulo": "pages.kit_infantil.inicial"},
+    {"titulo": "KIT SECRETARIA DE IGREJA",   "chave": "secretaria",      "icone": "📁", "capa": "capa_secretaria.png",   "modulo": "pages.secretaria.inicial"},
+    {"titulo": "SERMÃOS PRONTOS",            "chave": "sermoes",         "icone": "📖", "capa": "capa_sermoes.png",       "modulo": "pages.sermoes.inicial"},
 ]
 
 def renderizar_css_botoes():
@@ -108,6 +109,8 @@ def exibir():
                 
                 if st.button(f"ACESSAR {portal['titulo']}", key=f"btn_p_{portal['chave']}", use_container_width=True):
                     st.session_state.portal_atual = portal['chave']
+                    # CORREÇÃO CRUCIAL: Salva a rota do módulo direto no session_state para carregar depois
+                    st.session_state.modulo_atual_rota = portal['modulo']
                     st.rerun()
 
     # VITRINE TEMPLATES CANVA
@@ -123,8 +126,7 @@ def exibir():
             with cols_canva[i % 3]:
                 caminho_capa = f"assets/{pagina['capa']}" if pagina.get('capa') else ""
                 
-                # CORREÇÃO CRUCIAL: Se a capa não existir fisicamente, o app não quebra e desenha o card cinza com o ícone!
-                if caminho_capa and os.path.exists(caminho_capa):
+                if camino_capa and os.path.exists(caminho_capa):
                     st.image(caminho_capa, use_container_width=True)
                 else:
                     st.markdown(f"""
@@ -140,19 +142,25 @@ def exibir():
                     st.session_state.sub_pagina_canva = pagina['modulo']
                     st.rerun()
 
-    # PÁGINA INTERNA DE TEMPLATES
+    # PÁGINA INTERNA DE TEMPLATES CANVA
     elif st.session_state.portal_atual == "templates_canva" and st.session_state.sub_pagina_canva is not None:
         if st.button("⬅️ VOLTAR PARA TEMPLATES CANVA", use_container_width=True):
             st.session_state.sub_pagina_canva = None
             st.rerun()
         carregar_modulo_dinamico(st.session_state.sub_pagina_canva)
 
-    # OUTROS PORTAIS
+    # CORREÇÃO: ABRE QUALQUER OUTRO PORTAL DINAMICAMENTE (Bônus, Ferramentas, Secretaria, etc.)
     else:
         if st.button("⬅️ VOLTAR AO MENU PRINCIPAL", use_container_width=True):
             st.session_state.portal_atual = None
+            st.session_state.modulo_atual_rota = None
             st.rerun()
-        st.warning("🔧 Este módulo ainda está em desenvolvimento.")
+        
+        rota = st.session_state.get('modulo_atual_rota', None)
+        if rota:
+            carregar_modulo_dinamico(rota)
+        else:
+            st.warning("🔧 Este módulo ainda está em desenvolvimento.")
 
     # LOGOUT
     st.markdown("<br><br><br><hr style='border-color: #1f1f1f;'>", unsafe_allow_html=True)
