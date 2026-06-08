@@ -30,11 +30,11 @@ PAGINAS_CANVA = [
 
 PORTAIS = [
     {"titulo": "TEMPLATES CANVA",            "chave": "templates_canva", "icone": "🎨", "capa": "capa_canva.png",        "modulo": None},
-    {"titulo": "BÔNUS",                      "chave": "bonus",           "icone": "🎁", "capa": "capa_bonus.jpg",        "modulo": "pages.bonus.inicial"},
-    {"titulo": "FERRAMENTAS",                "chave": "ferramentas",     "icone": "🛠️", "capa": "capa_ferramentas.jpg",   "modulo": "pages.ferramentas.inicial"},
-    {"titulo": "KIT MINISTÉRIO INFANTIL",     "chave": "kit_infantil",    "icone": "🧸", "capa": "capa_kit_infantil.jpg",  "modulo": "pages.kit_infantil.inicial"},
-    {"titulo": "KIT SECRETARIA DE IGREJA",   "chave": "secretaria",      "icone": "📁", "capa": "capa_secretaria.jpg",   "modulo": "pages.secretaria.inicial"},
-    {"titulo": "SERMÃOS PRONTOS",            "chave": "sermoes",         "icone": "📖", "capa": "capa_sermoes.jpg",       "modulo": "pages.sermoes.inicial"},
+    {"titulo": "BÔNUS",                      "chave": "bonus",           "icone": "🎁", "capa": "capa_bonus.png",        "modulo": "pages.bonus.inicial"},
+    {"titulo": "FERRAMENTAS",                "chave": "ferramentas",     "icone": "🛠️", "capa": "capa_ferramentas.png",   "modulo": "pages.ferramentas.inicial"},
+    {"titulo": "KIT MINISTÉRIO INFANTIL",     "chave": "kit_infantil",    "icone": "🧸", "capa": "capa_kit_infantil.png",  "modulo": "pages.kit_infantil.inicial"},
+    {"titulo": "KIT SECRETARIA DE IGREJA",   "chave": "secretaria",      "icone": "📁", "capa": "capa_secretaria.png",   "modulo": "pages.secretaria.inicial"},
+    {"titulo": "SERMÃOS PRONTOS",            "chave": "sermoes",         "icone": "📖", "capa": "capa_sermoes.png",       "modulo": "pages.sermoes.inicial"},
 ]
 
 def renderizar_css_botoes():
