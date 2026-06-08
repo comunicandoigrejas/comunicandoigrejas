@@ -8,7 +8,7 @@ PASTA_CANVA = "pages.templates_canva"
 
 PAGINAS_CANVA = [
     {"icone": "⬜", "titulo": "Ação Social",            "modulo": f"{PASTA_CANVA}.Acao_Social",           "capa": "Acao_Social.png"},
-    {"icone": "📅", "titulo": "Agenda",                "modulo": f"{PASTA_CANVA}.Agenda",                "capa": "Agenda.png"},
+    {"icone": "📅", "titulo": "Agenda",                "modulo": f"{PASTA_CANVA}.Agenda",                "capa": "Agenda 01.png"},
     {"icone": "🔄", "titulo": "Atualizações Semanais",  "modulo": f"{PASTA_CANVA}.Atualizacoes_Semanais",  "capa": "Atualizacoes_Semanais.png"},
     {"icone": "🌊", "titulo": "Batismo",               "modulo": f"{PASTA_CANVA}.Batismo",               "capa": "Batismo.png"},
     {"icone": "📢", "titulo": "Campanhas",             "modulo": f"{PASTA_CANVA}.Campanhas",             "capa": "Campanha 01.png"},
