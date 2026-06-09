@@ -38,31 +38,31 @@ def exibir():
             "titulo": "🔢 Atividades com Números", 
             "desc": "Exercícios dinâmicos e atividades numéricas estruturadas para fixação e aprendizado infantil.", 
             "link": "https://drive.google.com/drive/folders/1KNfSYAuk2ZWOPL-91liNAPqxKgGi9F3F?usp=drive_link",
-            "capa": None # Pronto para colocar o nome do arquivo quando você tiver
+            "capa": "Numeros.png" # Pronto para colocar o nome do arquivo quando você tiver
         },
         {
             "titulo": "📖 Bíblia Infantil", 
             "desc": "Histórias e visuais adaptados com linguagem simples e envolvente para o entendimento dos pequeninos.", 
             "link": "https://drive.google.com/drive/folders/1iFZlMEpedSIucCBmqkjEp_9zRM2zKFhe?usp=drive_link",
-            "capa": None
+            "capa": "Biblia.png"
         },
         {
             "titulo": "🎨 Bíblia para Colorir", 
             "desc": "Páginas com cenários e relatos bíblicos marcantes prontos para imprimir e as crianças colorirem.", 
             "link": "https://drive.google.com/drive/folders/1j2S-O4cHxPDqU3QTxpDnnZmKJjj1govv?usp=drive_link",
-            "capa": None
+            "capa": "Biblia_Color.png"
         },
         {
             "titulo": "🖼️ Desenhos Bíblicos para Colorir", 
             "desc": "Compilado de ilustrações de personagens da fé separados para atividades na salinha infantil.", 
             "link": "https://drive.google.com/drive/folders/1mxWgSdMJLnWHMwLK4cdmo3_fc66edsxZ?usp=drive_link",
-            "capa": None
+            "capa": "Desenhos.png"
         },
         {
             "titulo": "✝️ Parábolas de Jesus", 
             "desc": "Estudos e visuais focados nos ensinamentos práticos e histórias contadas por Cristo de forma ilustrada.", 
             "link": "https://drive.google.com/drive/folders/1I-Lal2q5x6EiynN76t8KRLbESUaW8Ae4?usp=drive_link",
-            "capa": None
+            "capa": "Parabolas.png"
         },
     ]
 
