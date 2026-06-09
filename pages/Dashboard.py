@@ -3,9 +3,10 @@ import importlib
 import sys
 import os
 
-# --- CONFIGURAÇÃO DE ROTAS E DIRETÓRIOS ---
+# --- CONFIGURAÇÃO DE ROTAS ---
 PASTA_CANVA = "pages.templates_canva"
 
+# LISTA ATUALIZADA COM TODAS AS CATEGORIAS E CAPAS CORRIGIDAS
 PAGINAS_CANVA = [
     {"icone": "⬜", "titulo": "Ação Social",            "modulo": f"{PASTA_CANVA}.Acao_Social",           "capa": "Acao 03.png"},
     {"icone": "📅", "titulo": "Agenda",                "modulo": f"{PASTA_CANVA}.Agenda",                "capa": "Agenda 01.png"},
@@ -28,14 +29,13 @@ PAGINAS_CANVA = [
     {"icone": "🎨", "titulo": "Outros Temas",           "modulo": f"{PASTA_CANVA}.Outros_Temas",          "capa": "Outros_Temas.png"},
 ]
 
-# CORREÇÃO: Rotas ajustadas com o padrão completo 'pages.nome_da_pasta.inicial'
 PORTAIS = [
-    {"titulo": "TEMPLATES CANVA",            "chave": "templates_canva", "icone": "🎨", "capa": "capa_canva.png",        "modulo": None},
-    {"titulo": "BÔNUS",                      "chave": "bonus",           "icone": "🎁", "capa": "capa_bonus.png",        "modulo": "pages.bonus.inicial"},
-    {"titulo": "FERRAMENTAS",                "chave": "ferramentas",     "icone": "🛠️", "capa": "capa_ferramentas.png",   "modulo": "pages.ferramentas.inicial"},
-    {"titulo": "KIT MINISTÉRIO INFANTIL",     "chave": "kit_infantil",    "icone": "🧸", "capa": "capa_kit_infantil.png",  "modulo": "pages.kit_infantil.inicial"},
-    {"titulo": "KIT SECRETARIA DE IGREJA",   "chave": "secretaria",      "icone": "📁", "capa": "capa_secretaria.png",   "modulo": "pages.secretaria.inicial"},
-    {"titulo": "SERMÃOS PRONTOS",            "chave": "sermoes",         "icone": "📖", "capa": "capa_sermoes.png",       "modulo": "pages.sermoes.inicial"},
+    {"titulo": "TEMPLATES CANVA",          "chave": "templates_canva", "icone": "🎨", "capa": "capa_canva.jpg", "modulo": None},
+    {"titulo": "BÔNUS",                    "chave": "bonus",           "icone": "🎁", "capa": "capa_bonus.jpg", "modulo": "pages.bonus.inicial"},
+    {"titulo": "FERRAMENTAS",              "chave": "ferramentas",     "icone": "🛠️", "capa": "capa_ferramentas.jpg", "modulo": "pages.ferramentas.inicial"},
+    {"titulo": "KIT MINISTÉRIO INFANTIL",   "chave": "kit_infantil",    "icone": "🧸", "capa": "capa_kit_infantil.jpg", "modulo": "pages.kit_infantil.inicial"},
+    {"titulo": "KIT SECRETARIA DE IGREJA", "chave": "secretaria",      "icone": "📁", "capa": "capa_secretaria.jpg", "modulo": "pages.secretaria.inicial"},
+    {"titulo": "SERMÃOS PRONTOS",          "chave": "sermoes",         "icone": "📖", "capa": "capa_sermoes.jpg", "modulo": "pages.sermoes.inicial"},
 ]
 
 def renderizar_css_botoes():
@@ -48,11 +48,8 @@ def renderizar_css_botoes():
             border-radius: 6px !important;
             border: none !important;
             height: 48px !important;
-            transition: background-color 0.2s !important;
         }
-        div.stButton > button:hover {
-            background-color: #3ccb57 !important;
-        }
+        div.stButton > button:hover { background-color: #3ccb57 !important; }
         </style>
     """, unsafe_allow_html=True)
 
@@ -60,21 +57,17 @@ def carregar_modulo_dinamico(caminho_modulo):
     try:
         if caminho_modulo in sys.modules:
             del sys.modules[caminho_modulo]
-            
         modulo = importlib.import_module(caminho_modulo)
-        
         if hasattr(modulo, "exibir"):
             modulo.exibir()
         else:
-            st.error(f"❌ O módulo {caminho_modulo} não possui a função exibir().")
-            
+            st.error(f"❌ Módulo {caminho_modulo} não tem função exibir()")
     except ModuleNotFoundError:
         st.error(f"❌ Módulo não encontrado: **{caminho_modulo}**")
-        st.info("💡 Dica: Crie o arquivo correspondente para que o botão funcione.")
+        st.info("💡 Verifique se a pasta e o arquivo `inicial.py` existem.")
     except Exception as e:
-        st.error(f"❌ Erro ao carregar **{caminho_modulo}**")
-        with st.expander("Detalhes do erro"):
-            st.exception(e)
+        st.error(f"Erro ao carregar {caminho_modulo}")
+        with st.expander("Detalhes do erro"): st.exception(e)
 
 def exibir():
     renderizar_css_botoes()
@@ -109,8 +102,6 @@ def exibir():
                 
                 if st.button(f"ACESSAR {portal['titulo']}", key=f"btn_p_{portal['chave']}", use_container_width=True):
                     st.session_state.portal_atual = portal['chave']
-                    # CORREÇÃO CRUCIAL: Salva a rota do módulo direto no session_state para carregar depois
-                    st.session_state.modulo_atual_rota = portal['modulo']
                     st.rerun()
 
     # VITRINE TEMPLATES CANVA
@@ -124,17 +115,15 @@ def exibir():
         cols_canva = st.columns(3)
         for i, pagina in enumerate(PAGINAS_CANVA):
             with cols_canva[i % 3]:
-                caminho_capa = f"assets/{pagina['capa']}" if pagina.get('capa') else ""
-                
-                if camino_capa and os.path.exists(caminho_capa):
+                caminho_capa = f"assets/{pagina.get('capa', '')}"
+                if caminho_capa and os.path.exists(caminho_capa):
                     st.image(caminho_capa, use_container_width=True)
                 else:
                     st.markdown(f"""
                         <div style='background-color: #1a1a1a; height: 180px; display: flex; 
                         align-items: center; justify-content: center; border-radius: 8px; 
-                        color: #eee; font-size:1rem; border: 1px dashed #444; font-weight: bold;
-                        text-align: center; padding: 20px; margin-bottom: 5px;'>
-                        <span style='font-size: 2rem;'>{pagina['icone']}</span><br><br>{pagina['titulo']}
+                        color: #555; font-size:0.85rem; border: 1px dashed #333;'>
+                        {pagina['icone']}<br>{pagina['titulo']}
                         </div>
                     """, unsafe_allow_html=True)
                 
@@ -142,23 +131,22 @@ def exibir():
                     st.session_state.sub_pagina_canva = pagina['modulo']
                     st.rerun()
 
-    # PÁGINA INTERNA DE TEMPLATES CANVA
+    # PÁGINA INTERNA DE TEMPLATES
     elif st.session_state.portal_atual == "templates_canva" and st.session_state.sub_pagina_canva is not None:
         if st.button("⬅️ VOLTAR PARA TEMPLATES CANVA", use_container_width=True):
             st.session_state.sub_pagina_canva = None
             st.rerun()
         carregar_modulo_dinamico(st.session_state.sub_pagina_canva)
 
-    # CORREÇÃO: ABRE QUALQUER OUTRO PORTAL DINAMICAMENTE (Bônus, Ferramentas, Secretaria, etc.)
+    # OUTROS PORTAIS (Bônus, Ferramentas, etc.)
     else:
         if st.button("⬅️ VOLTAR AO MENU PRINCIPAL", use_container_width=True):
             st.session_state.portal_atual = None
-            st.session_state.modulo_atual_rota = None
             st.rerun()
         
-        rota = st.session_state.get('modulo_atual_rota', None)
-        if rota:
-            carregar_modulo_dinamico(rota)
+        info_portal = next((p for p in PORTAIS if p["chave"] == st.session_state.portal_atual), None)
+        if info_portal and info_portal.get("modulo"):
+            carregar_modulo_dinamico(info_portal["modulo"])
         else:
             st.warning("🔧 Este módulo ainda está em desenvolvimento.")
 
