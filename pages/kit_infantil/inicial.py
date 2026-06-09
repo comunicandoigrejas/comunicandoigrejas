@@ -30,6 +30,7 @@ def exibir():
     materiais_infantis = [
         {
             "titulo": "🔤 Atividades com Alfabeto", 
+            "desc": "Material didático e lúdico com letras do alfabeto contextualizadas para o aprendizado.", 
             "link": "https://drive.google.com/drive/folders/1gokpOP_PkZUWxv-bGMhxXRdrRAMKJOnB?usp=drive_link",
             "capa": "Alfabeto.png" # ← Imagem adicionada conforme solicitado!
         },
@@ -87,13 +88,6 @@ def exibir():
                     {item['titulo']}
                     </div>
                 """, unsafe_allow_html=True)
-            
-            # Descrição rápida abaixo da imagem/bloco
-            st.markdown(f"""
-                <div style='min-height: 60px; margin-bottom: 10px;'>
-                    <p style='color: #bbbbbb; font-size: 0.85rem; line-height: 1.4; margin-top: 5px;'>{item['desc']}</p>
-                </div>
-            """, unsafe_allow_html=True)
             
             # Botão oficial de download/direcionamento
             st.link_button("📥 ACESSAR MATERIAL", item['link'], use_container_width=True)
