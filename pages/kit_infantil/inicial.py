@@ -30,7 +30,6 @@ def exibir():
     materiais_infantis = [
         {
             "titulo": "🔤 Atividades com Alfabeto", 
-            "desc": "Material didático e lúdico com letras do alfabeto contextualizadas para o aprendizado.", 
             "link": "https://drive.google.com/drive/folders/1gokpOP_PkZUWxv-bGMhxXRdrRAMKJOnB?usp=drive_link",
             "capa": "Alfabeto.png" # ← Imagem adicionada conforme solicitado!
         },
