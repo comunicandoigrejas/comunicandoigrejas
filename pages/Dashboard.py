@@ -14,7 +14,7 @@ PAGINAS_CANVA = [
     {"icone": "🌊", "titulo": "Batismo",               "modulo": f"{PASTA_CANVA}.Batismo",               "capa": "BATISMO 9.png"},
     {"icone": "📢", "titulo": "Campanhas",             "modulo": f"{PASTA_CANVA}.Campanhas",             "capa": "Campanha 01.png"},
     {"icone": "⛪", "titulo": "Cultos Gerais",          "modulo": f"{PASTA_CANVA}.Cultos_Gerais",          "capa": "Cultos Gerais 08.jpg"},
-    {"icone": "🏡", "titulo": "Culto de Célula",        "modulo": f"{PASTA_CANVA}.Culto_Celular",         "capa": "Culto_Celular.png"},
+    {"icone": "🏡", "titulo": "Culto de Célula",        "modulo": f"{PASTA_CANVA}.Culto_Celular",         "capa": "CELULA 01.png"},
     {"icone": "👨‍👩‍👧‍👦", "titulo": "Culto da Família",       "modulo": f"{PASTA_CANVA}.Familia",               "capa": "Culto Familia 08.png"},
     {"icone": "🧔", "titulo": "Culto de Homens",        "modulo": f"{PASTA_CANVA}.Homens",                "capa": "Homens 01.png"},
     {"icone": "🧸", "titulo": "Culto Infantil",          "modulo": f"{PASTA_CANVA}.Infantil",              "capa": "Infantil 01.png"},
